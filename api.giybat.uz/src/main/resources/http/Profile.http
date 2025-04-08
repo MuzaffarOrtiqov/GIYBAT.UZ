@@ -1,0 +1,40 @@
+### Update profile name
+PUT localhost:8080/api/v1/profile/detail
+Content-Type: application/json
+Accept-Language: UZ
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwiaWQiOiIxOGM2MjJhOC04ZTJjLTQ1MmUtYWJjOS1hYjk2MDUxZTVlNzQiLCJzdWIiOiI5OTg5NDI3MDIzNjMiLCJpYXQiOjE3NDMxMzk5NjksImV4cCI6MTc0MzIyNjM2OX0.Bei705siV_WIdS0DEaigNJNJvDZrUOaeBiBENnaQa3A3_515cbIrmEGazWsajjuAEZftZaFsfyTX7taAxX-YvQ
+
+{
+  "name": "Raffazum"
+}
+
+### Update profile password
+PUT localhost:8080/api/v1/profile/password
+Content-Type: application/json
+Accept-Language: UZ
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwiaWQiOiJkZTAwNzgyZi05YzM3LTRiMWMtOTIxZS1iZjI1YTEyOWEyNDciLCJzdWIiOiJvcnRpcW92bXV6YWZmYXIxNzFAZ21haWwuY29tIiwiaWF0IjoxNzQzNTE5MzI1LCJleHAiOjE3NDM2MDU3MjV9.cIMyVdJI5sdTuXZo8l8ys37AzkgaN-bGs1OLFuKA0ATeKr8CA552-QTtOFmk3zfGTWyYSfxNLDav8R6zqe0ecA
+
+{
+  "currentPassword": "12345",
+  "newPassword": "777"
+}
+
+### Update profile username
+PUT localhost:8080/api/v1/profile/username
+Content-Type: application/json
+Accept-Language: UZ
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwiaWQiOiIxOGM2MjJhOC04ZTJjLTQ1MmUtYWJjOS1hYjk2MDUxZTVlNzQiLCJzdWIiOiJvcnRpcW92bXV6YWZmYXIxNzFAZ21haWwuY29tIiwiaWF0IjoxNzQ0MDA0NTE0LCJleHAiOjE3NDQwOTA5MTR9.aOnnwlT_ug5jf-3xtaVI36UBSxlvI1dpsJGnrx_aGpvwAMdfzzbSeYNwwMmSGay9ZDwS6nzKAjvm0ps2GhnkoQ
+
+{
+  "username": "ortiqovmuzaffar173@gmail.com"
+}
+
+### Update profile username confirm
+PUT localhost:8080/api/v1/profile/username-confirmation
+Content-Type: application/json
+Accept-Language: EN
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwiaWQiOiIxOGM2MjJhOC04ZTJjLTQ1MmUtYWJjOS1hYjk2MDUxZTVlNzQiLCJzdWIiOiJvcnRpcW92bXV6YWZmYXIxNzFAZ21haWwuY29tIiwiaWF0IjoxNzQ0MDA0NTE0LCJleHAiOjE3NDQwOTA5MTR9.aOnnwlT_ug5jf-3xtaVI36UBSxlvI1dpsJGnrx_aGpvwAMdfzzbSeYNwwMmSGay9ZDwS6nzKAjvm0ps2GhnkoQ
+
+{
+  "code": "45071"
+}
