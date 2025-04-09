@@ -206,7 +206,8 @@ public class AuthService {
         profileResponseDTO.setName(profileEntity.getName());
         profileResponseDTO.setUsername(profileEntity.getUsername());
         profileResponseDTO.setRoleList(profileRoleRepository.getAllRoles(profileEntity.getId()));
-        profileResponseDTO.setAttachShortDTO(attachService.getAttachDTO());
+        profileResponseDTO.setAttachDTO(attachService.attachDTO(profileEntity.getPhotoId()));
+
         profileResponseDTO.setJwt(JwtUtil.encode(profileEntity.getId(), profileEntity.getUsername(), profileResponseDTO.getRoleList()));
         return profileResponseDTO;
     }

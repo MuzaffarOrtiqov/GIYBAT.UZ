@@ -1,6 +1,6 @@
 package api.giybat.uz.dto.profile;
 
-import api.giybat.uz.dto.attach.AttachShortDTO;
+import api.giybat.uz.dto.attach.AttachDTO;
 import api.giybat.uz.enums.ProfileRole;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
@@ -18,5 +18,5 @@ public class ProfileResponseDTO {
     private String username;
     private List<ProfileRole> roleList;
     private String jwt;
-    private AttachShortDTO attachShortDTO;
+    private AttachDTO attachDTO;
 }

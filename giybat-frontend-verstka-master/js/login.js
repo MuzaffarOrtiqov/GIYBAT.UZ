@@ -46,6 +46,7 @@ function login() {
         }
     }).then(item => {
 
+        console.log(item)
         localStorage.setItem("userDetail", JSON.stringify(item))
         localStorage.setItem("jwtToken",item.jwt)
         window.location.href = "./profile-post-list.html";

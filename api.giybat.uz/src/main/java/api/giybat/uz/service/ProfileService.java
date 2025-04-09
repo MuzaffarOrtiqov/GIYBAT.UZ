@@ -2,6 +2,7 @@ package api.giybat.uz.service;
 
 import api.giybat.uz.dto.AppResponse;
 import api.giybat.uz.dto.CodeConfirmDTO;
+import api.giybat.uz.dto.ProfilePhotoUpdateDTO;
 import api.giybat.uz.dto.profile.ProfileDetailUpdateDTO;
 import api.giybat.uz.dto.profile.ProfileUpdatePasswordDTO;
 import api.giybat.uz.dto.profile.ProfileUpdateUsernameDTO;
@@ -40,12 +41,13 @@ public class ProfileService {
     private EmailHistoryService emailHistoryService;
     @Autowired
     private ProfileRoleRepository profileRoleRepository;
+    @Autowired
+    private AttachService attachService;
 
     public ProfileEntity findProfileById(String id, AppLanguage lang) {
         return profileRepository.findByIdAndVisibleTrue(id).orElseThrow(() -> new AppBadException(resourceBundleMessageService.getMessage("profile.not.found", lang)));
 
     }
-
 
     public AppResponse<String> updateDetail(ProfileDetailUpdateDTO profile, AppLanguage lang) {
         String userId = SpringSecurityUtil.getCurrentUserId();
@@ -102,5 +104,15 @@ public class ProfileService {
         List<ProfileRole> roleList = profileRoleRepository.getAllRoles(profileEntity.getId());
         String jwt = JwtUtil.encode(userId, tempUsername, roleList);
         return new AppResponse<>( jwt, resourceBundleMessageService.getMessage("username.update.success", lang));
+    }
+
+    public AppResponse<String> updateProfilePhoto(ProfilePhotoUpdateDTO profileUpdateDTO, AppLanguage lang) {
+        String userId = SpringSecurityUtil.getCurrentUserId();
+        ProfileEntity profileEntity = findProfileById(userId, lang);
+        if(profileUpdateDTO.getPhotoId()!=null && profileUpdateDTO.getPhotoId()!=profileEntity.getPhotoId()){
+            attachService.delete(profileEntity.getPhotoId());
+        }
+        profileRepository.updateProfilePhoto(userId,profileUpdateDTO.getPhotoId());
+        return new AppResponse<>(resourceBundleMessageService.getMessage("profile.photo.updated", lang));
     }
 }

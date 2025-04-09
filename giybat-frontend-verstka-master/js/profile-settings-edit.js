@@ -256,39 +256,39 @@ function uploadImage() {
             return;
         }
         const lang = document.getElementById("current-lang").textContent;
-        //
-        // fetch('http://localhost:8080/attach/upload', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Accept-Language': lang,
-        //         'Authorization': 'Bearer ' + jwt
-        //     },
-        //     body: formData
-        // })
-        //     .then(response => {
-        //         if (!response.ok) {
-        //             throw new Error('Network response was not ok');
-        //         }
-        //         return response.json();
-        //     })
-        //     .then(data => {
-        //         console.log('Success:', data);
-        //         if (data.id) {
-        //             updateProfileImage(data.id); // profile update image
-        //
-        //             const userDetailJon = localStorage.getItem("userDetail");
-        //             const userDetail = JSON.parse(userDetailJon);
-        //             userDetail.photo = {};
-        //             userDetail.photo.id = data.id;
-        //             userDetail.photo.url = data.url;
-        //             localStorage.setItem("userDetail", JSON.stringify(userDetail));
-        //
-        //             // document.getElementById("header_user_image_id").src =data.url;
-        //         }
-        //     })
-        //     .catch(error => {
-        //         console.error('Error:', error);
-        //     });
+
+        fetch('http://localhost:8080/api/v1/attach/upload', {
+            method: 'POST',
+            headers: {
+                'Accept-Language': lang,
+                'Authorization': 'Bearer ' + jwt
+            },
+            body: formData
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+               // console.log('Success:', data);
+                if (data.id) {
+                    updateProfileImage(data.id); // profile update image
+
+                    const userDetailJon = localStorage.getItem("userDetail");
+                    const userDetail = JSON.parse(userDetailJon);
+                    userDetail.photo = {};
+                    userDetail.photo.id = data.id;
+                    userDetail.photo.url = data.url;
+                    localStorage.setItem("userDetail", JSON.stringify(userDetail));
+
+                     document.getElementById("header_user_image_id").src =data.url;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
     }
 }
 
@@ -308,4 +308,28 @@ function updateProfileImage(photoId) {
     }
 
     const lang = document.getElementById("current-lang").textContent;
+
+    fetch('http://localhost:8080/api/v1/profile/photo', {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept-Language': lang,
+            'Authorization': 'Bearer ' + jwt
+        },
+        body: JSON.stringify(body)
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+             alert(data.message)
+            document.getElementById('profile_settings_upload_img_btn_id').style.display = 'none';
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+
 }

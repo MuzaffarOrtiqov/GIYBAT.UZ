@@ -66,8 +66,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const headerUserNameSpan = document.getElementById("header_user_name_id");
     headerUserNameSpan.textContent = name;
-    if (userDetail.photo) {
-        document.getElementById("header_user_image_id").src = userDetail.photo.url;
+    if (userDetail.attachDTO) {
+        document.getElementById("header_user_image_id").src = userDetail.attachDTO.url;
     }
 
     // search input
