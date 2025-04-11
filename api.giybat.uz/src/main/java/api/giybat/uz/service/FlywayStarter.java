@@ -1,4 +1,4 @@
-package api.giybat.uz.config;
+package api.giybat.uz.service;
 
 import org.flywaydb.core.Flyway;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,4 +16,5 @@ public class FlywayStarter implements CommandLineRunner {
     public void run(String... args) throws Exception {
         Flyway.configure().baselineOnMigrate(true).dataSource(dataSource).load().migrate();
     }
+
 }

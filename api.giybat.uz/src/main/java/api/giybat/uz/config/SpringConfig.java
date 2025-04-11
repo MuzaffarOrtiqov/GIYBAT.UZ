@@ -28,7 +28,11 @@ import java.util.UUID;
 @EnableWebSecurity
 @EnableMethodSecurity(prePostEnabled = true)
 public class SpringConfig {
-    public static final String [] AUTH_WHITELIST = {"/api/v1/auth/**","/api/v1/attach/open/**"};
+    public static final String [] AUTH_WHITELIST = {"/api/v1/auth/**",
+            "/api/v1/attach/open/**",
+            "/swagger-ui/**",
+            "/v3/api-docs",
+            "/v3/api-docs/**" };
     @Autowired
     private UserDetailsService userDetailsService;
     @Autowired
