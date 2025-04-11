@@ -6,6 +6,7 @@ import api.giybat.uz.enums.AppLanguage;
 import api.giybat.uz.enums.EmailType;
 import api.giybat.uz.exps.AppBadException;
 import api.giybat.uz.repository.EmailHistoryRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,7 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
+@Slf4j
 public class EmailHistoryService {
     @Autowired
     private EmailHistoryRepository emailHistoryRepository;
@@ -41,20 +43,24 @@ public class EmailHistoryService {
         Optional<EmailHistoryEntity> optional = emailHistoryRepository.findTop1ByEmailOrderByCreatedDateDesc(email);
 
         if (optional.isEmpty()) {
+            log.info("Email history does not exist with email: {}", email);
             throw new AppBadException(resourceBundleMessageService.getMessage("email.not.found", lang));
         }
         EmailHistoryEntity entity = optional.get();
         if (entity.getAttemptCount() > 3) {
+            log.warn("Attempt count exceeds 3: {}", entity.getAttemptCount());
             throw new AppBadException(resourceBundleMessageService.getMessage("too.many.attempts", lang));
         }
         //check code
         if (!entity.getCode().equals(code)) {
             emailHistoryRepository.updateAttemptCount(entity.getId());
+            log.info("Wrong password : email {}, saved code {}, provided code {} ", email, entity.getCode(), code);
             throw new AppBadException(resourceBundleMessageService.getMessage("no.matching.password", lang));
         }
         //check time
         LocalDateTime expDate = entity.getCreatedDate().plusMinutes(10);
         if (LocalDateTime.now().isAfter(expDate)) {
+            log.warn("Sent email confirmation time expired : email {}, sent time: {}", email, entity.getCreatedDate()) ;
             throw new AppBadException(resourceBundleMessageService.getMessage("verification.time.expired", lang));
         }
 

@@ -5,6 +5,7 @@ import api.giybat.uz.enums.AppLanguage;
 import api.giybat.uz.enums.SmsType;
 import api.giybat.uz.exps.AppBadException;
 import api.giybat.uz.repository.SmsHistoryRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,7 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
+@Slf4j
 public class SmsHistoryService {
     @Autowired
     private SmsHistoryRepository smsHistoryRepository;
@@ -37,22 +39,26 @@ public class SmsHistoryService {
         Optional<SmsHistoryEntity> optional = smsHistoryRepository.findTop1ByPhoneOrderByCreatedDateDesc(phone);
 
         if (optional.isEmpty()) {
+            log.warn("No sms history found for phone {}", phone);
             throw new AppBadException(resourceBundleMessageService.getMessage("sms.not.found", lang));
         }
         SmsHistoryEntity entity = optional.get();
         //setting attempt count to 0 if null
         int attemptCount = entity.getAttemptCount()==null ? 0 : entity.getAttemptCount();
         if(attemptCount>3){
+            log.warn("Attempt count exceeds 3 limit for phone {}", phone);
             throw new AppBadException(resourceBundleMessageService.getMessage("too.many.attempts", lang));
         }
         //check code
         if (!entity.getCode().equals(code)) {
             smsHistoryRepository.updateAttemptCount(entity.getId());
+            log.warn("Code mismatch for phone {}", phone);
             throw new AppBadException(resourceBundleMessageService.getMessage("no.matching.password", lang));
         }
         //check time
         LocalDateTime expDate = entity.getCreatedDate().plusMinutes(2);
         if(LocalDateTime.now().isAfter(expDate)){
+            log.warn("Verification expired for phone {}, sent time {}", phone,entity.getCreatedDate());
             throw new AppBadException(resourceBundleMessageService.getMessage("verification.time.expired", lang));
         }
 

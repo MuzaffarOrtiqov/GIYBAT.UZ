@@ -15,6 +15,7 @@ import api.giybat.uz.repository.ProfileRoleRepository;
 import api.giybat.uz.util.JwtUtil;
 import api.giybat.uz.util.SpringSecurityUtil;
 import api.giybat.uz.util.ValidityUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,7 @@ import java.util.Optional;
 
 
 @Service
+@Slf4j
 public class ProfileService {
     @Autowired
     private ProfileRepository profileRepository;
@@ -45,6 +47,7 @@ public class ProfileService {
     private AttachService attachService;
 
     public ProfileEntity findProfileById(String id, AppLanguage lang) {
+        log.error("No profile found with id: {}", id);
         return profileRepository.findByIdAndVisibleTrue(id).orElseThrow(() -> new AppBadException(resourceBundleMessageService.getMessage("profile.not.found", lang)));
 
     }
@@ -59,6 +62,7 @@ public class ProfileService {
         String userId = SpringSecurityUtil.getCurrentUserId();
         ProfileEntity profileEntity = findProfileById(userId, lang);
         if (!bCryptPasswordEncoder.matches(profileDTO.getCurrentPassword(), profileEntity.getPassword())) {
+            log.warn("Password mismatch: userId:{}",userId);
             throw new AppBadException(resourceBundleMessageService.getMessage("password.not.match", lang));
         }
         profileRepository.updatePassword(bCryptPasswordEncoder.encode(profileDTO.getNewPassword()), userId);
@@ -69,6 +73,7 @@ public class ProfileService {
         //check
         Optional<ProfileEntity> optional = profileRepository.findByUsernameAndVisibleTrue(profileDTO.getUsername());
         if (optional.isPresent()) {
+            log.info("Username already in use: {}", profileDTO.getUsername());
             throw new AppBadException(resourceBundleMessageService.getMessage("email.phone.exists", lang));
         }
 

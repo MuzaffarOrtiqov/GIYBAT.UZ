@@ -18,6 +18,7 @@ import api.giybat.uz.repository.ProfileRoleRepository;
 import api.giybat.uz.util.JwtUtil;
 import api.giybat.uz.util.ValidityUtil;
 import io.jsonwebtoken.JwtException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
+@Slf4j
 public class AuthService {
     @Autowired
     private ProfileRepository profileRepository;
@@ -58,6 +60,7 @@ public class AuthService {
                 profileRoleService.deleteRoles(profile.getId());
                 profileRepository.delete(profile);
             } else {
+                log.warn("Profile {} already exists", profile.getId());
                 throw new AppBadException(resourceBundleMessageService.getMessage("email.phone.exists", lang));
             }
         }
@@ -93,6 +96,7 @@ public class AuthService {
         } catch (JwtException e) {
             throw new AppBadException(resourceBundleMessageService.getMessage("token.invalid.expired", lang));
         }
+        log.info("Email verification failed {}", token);
         throw new AppBadException(resourceBundleMessageService.getMessage("verification.failed", lang));
     }
 
@@ -100,11 +104,13 @@ public class AuthService {
         //check if exits
         Optional<ProfileEntity> optional = profileRepository.findByUsernameAndVisibleTrue(dto.getPhone());
         if (optional.isEmpty()) {
+            log.info("Profile not found {}", dto.getPhone());
             throw new AppBadException(resourceBundleMessageService.getMessage("profile.not.found", lang));
         }
         // check for  status
         ProfileEntity profileEntity = optional.get();
         if (!profileEntity.getStatus().equals(GeneralStatus.IN_REGISTRATION)) {
+            log.info("Verification failed: {}", dto.getPhone());
             throw new AppBadException(resourceBundleMessageService.getMessage("verification.failed", lang));
         }
 
@@ -120,17 +126,19 @@ public class AuthService {
     public ProfileResponseDTO login(AuthDTO authDTO, AppLanguage lang) {
         Optional<ProfileEntity> optional = profileRepository.findByUsernameAndVisibleTrue(authDTO.getUsername());
         if (optional.isEmpty()) {
+            log.info("Login failed username: {}", authDTO.getUsername());
             throw new AppBadException(resourceBundleMessageService.getMessage("wrong.password.username", lang));
         }
         ProfileEntity profileEntity = optional.get();
         if (!passwordEncoder.matches(authDTO.getPassword(), profileEntity.getPassword())) {
+            log.info("Login failed username: {}", authDTO.getUsername());
             throw new AppBadException(resourceBundleMessageService.getMessage("wrong.password.username", lang));
         }
         if (!profileEntity.getStatus().equals(GeneralStatus.ACTIVE)) {
+            log.warn("Wrong status username {}", authDTO.getUsername());
             throw new AppBadException(resourceBundleMessageService.getMessage("wrong.status", lang));
         }
         return getLoginResponse(profileEntity);
-
 
     }
 
@@ -138,11 +146,13 @@ public class AuthService {
         //check if exits
         Optional<ProfileEntity> optional = profileRepository.findByUsernameAndVisibleTrue(dto.getUsername());
         if (optional.isEmpty()) {
+            log.info("Profile not found username {}", dto.getUsername());
             throw new AppBadException(resourceBundleMessageService.getMessage("profile.not.found", lang));
         }
         // check for  status
         ProfileEntity profileEntity = optional.get();
         if (!profileEntity.getStatus().equals(GeneralStatus.ACTIVE)) {
+            log.info("Wrong status {}", dto.getUsername());
             throw new AppBadException(resourceBundleMessageService.getMessage("wrong.status", lang));
         }
         //check if email valid
@@ -163,10 +173,12 @@ public class AuthService {
         //check if exits
         Optional<ProfileEntity> optional = profileRepository.findByUsernameAndVisibleTrue(dto.getUsername());
         if (optional.isEmpty()) {
+            log.info("Profile not found username {}", dto.getUsername());
             throw new AppBadException(resourceBundleMessageService.getMessage("profile.not.found", lang));
         }
         ProfileEntity profileEntity = optional.get();
         if (!profileEntity.getStatus().equals(GeneralStatus.ACTIVE)) {
+            log.info("Wrong status {}", dto.getUsername());
             throw new AppBadException(resourceBundleMessageService.getMessage("wrong.status", lang));
         }
         // check if email valid
@@ -188,11 +200,13 @@ public class AuthService {
         //check if exits
         Optional<ProfileEntity> optional = profileRepository.findByUsernameAndVisibleTrue(dto.getPhone());
         if (optional.isEmpty()) {
+            log.info("Profile not found username {}", dto.getPhone());
             throw new AppBadException(resourceBundleMessageService.getMessage("profile.not.found", lang));
         }
         // check for  status
         ProfileEntity profileEntity = optional.get();
         if (!profileEntity.getStatus().equals(GeneralStatus.IN_REGISTRATION)) {
+            log.info("Verification failed", dto.getPhone());
             throw new AppBadException(resourceBundleMessageService.getMessage("verification.failed", lang));
         }
         //check if phone valid

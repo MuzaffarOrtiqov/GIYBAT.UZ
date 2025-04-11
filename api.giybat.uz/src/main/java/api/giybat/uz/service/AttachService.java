@@ -4,6 +4,7 @@ import api.giybat.uz.dto.attach.AttachDTO;
 import api.giybat.uz.entity.AttachEntity;
 import api.giybat.uz.exps.AppBadException;
 import api.giybat.uz.repository.AttachRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
@@ -25,6 +26,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
+@Slf4j
 public class AttachService {
     @Value("${attach.upload.folder}")
     private String folderName;
@@ -36,6 +38,7 @@ public class AttachService {
 
     public AttachDTO upload(MultipartFile file) {
         if (file.isEmpty()) {
+            log.warn("File is empty");
             throw new AppBadException("File not found");
         }
 
@@ -68,6 +71,7 @@ public class AttachService {
             return toDTO(entity);
         } catch (IOException e) {
             e.printStackTrace();
+            log.warn("File upload failed error : {}", e.getMessage());
         }
         return null;
     }
@@ -79,6 +83,7 @@ public class AttachService {
         try {
             resource = new UrlResource(filePath.toUri());
             if (!resource.exists()) {
+                log.warn("File not found");
                 throw new RuntimeException("File not found: " + id);
             }
             String contentType = Files.probeContentType(filePath);
@@ -90,6 +95,7 @@ public class AttachService {
                     .body(resource);
         } catch (Exception e) {
             e.printStackTrace();
+            log.warn("File download failed error : {}", e.getMessage());
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
@@ -123,6 +129,7 @@ public class AttachService {
     public AttachEntity getEntity(String id) {
         Optional<AttachEntity> optional = attachRepository.findById(id);
         if (optional.isEmpty()) {
+            log.warn("File not found");
             throw new AppBadException("File not found");
         }
         return optional.get();

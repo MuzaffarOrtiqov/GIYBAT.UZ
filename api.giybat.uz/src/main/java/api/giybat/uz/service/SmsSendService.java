@@ -13,6 +13,7 @@ import api.giybat.uz.util.RandomUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -26,6 +27,7 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
+@Slf4j
 public class SmsSendService {
     @Autowired
     private RestTemplate restTemplate;
@@ -64,6 +66,7 @@ public class SmsSendService {
     private SmsSendResponseDTO sendSms(String phoneNumber, String message, String code, SmsType smsType) {
         Long count = smsHistoryService.getSmsCount(phoneNumber);
         if (count > smsLimit) {
+            log.warn("Sms limit reached phone number: {}", phoneNumber);
             throw new AppBadException("Try again later");
         }
         SmsSendResponseDTO result = sendSms(phoneNumber, message);
@@ -89,6 +92,7 @@ public class SmsSendService {
             return response.getBody();
         } catch (RuntimeException e) {
             e.printStackTrace();
+            log.error("Send Sms failed phone :{}, message: {}, error: {}",phoneNumber, message,e.getMessage());
             throw new RuntimeException(e);
         }
 
@@ -129,6 +133,7 @@ public class SmsSendService {
             String token = child.get("token").asText();
             return token;
         } catch (JsonProcessingException e) {
+            log.error("Get token :{}, error: {}",accountLogin, e.getMessage());
             throw new RuntimeException(e);
         }
 

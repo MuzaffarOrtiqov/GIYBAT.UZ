@@ -12,6 +12,7 @@ import api.giybat.uz.service.ProfileService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/v1/profile/")
 @Tag(name = "AuthController", description = "A set of APIs to work with profile")
+@Slf4j
 public class ProfileController {
     @Autowired
     private ProfileService profileService;
@@ -30,6 +32,7 @@ public class ProfileController {
             @RequestHeader(value = "Accept-Language", defaultValue = "UZ") AppLanguage lang) {
 
         AppResponse<String> response = profileService.updateDetail(profile, lang);
+        log.info("Update profile detail name: {}", profile.getName());
         return ResponseEntity.ok(response);
     }
     @PutMapping("/password")
@@ -39,6 +42,7 @@ public class ProfileController {
             @RequestHeader(value = "Accept-Language", defaultValue = "UZ") AppLanguage lang) {
 
         AppResponse<String> response = profileService.updatePassword(profile, lang);
+        log.info("Password is being updated");
         return ResponseEntity.ok(response);
     }
 
@@ -49,6 +53,7 @@ public class ProfileController {
             @RequestHeader(value = "Accept-Language", defaultValue = "UZ") AppLanguage lang) {
 
         AppResponse<String> response = profileService.updateUsername(profileDTO, lang);
+        log.info("Old username is being updated to username: {}", profileDTO.getUsername());
         return ResponseEntity.ok(response);
     }
 
@@ -59,6 +64,7 @@ public class ProfileController {
             @RequestHeader(value = "Accept-Language", defaultValue = "UZ") AppLanguage lang) {
 
         AppResponse<String> response = profileService.updateUsernameConfirm(codeConfirmDTO, lang);
+        log.info("Username confirmation");
         return ResponseEntity.ok(response);
     }
 
@@ -66,8 +72,8 @@ public class ProfileController {
     @Operation(summary = "Update profile photo",description ="Method used to update photo of a profile" )
     public ResponseEntity<AppResponse<String>> updateProfilePhoto(@Valid @RequestBody ProfilePhotoUpdateDTO profileUpdateDTO,
             @RequestHeader(value = "Accept-Language", defaultValue = "UZ") AppLanguage lang) {
-
         AppResponse<String> response = profileService.updateProfilePhoto(profileUpdateDTO, lang);
+        log.info("Profile photo updated");
         return ResponseEntity.ok(response);
     }
 
