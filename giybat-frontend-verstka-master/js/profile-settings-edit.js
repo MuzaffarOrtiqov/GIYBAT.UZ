@@ -8,8 +8,8 @@ window.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById("profile_settings_name").value = userDetailObj.name;
     document.getElementById("profile_settings_username").value = userDetailObj.username;
-    if (userDetailObj.photo) {
-        document.getElementById("profile_settings_photo").src = userDetailObj.photo.url;
+    if (userDetailObj.attachDTO) {
+        document.getElementById("profile_settings_photo").src = userDetailObj.attachDTO.url;
     }
 });
 

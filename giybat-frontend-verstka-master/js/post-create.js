@@ -31,6 +31,31 @@ async function createPost() {
     }
     const lang = document.getElementById("current-lang").textContent;
 
+    fetch('http://localhost:8080/api/v1/post', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept-Language': lang,
+            'Authorization': 'Bearer ' + jwt
+        },
+        body: JSON.stringify(body)
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+        //  window.location.href="./profile-post-list.html"
+            console.log(data)
+        })
+        .catch(error => {
+           console.log(error('Error:', error));
+
+        });
+
+
 }
 
 // ------------ Image preview ------------
@@ -62,7 +87,7 @@ async function uploadImage() {
         }
         const lang = document.getElementById("current-lang").textContent;
 
-        /* return fetch('http://localhost:8080/attach/upload', {
+         return fetch('http://localhost:8080/api/v1/attach/upload', {
              method: 'POST',
              headers: {
                  'Accept-Language': lang,
@@ -84,7 +109,7 @@ async function uploadImage() {
              .catch(error => {
                  console.error('Error:', error);
                  return null;
-             });*/
+             });
     }
 }
 

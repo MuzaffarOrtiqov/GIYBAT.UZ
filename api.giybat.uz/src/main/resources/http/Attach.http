@@ -1,12 +1,12 @@
 ### Upload
 POST localhost:8080/api/v1/attach/upload
 Content-Type: multipart/form-data; boundary=WebAppBoundary
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwiaWQiOiIxOGM2MjJhOC04ZTJjLTQ1MmUtYWJjOS1hYjk2MDUxZTVlNzQiLCJzdWIiOiJvcnRpcW92bXV6YWZmYXIxNzFAZ21haWwuY29tIiwiaWF0IjoxNzQ0MTA0MDYyLCJleHAiOjE3NDQ3MDg4NjJ9.zN0FNvuEVdBXcoJXW_ZNfbTidrYimb4Hs0VUMHL_4Ym0nYvfeY2Ng3XogBvDA5eKW7PablpJjiq3zLncW9f2NA
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwiaWQiOiIxOGM2MjJhOC04ZTJjLTQ1MmUtYWJjOS1hYjk2MDUxZTVlNzQiLCJzdWIiOiJvcnRpcW92bXV6YWZmYXIxNzFAZ21haWwuY29tIiwiaWF0IjoxNzQ0MzY4MjI4LCJleHAiOjE3NDQ5NzMwMjh9.I2RFeL2dKAvJCx6xVLIm6lXfHoB1G7q55-JvwWS-ONRTBcuy35qUTp2FMiB_nuZ71A7VSniCPRYnUU6LeLrOXw
 
 --WebAppBoundary
-Content-Disposition: form-data; name="file"; filename="zari.jpg"
+Content-Disposition: form-data; name="file"; filename="scenery.jpg"
 
-< C:\Users\HP\Desktop\test\Images\zari.jpg
+< C:\Users\HP\Desktop\test\Images\scenery.jpg
 
 ### Open file
 GET localhost:8080/api/v1/attach/open/5913beb5-57c3-47db-b635-681091cbbcff.jpg

@@ -2,6 +2,7 @@ package api.giybat.uz.util;
 
 import api.giybat.uz.config.CustomUserDetails;
 import api.giybat.uz.entity.ProfileEntity;
+import api.giybat.uz.enums.ProfileRole;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
@@ -19,5 +20,10 @@ public class SpringSecurityUtil {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         CustomUserDetails user = (CustomUserDetails) authentication.getPrincipal();
         return user.getId();
+    }
+
+    public static boolean hasRole(ProfileRole role) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return authentication.getAuthorities().stream().anyMatch(sga -> sga.getAuthority().equals(role.name()));
     }
 }

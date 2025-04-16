@@ -1,4 +1,48 @@
 ### CREATE
-POST localhost:8080/api/v1/post/create
+POST localhost:8080/api/v1/post
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9VU0VSLFJPTEVfQURNSU4iLCJpZCI6ImZiNmZiMGE1LWE4ZjQtNGQzMS1hMWU5LTA2NDE0MTNkYWEyYiIsInN1YiI6Im9ydGlxb3ZtdXphZmZhcjE3MUBnbWFpbC5jb20iLCJpYXQiOjE3NDEyNDY5NzMsImV4cCI6MTc0MTMzMzM3M30.EQ5cNghAK3dPz_abtE20yCHBwUwGPQdTnrWVg3EzKL1i2KlrSRbcWpRkKMl0RmP4f451ql3zXzbB8JA8pq6tmw
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwiaWQiOiIxOGM2MjJhOC04ZTJjLTQ1MmUtYWJjOS1hYjk2MDUxZTVlNzQiLCJzdWIiOiJvcnRpcW92bXV6YWZmYXIxNzFAZ21haWwuY29tIiwiaWF0IjoxNzQ0MzY4MjI4LCJleHAiOjE3NDQ5NzMwMjh9.I2RFeL2dKAvJCx6xVLIm6lXfHoB1G7q55-JvwWS-ONRTBcuy35qUTp2FMiB_nuZ71A7VSniCPRYnUU6LeLrOXw
+
+{
+  "title": "Ushalmas orzular",
+  "content": "Bu yerda eng ko'p xoxlangan orzular yashirin",
+  "photo": {
+    "photoId": "feb02e30-295f-47ca-b072-98b361f2676f.jpg"
+  }
+}
+
+### GET PROFILE'S OWN POSTS
+GET localhost:8080/api/v1/post/profile?page=1&size?3
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwiaWQiOiIxOGM2MjJhOC04ZTJjLTQ1MmUtYWJjOS1hYjk2MDUxZTVlNzQiLCJzdWIiOiJvcnRpcW92bXV6YWZmYXIxNzFAZ21haWwuY29tIiwiaWF0IjoxNzQ0MzY4MjI4LCJleHAiOjE3NDQ5NzMwMjh9.I2RFeL2dKAvJCx6xVLIm6lXfHoB1G7q55-JvwWS-ONRTBcuy35qUTp2FMiB_nuZ71A7VSniCPRYnUU6LeLrOXw
+
+### GET FULL DETAILS OF A POST
+GET localhost:8080/api/v1/post/public/218dc1c4-10a9-4183-9389-659cee43539b
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwiaWQiOiIxOGM2MjJhOC04ZTJjLTQ1MmUtYWJjOS1hYjk2MDUxZTVlNzQiLCJzdWIiOiJvcnRpcW92bXV6YWZmYXIxNzFAZ21haWwuY29tIiwiaWF0IjoxNzQ0MzY4MjI4LCJleHAiOjE3NDQ5NzMwMjh9.I2RFeL2dKAvJCx6xVLIm6lXfHoB1G7q55-JvwWS-ONRTBcuy35qUTp2FMiB_nuZ71A7VSniCPRYnUU6LeLrOXw
+
+### UPDATE A POST
+PUT localhost:8080/api/v1/post/218dc1c4-10a9-4183-9389-659cee43539b
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwiaWQiOiJkZTAwNzgyZi05YzM3LTRiMWMtOTIxZS1iZjI1YTEyOWEyNDciLCJzdWIiOiJvcnRpcW92bXV6YWZmYXIxNzJAZ21haWwuY29tIiwiaWF0IjoxNzQ0NTQ2OTkxLCJleHAiOjE3NDUxNTE3OTF9.IanJyVyBZ-2qPdBZIZoe5SKBAFRU41-8zYObXpwf9r0LhpmUBO5Gz8a1f-qdZxGw9i-6pCzObAI76RN0U68UjQ
+
+{
+  "title": "Ushalmas orzular",
+  "content": "Bu yerda eng ko'p xoxlangan orzular yashiringan",
+  "photo": {
+    "photoId": "feb02e30-295f-47ca-b072-98b361f2676f.jpg"
+  }
+}
+
+### DELETE A POST
+DELETE localhost:8080/api/v1/post/218dc1c4-10a9-4183-9389-659cee43539b
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwiaWQiOiIxOGM2MjJhOC04ZTJjLTQ1MmUtYWJjOS1hYjk2MDUxZTVlNzQiLCJzdWIiOiJvcnRpcW92bXV6YWZmYXIxNzFAZ21haWwuY29tIiwiaWF0IjoxNzQ0NTUzMzgwLCJleHAiOjE3NDUxNTgxODB9.eOSwexhcLvPFXJrXtJwR6vw9P7r9UXJ90xt1OuTECEdarSKE8HWmxYYgIFLYnEzJgyUbAKyo1UaKgfKJuRzjuA
+
+### FILTER POSTS
+POST localhost:8080/api/v1/post/public/filter?page=1&size=3
+Content-Type: application/json
+
+{
+  "query": "orzu"
+}

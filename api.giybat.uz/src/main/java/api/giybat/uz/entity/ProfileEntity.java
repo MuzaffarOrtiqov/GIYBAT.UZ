@@ -39,6 +39,8 @@ public class ProfileEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     private AttachEntity photo;
 
+
+
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
     private GeneralStatus status = GeneralStatus.ACTIVE;

@@ -32,7 +32,10 @@ public class SpringConfig {
             "/api/v1/attach/open/**",
             "/swagger-ui/**",
             "/v3/api-docs",
-            "/v3/api-docs/**" };
+            "/v3/api-docs/**",
+            "/api/v1/post/public/**",
+
+    };
     @Autowired
     private UserDetailsService userDetailsService;
     @Autowired
