@@ -20,7 +20,7 @@ async function createPost() {
         "title": titleValue,
         "content": contentValue,
         "photo": {
-            "id": imageId
+            "photoId": imageId
         }
     }
 
@@ -47,12 +47,12 @@ async function createPost() {
             return response.json();
         })
         .then(data => {
-        //  window.location.href="./profile-post-list.html"
-            console.log(data)
+            // Show a success alert
+            alert("✅ Post created successfully!");
+            window.location.href = "./profile-post-list.html"
         })
         .catch(error => {
-           console.log(error('Error:', error));
-
+            console.error('Error:', error);
         });
 
 
@@ -87,29 +87,29 @@ async function uploadImage() {
         }
         const lang = document.getElementById("current-lang").textContent;
 
-         return fetch('http://localhost:8080/api/v1/attach/upload', {
-             method: 'POST',
-             headers: {
-                 'Accept-Language': lang,
-                 'Authorization': 'Bearer ' + jwt
-             },
-             body: formData
-         })
-             .then(response => {
-                 if (!response.ok) {
-                     throw new Error('Network response was not ok');
-                 }
-                 return response.json();
-             })
-             .then(data => {
-                 if (data.id) {
-                     return data.id;
-                 }
-             })
-             .catch(error => {
-                 console.error('Error:', error);
-                 return null;
-             });
+        return fetch('http://localhost:8080/api/v1/attach/upload', {
+            method: 'POST',
+            headers: {
+                'Accept-Language': lang,
+                'Authorization': 'Bearer ' + jwt
+            },
+            body: formData
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.id) {
+                    return data.id;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                return null;
+            });
     }
 }
 
@@ -118,15 +118,46 @@ window.addEventListener("DOMContentLoaded", function () {
     var url = new URL(url_string);
     var id = url.searchParams.get("id");
     if (id) {
-        // getPostById(id);
-        // document.getElementById("post_create_btn_group").classList.add("display-none");
-        // document.getElementById("post_update_btn_group").classList.remove("display-none");
-        // document.getElementById("post_page_title_id").textContent = 'G\'iybatni o\'zgartirsh';
+        getPostById(id);
+        document.getElementById("post_create_btn_group").classList.add("display-none");
+        document.getElementById("post_update_btn_group").classList.remove("display-none");
+        document.getElementById("post_page_title_id").textContent = 'G\'iybatni o\'zgartirsh';
     }
 });
 
 function getPostById(postId) {
     const lang = document.getElementById("current-lang").textContent;
+
+    fetch('http://localhost:8080/api/v1/post/public/' + postId, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept-Language': lang
+        },
+
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            currentPost = data
+            //show image
+            if (data.attachDTO && data.attachDTO.url) {
+                const imgContainer = document.getElementById('post_image_block');
+                imgContainer.style.backgroundImage = 'url(' + data.attachDTO.url + ')';
+            }
+            //show title //
+            document.getElementById("post_title_id").value = data.title
+            //show content
+            document.getElementById("post_content_id").textContent = data.content
+
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
 }
 
 async function updatePost() {
@@ -141,11 +172,17 @@ async function updatePost() {
     if (file) {
         imageId = await uploadImage();
     } else {
-        imageId = currentPost.photo.id;
+        imageId = currentPost.attachDTO.id;
     }
 
     const titleValue = document.getElementById("post_title_id").value;
     const contentValue = document.getElementById("post_content_id").value;
+    const lang = document.getElementById("current-lang").textContent;
+    const jwt = localStorage.getItem('jwtToken');
+    if (!jwt) {
+        window.location.href = './login.html';
+        return;
+    }
 
     if (!imageId || !titleValue || !contentValue) {
         alert("Enter all inputs")
@@ -156,9 +193,32 @@ async function updatePost() {
         "title": titleValue,
         "content": contentValue,
         "photo": {
-            "id": imageId
+            "photoId": imageId
         }
     }
+    fetch('http://localhost:8080/api/v1/post/' + currentPost.id, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept-Language': lang,
+            'Authorization': 'Bearer ' + jwt
+        },
+        body: JSON.stringify(body)
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            alert("Success")
+            window.location.href = "./profile-post-list.html"
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+
 
 }
 
@@ -166,9 +226,38 @@ function deletePost() {
     if (currentPost == null) {
         return;
     }
-
+    const lang = document.getElementById("current-lang").textContent;
+    const jwt = localStorage.getItem('jwtToken');
+    if (!jwt) {
+        window.location.href = './login.html';
+        return;
+    }
     if (!confirm("G'iybatni o'chirmoqchimisiz?")) {
         return;
     }
+    fetch('http://localhost:8080/api/v1/post/' + currentPost.id, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept-Language': lang,
+            'Authorization': 'Bearer ' + jwt
+        }
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            alert("Success")
+            window.location.href = "./profile-post-list.html"
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+
+
+
 }
 

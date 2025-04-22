@@ -7,6 +7,7 @@ import api.giybat.uz.dto.post.PostFilterDTO;
 import api.giybat.uz.dto.post.PostUpdateDTO;
 import api.giybat.uz.enums.AppLanguage;
 import api.giybat.uz.service.PostService;
+import api.giybat.uz.util.PageUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -41,7 +42,7 @@ public class PostController {
                                                         @RequestParam(name = "size", defaultValue = "5") Integer size,
                                                         @RequestHeader(value = "Accept-Language", defaultValue = "UZ") AppLanguage lang) {
         log.info("Get profile's own posts: ");
-        return ResponseEntity.ok(postService.getProfilePost(page - 1, size, lang));
+        return ResponseEntity.ok(postService.getProfilePost(PageUtil.giveProperPageNumbering(page), size, lang));
     }
 
     @GetMapping("/public/{id}")

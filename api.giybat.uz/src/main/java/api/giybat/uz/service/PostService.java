@@ -50,7 +50,7 @@ public class PostService {
 
         Pageable pageable = PageRequest.of(page, size);
         String userId = SpringSecurityUtil.getCurrentUserId();
-        Page<PostEntity> postEntityList = postRepository.findAllByProfileIdAndVisibleTrue(userId, pageable);
+        Page<PostEntity> postEntityList = postRepository.findAllByProfileIdAndVisibleTrueOrderByCreatedDateDesc(userId, pageable);
         List<PostDTO> postDTOList = postEntityList
                 .stream()
                 .map(postEntity -> toDTO(postEntity))

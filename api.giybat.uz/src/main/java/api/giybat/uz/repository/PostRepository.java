@@ -7,15 +7,16 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface PostRepository extends CrudRepository<PostEntity,String> {
+public interface PostRepository extends CrudRepository<PostEntity,String>, PagingAndSortingRepository<PostEntity,String> {
 
 
     //List<PostEntity> findAllByProfileIdAndVisibleTrue(String profileId);
-    Page<PostEntity> findAllByProfileIdAndVisibleTrue(String profileId, Pageable pageable);
+    Page<PostEntity> findAllByProfileIdAndVisibleTrueOrderByCreatedDateDesc(String profileId, Pageable pageable);
 
     Optional<PostEntity> findByIdAndVisibleTrue(String postId);
     @Transactional
