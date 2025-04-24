@@ -73,7 +73,7 @@ function showPostList(postList) {
         // created date
         const createdDate = document.createElement("p")
         createdDate.classList.add("post_text")
-        createdDate.textContent = post.createdDate
+        createdDate.textContent = dateFormat(post.createdDate)
 
 
         //add elements to main div
@@ -178,6 +178,8 @@ function addBtn(btnText, pageNumberWrapper, isSelected, isDots) {
     btnWrapper.appendChild(btn);
     pageNumberWrapper.appendChild(btnWrapper);
 }
+
+
 
 
 

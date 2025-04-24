@@ -17,16 +17,21 @@ public class CustomRepository {
     @Autowired
     private EntityManager entityManager;
 
-    public FilterResultDTO<PostEntity> filter (PostFilterDTO filterDTO, int page, int size) {
+    public FilterResultDTO<PostEntity> filter(PostFilterDTO filterDTO, int page, int size) {
         StringBuilder builder = new StringBuilder(" WHERE p.visible=true");
 
         HashMap<String, Object> params = new HashMap<>();
-        if(filterDTO.getQuery()!=null){
+        if (filterDTO.getQuery() != null) {
             builder.append(" AND lower(p.title) like :query");
-            params.put("query", "%"+filterDTO.getQuery().toLowerCase()+"%");
+            params.put("query", "%" + filterDTO.getQuery().toLowerCase() + "%");
+        }
+        if (filterDTO.getExceptId() != null) {
+            builder.append(" AND id !=:exceptId");
+            params.put("exceptId", filterDTO.getExceptId());
         }
         StringBuilder selectBuilder = new StringBuilder("SELECT p FROM PostEntity p")
-                .append(builder).append(" order by p.createdDate desc");;
+                .append(builder).append(" order by p.createdDate desc");
+        ;
         StringBuilder countBuilder = new StringBuilder("SELECT COUNT(p.id) FROM PostEntity p")
                 .append(builder);
         // select query
@@ -45,6 +50,6 @@ public class CustomRepository {
         params.forEach(countQuery::setParameter);
         Long totalCount = (Long) countQuery.getSingleResult();
 
-        return new FilterResultDTO<>(postEntityList,totalCount);
+        return new FilterResultDTO<>(postEntityList, totalCount);
     }
 }

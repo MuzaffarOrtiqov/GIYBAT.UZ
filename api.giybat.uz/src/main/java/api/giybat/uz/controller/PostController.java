@@ -1,10 +1,7 @@
 package api.giybat.uz.controller;
 
 import api.giybat.uz.dto.AppResponse;
-import api.giybat.uz.dto.post.PostCreateDTO;
-import api.giybat.uz.dto.post.PostDTO;
-import api.giybat.uz.dto.post.PostFilterDTO;
-import api.giybat.uz.dto.post.PostUpdateDTO;
+import api.giybat.uz.dto.post.*;
 import api.giybat.uz.enums.AppLanguage;
 import api.giybat.uz.service.PostService;
 import api.giybat.uz.util.PageUtil;
@@ -17,6 +14,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/post")
@@ -79,6 +78,12 @@ public class PostController {
                                                 @RequestParam(name = "size", defaultValue = "5") Integer size) {
         log.info("Filter posts: ");
         return ResponseEntity.ok(postService.filter(postFilterDTO, page - 1, size));
+    }
+
+    @PostMapping("/public/similar")
+    @Operation(summary = "Get similar post", description = "Method used to get posts in the same category")
+    public ResponseEntity<List<PostDTO>> similarPosts(@Valid @RequestBody SimilarPostDTO similarPostDTO) {
+        return ResponseEntity.ok(postService.getSimilarPosts(similarPostDTO));
     }
 
 }

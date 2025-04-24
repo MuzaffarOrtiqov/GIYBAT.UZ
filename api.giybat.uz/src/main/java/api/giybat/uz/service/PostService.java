@@ -99,18 +99,25 @@ public class PostService {
         if (!SpringSecurityUtil.hasRole(ProfileRole.ROLE_ADMIN) && !profileEntityId.equals(userId)) {
             log.warn("User {} trying to update other's post", userId);
             throw new AppBadException(resourceBundleMessageService.getMessage("no.post.delete", lang));
-        }        postRepository.delete(postId);
+        }
+        postRepository.delete(postId);
         return true;
     }
 
-    public PageImpl<PostDTO> filter(PostFilterDTO filterDTO,int page, int size) {
-     FilterResultDTO<PostEntity> result  = customRepository.filter(filterDTO,page,size);
-     List<PostDTO> postList = result.getList()
-             .stream()
-             .map(postEntity -> toDTO(postEntity)).toList();
-     return new PageImpl<>(postList,PageRequest.of(page,size),result.getCount());
+    public PageImpl<PostDTO> filter(PostFilterDTO filterDTO, int page, int size) {
+        FilterResultDTO<PostEntity> result = customRepository.filter(filterDTO, page, size);
+        List<PostDTO> postList = result.getList()
+                .stream()
+                .map(postEntity -> toDTO(postEntity)).toList();
+        return new PageImpl<>(postList, PageRequest.of(page, size), result.getCount());
     }
 
+    public List<PostDTO> getSimilarPosts(SimilarPostDTO similarPostDTO) {
+        List<PostEntity> similarPostList = postRepository.getPostsExcept(similarPostDTO.getExceptId());
+        return similarPostList
+                .stream()
+                .map(postEntity -> toDTO(postEntity)).toList();
+    }
 
     //util methods
     private PostDTO toDTO(PostEntity postEntity) {

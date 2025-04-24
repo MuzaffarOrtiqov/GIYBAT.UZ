@@ -44,5 +44,14 @@ POST localhost:8080/api/v1/post/public/filter?page=1&size=3
 Content-Type: application/json
 
 {
-  "query": "orzu"
+  "query": null,
+  "exceptId": "8dd7fe5d-8d6c-4fba-92d4-893e433852b0"
+}
+
+### GET SIMILAR POSTS
+POST localhost:8080/api/v1/post/public/similar
+Content-Type: application/json
+
+{
+  "exceptId": "8dd7fe5d-8d6c-4fba-92d4-893e433852b0"
 }
