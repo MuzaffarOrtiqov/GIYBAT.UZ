@@ -1,3 +1,4 @@
+import AppConfig from "./AppConfig.js";
 window.addEventListener("DOMContentLoaded", function () {
     getPostList();
 });
@@ -10,7 +11,7 @@ function getPostList() {
     const body = {
         "query": null
     }
-    fetch('http://localhost:8080/api/v1/post/public/filter?page=' + currentPage + '&size=' + size, {
+    fetch(AppConfig.API+'/api/v1/post/public/filter?page=' + currentPage + '&size=' + size, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -26,7 +27,6 @@ function getPostList() {
         })
         .then(data => {
             if (data.content && data.content.length > 0) {
-                console.log(data.content[0])
                 showMainPost(data.content.shift()) // show and delete one element
 
             }
@@ -159,7 +159,6 @@ function showPagination(totalElements, size) {
     nextDiv.appendChild(nextButton);
     paginationWrapper.appendChild(nextDiv);
 }
-
 
 function addBtn(btnText, pageNumberWrapper, isSelected, isDots) {
     const btnWrapper = document.createElement("div");

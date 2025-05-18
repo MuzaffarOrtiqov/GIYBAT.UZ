@@ -1,3 +1,4 @@
+import AppConfig from "./AppConfig.js";
 const input1 = document.getElementById('input1');
 const input2 = document.getElementById('input2');
 const input3 = document.getElementById('input3');
@@ -36,7 +37,7 @@ function handleSubmit() {
     }
     const lang = document.getElementById("current-lang").textContent;
 
-    fetch('http://localhost:8080/api/v1/auth/registration/sms-verification', {
+    fetch(AppConfig.API+'/api/v1/auth/registration/sms-verification', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -75,7 +76,7 @@ function resendSms() {
     }
     const lang = document.getElementById("current-lang").textContent;
 
-    fetch('http://localhost:8080/api/v1/auth/registration/sms-verification-resend', {
+    fetch(AppConfig.API+'/api/v1/auth/registration/sms-verification-resend', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

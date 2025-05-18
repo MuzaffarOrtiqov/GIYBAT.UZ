@@ -86,4 +86,12 @@ public class PostController {
         return ResponseEntity.ok(postService.getSimilarPosts(similarPostDTO));
     }
 
+    @PostMapping("/filter")
+    @Operation(summary = "Post Filter for Admin", description = "Method used to filter posts for admin")
+    public ResponseEntity<Page<PostDTO>> filter(@RequestBody PostAdminFilterDTO postAdminFilterDTO,
+                                                @RequestParam(name = "page", defaultValue = "1") Integer page,
+                                                @RequestParam(name = "size", defaultValue = "5") Integer size) {
+        return ResponseEntity.ok( postService.adminFilter(postAdminFilterDTO,PageUtil.giveProperPageNumbering(page),size));
+    }
+
 }

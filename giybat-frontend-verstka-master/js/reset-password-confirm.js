@@ -1,3 +1,4 @@
+import AppConfig from "./AppConfig.js";
 function resetPasswordConfirm() {
     const confirmCodeValue = document.getElementById("confirm_code").value;
     const newPasswordValue = document.getElementById("new_password").value;
@@ -16,7 +17,7 @@ function resetPasswordConfirm() {
 
     const lang = document.getElementById("current-lang").textContent;
 
-    fetch('http://localhost:8080/api/v1/auth/password-reset-confirm', {
+    fetch(AppConfig.API+'/api/v1/auth/password-reset-confirm', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

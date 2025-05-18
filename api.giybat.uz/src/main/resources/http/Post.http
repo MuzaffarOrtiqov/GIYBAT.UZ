@@ -44,8 +44,7 @@ POST localhost:8080/api/v1/post/public/filter?page=1&size=3
 Content-Type: application/json
 
 {
-  "query": null,
-  "exceptId": "8dd7fe5d-8d6c-4fba-92d4-893e433852b0"
+  "query": "scenery"
 }
 
 ### GET SIMILAR POSTS
@@ -54,4 +53,14 @@ Content-Type: application/json
 
 {
   "exceptId": "8dd7fe5d-8d6c-4fba-92d4-893e433852b0"
+}
+
+### FILTER ADMIN POSTS
+POST localhost:8080/api/v1/post/filter
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsImlkIjoiMWEyYjNjNGQtMDAwMS00ZTZmLThjMmYtMTExMTExMTExMTExIiwic3ViIjoib3J0aXFvdm11emFmZmFyMTcxQGdtYWlsLmNvbSIsImlhdCI6MTc0NzAzNDA0NCwiZXhwIjoxNzQ3NjM4ODQ0fQ.yodl39JvBekxLHFDvV1vTxr2MBeH3Awi16bvxy4KjEEI1PZeT1BVi0YLHd-UHBnqeqaEccYuZk4tuijxISIv5Q
+
+{
+  "profileQuery": "Muzaffar",
+  "postQuery": null
 }

@@ -1,6 +1,8 @@
 // window.onload = function () {
 //     getPostList();
 // };
+import AppConfig from "./AppConfig.js";
+
 window.addEventListener("DOMContentLoaded", function () {
     getPostList();
 });
@@ -14,8 +16,8 @@ function getPostList() {
         return;
     }
     const lang = document.getElementById("current-lang").textContent;
-    let size = 2;
-    fetch('http://localhost:8080/api/v1/post/profile?page='+currentPage+'&size='+size, {
+    let size = 6;
+    fetch(AppConfig.API + '/api/v1/post/profile?page=' + currentPage + '&size=' + size, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -32,7 +34,11 @@ function getPostList() {
         .then(data => {
             console.log(data)
             showPostList(data)
-            showPagination(data.totalElements,data.size)
+            if (data.totalElements > data.size) {
+                showPagination(data.totalElements, data.size);
+            } else {
+                document.getElementById('paginationWrapperId').style.display = 'none';
+            }
         })
         .catch(error => {
             console.error('Error:', error);
@@ -41,7 +47,7 @@ function getPostList() {
 
 function showPostList(postList) {
     const parent = document.getElementById("profile_post_container_id")
-    parent.innerHTML='';
+    parent.innerHTML = '';
     postList.content.forEach(post => {
         const div = document.createElement("div");
         div.classList.add("position-relative", "post_box");
@@ -49,7 +55,7 @@ function showPostList(postList) {
         //button
         const editButton = document.createElement("a")
         editButton.classList.add("profile_tab_btn")
-        editButton.href="./post-create.html?id="+post.id
+        editButton.href = "./post-create.html?id=" + post.id
 
         //image div
         const imageDiv = document.createElement("div");
@@ -88,10 +94,10 @@ function showPostList(postList) {
 
 function showPagination(totalElements, size) {
     let totalPageCount = Math.ceil(totalElements / size);
-    console.log(totalPageCount);
 
     const paginationWrapper = document.getElementById("paginationWrapperId");
     paginationWrapper.innerHTML = '';
+
 
     // previous button
     const prevDiv = document.createElement("div");
@@ -169,7 +175,7 @@ function addBtn(btnText, pageNumberWrapper, isSelected, isDots) {
 
             btn.onclick = () => {
                 currentPage = btnText;
-                getPostList();
+                getPostList()
             }
         }
     }

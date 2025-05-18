@@ -1,3 +1,4 @@
+import AppConfig from "./AppConfig.js";
 function resetPassword() {
     const usernameInput = document.getElementById("username");
     const username = usernameInput.value;
@@ -11,7 +12,7 @@ function resetPassword() {
 
     const lang = document.getElementById("current-lang").textContent;
 
-    fetch('http://localhost:8080/api/v1/auth/password-reset', {
+    fetch(AppConfig.API+'/api/v1/auth/password-reset', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

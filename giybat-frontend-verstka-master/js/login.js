@@ -1,3 +1,7 @@
+import AppConfig from "./AppConfig.js";
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("loginBtn").addEventListener("click", login);
+});
 function login() {
     const usernameInput = document.getElementById("username");
     const username = usernameInput.value;
@@ -31,7 +35,7 @@ function login() {
 
     const lang = document.getElementById("current-lang").textContent;
 
-    fetch('http://localhost:8080/api/v1/auth/login', {
+    fetch(AppConfig.API+'/api/v1/auth/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

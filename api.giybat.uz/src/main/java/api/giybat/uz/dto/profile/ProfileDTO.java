@@ -9,6 +9,7 @@ import lombok.Setter;
 
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -17,12 +18,14 @@ public class ProfileDTO {
     private String id;
     private String name;
     private String surname;
-    private String phone;
+    private String username;
     private String password;
     private GeneralStatus status;
-    private ProfileRole role;
+    private List<ProfileRole> role;
     private Boolean visible;
     private LocalDateTime createdDate;
     private AttachDTO attachDTO;
+    private Long postCount;
+    private String roles;
 
 }

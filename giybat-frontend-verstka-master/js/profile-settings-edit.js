@@ -1,3 +1,4 @@
+import AppConfig from "./AppConfig.js";
 window.addEventListener("DOMContentLoaded", function () {
     const userDetailJon = localStorage.getItem("userDetail");
     if (!userDetailJon) {
@@ -30,7 +31,7 @@ function profileDetailUpdate() {
         return;
     }
 
-    fetch('http://localhost:8080/api/v1/profile/detail', {
+    fetch(AppConfig.API+'/api/v1/profile/detail', {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -84,7 +85,7 @@ function profilePasswordUpdate() {
 
     const lang = document.getElementById("current-lang").textContent;
 
-    fetch('http://localhost:8080/api/v1/profile/password', {
+    fetch(AppConfig.API+'/api/v1/profile/password', {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -127,7 +128,7 @@ function profileUserNameChange() {
 
     const lang = document.getElementById("current-lang").textContent;
 
-    fetch('http://localhost:8080/api/v1/profile/username', {
+    fetch(AppConfig.API+'/api/v1/profile/username', {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -173,7 +174,7 @@ function profileUserNameChangeConfirm() {
 
     const lang = document.getElementById("current-lang").textContent;
 
-    fetch('http://localhost:8080/api/v1/profile/username-confirmation', {
+    fetch(AppConfig.API+'/api/v1/profile/username-confirmation', {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -257,7 +258,7 @@ function uploadImage() {
         }
         const lang = document.getElementById("current-lang").textContent;
 
-        fetch('http://localhost:8080/api/v1/attach/upload', {
+        fetch(AppConfig.API+'/api/v1/attach/upload', {
             method: 'POST',
             headers: {
                 'Accept-Language': lang,
@@ -275,12 +276,12 @@ function uploadImage() {
                // console.log('Success:', data);
                 if (data.id) {
                     updateProfileImage(data.id); // profile update image
-
+                    // add pic to local storage
                     const userDetailJon = localStorage.getItem("userDetail");
                     const userDetail = JSON.parse(userDetailJon);
-                    userDetail.photo = {};
-                    userDetail.photo.id = data.id;
-                    userDetail.photo.url = data.url;
+                    userDetail.attachDTO = {};
+                    userDetail.attachDTO.id = data.id;
+                    userDetail.attachDTO.url = data.url;
                     localStorage.setItem("userDetail", JSON.stringify(userDetail));
 
                      document.getElementById("header_user_image_id").src =data.url;
@@ -309,7 +310,7 @@ function updateProfileImage(photoId) {
 
     const lang = document.getElementById("current-lang").textContent;
 
-    fetch('http://localhost:8080/api/v1/profile/photo', {
+    fetch(AppConfig.API+'/api/v1/profile/photo', {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -333,3 +334,11 @@ function updateProfileImage(photoId) {
         });
 
 }
+window.previewImage = previewImage;
+window.uploadImage = uploadImage;
+window.profileDetailUpdate = profileDetailUpdate;
+window.profilePasswordUpdate = profilePasswordUpdate;
+window.profileUserNameChange = profileUserNameChange;
+window.profileUserNameChangeConfirm = profileUserNameChangeConfirm;
+window.openModal = openModal;
+window.closeModal = closeModal

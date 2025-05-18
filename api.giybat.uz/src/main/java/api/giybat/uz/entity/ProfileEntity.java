@@ -8,6 +8,8 @@ import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.time.LocalDateTime;
+import java.util.List;
+
 @Getter
 @Setter
 @Entity
@@ -40,7 +42,6 @@ public class ProfileEntity {
     private AttachEntity photo;
 
 
-
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
     private GeneralStatus status = GeneralStatus.ACTIVE;
@@ -49,4 +50,7 @@ public class ProfileEntity {
     private boolean visible = true;
     @Column(name = "created_date")
     private LocalDateTime createdDate = LocalDateTime.now();
+
+    @OneToMany(mappedBy = "profileEntity", fetch = FetchType.LAZY)
+    private List<ProfileRoleEntity> roles;
 }

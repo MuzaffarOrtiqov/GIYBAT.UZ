@@ -1,13 +1,13 @@
 package api.giybat.uz.service;
 
-import api.giybat.uz.dto.AppResponse;
-import api.giybat.uz.dto.attach.AttachDTO;
 import api.giybat.uz.dto.post.*;
+import api.giybat.uz.dto.profile.ProfileDTO;
 import api.giybat.uz.entity.PostEntity;
 import api.giybat.uz.enums.AppLanguage;
 import api.giybat.uz.enums.ProfileRole;
 import api.giybat.uz.exps.AppBadException;
-import api.giybat.uz.repository.CustomRepository;
+import api.giybat.uz.mapper.PostDetailMapper;
+import api.giybat.uz.repository.CustomPostRepository;
 import api.giybat.uz.repository.PostRepository;
 import api.giybat.uz.util.SpringSecurityUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -16,10 +16,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PostFilter;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,7 +32,7 @@ public class PostService {
     @Autowired
     private AttachService attachService;
     @Autowired
-    private CustomRepository customRepository;
+    private CustomPostRepository customRepository;
 
     public PostDTO create(PostCreateDTO dto, AppLanguage lang) {
         PostEntity post = new PostEntity();
@@ -119,6 +118,16 @@ public class PostService {
                 .map(postEntity -> toDTO(postEntity)).toList();
     }
 
+
+    public PageImpl<PostDTO> adminFilter(PostAdminFilterDTO postAdminFilterDTO, int page, int size) {
+        FilterResultDTO<Object[]> result = customRepository.filter(postAdminFilterDTO, page, size);
+        List<PostDTO> postList = result.getList()
+                .stream()
+                .map(this::toDTO).toList();
+        return new PageImpl<>(postList, PageRequest.of(page, size), result.getCount());
+    }
+
+
     //util methods
     private PostDTO toDTO(PostEntity postEntity) {
         //id, title, content, photo{id,url}, createdDate}
@@ -129,6 +138,23 @@ public class PostService {
         dto.setCreatedDate(postEntity.getCreatedDate());
         return dto;
 
+    }
+
+    private PostDTO toDTO(Object[] obj) {
+        PostDTO dto = new PostDTO();
+        dto.setId((String) obj[0]);
+        dto.setTitle(String.valueOf(obj[1]));
+        if (obj[2] != null) {
+            dto.setAttachDTO(attachService.attachDTO(String.valueOf(obj[2])));
+        }
+        dto.setCreatedDate((LocalDateTime) obj[3]);
+        ProfileDTO profileDTO = new ProfileDTO();
+        profileDTO.setId(String.valueOf(obj[4]));
+        profileDTO.setName(String.valueOf(obj[5]));
+        profileDTO.setUsername(String.valueOf(obj[6]));
+
+        dto.setProfile(profileDTO);
+        return dto;
     }
 
     public PostEntity getPostById(String postId, AppLanguage lang) {

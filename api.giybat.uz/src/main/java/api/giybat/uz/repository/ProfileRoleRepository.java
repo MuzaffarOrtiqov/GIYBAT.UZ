@@ -20,4 +20,9 @@ public interface ProfileRoleRepository extends CrudRepository<ProfileRoleEntity,
 
     @Query("SELECT p.roles FROM ProfileRoleEntity AS p WHERE p.profileId=?1")
     List<ProfileRole> getAllRoles(String id);
+
+    @Transactional
+    @Modifying
+    @Query("UPDATE ProfileEntity SET visible=false WHERE id=?1")
+    void deleteProfile(String userId);
 }

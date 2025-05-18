@@ -2,14 +2,18 @@ package api.giybat.uz.repository;
 
 import api.giybat.uz.entity.ProfileEntity;
 import api.giybat.uz.enums.GeneralStatus;
+import api.giybat.uz.mapper.ProfileDetailMapper;
 import jakarta.transaction.Transactional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.Optional;
 
-public interface ProfileRepository extends JpaRepository<ProfileEntity, String> {
+public interface ProfileRepository extends JpaRepository<ProfileEntity, String>, PagingAndSortingRepository<ProfileEntity, String> {
 
     Optional<ProfileEntity> findByIdAndVisibleTrue(String id);
 
@@ -47,4 +51,23 @@ public interface ProfileRepository extends JpaRepository<ProfileEntity, String> 
     @Transactional
     @Query("UPDATE ProfileEntity SET photoId=?2 WHERE id=?1")
     void updateProfilePhoto(String userId, String photoId);
+
+    @Query("SELECT p.id as id, p.name as name, p.username as username, p.photoId as photoId, p.status as status, p.createdDate as createdDate,  " +
+            "(select count (post) FROM PostEntity AS post WHERE p.id=post.profileId ) as postCount, " +
+            "(select string_agg(pr.roles,',') FROM ProfileRoleEntity pr WHERE p.id= pr.profileId) as profileRole   " +
+            "FROM ProfileEntity p  " +
+            "WHERE p.visible = true ORDER BY p.createdDate DESC")
+    Page<ProfileDetailMapper> filterProfile(Pageable pageable);
+
+    /*  @Query("SELECT p FROM ProfileEntity p INNER JOIN FETCH p.roles  WHERE p.visible = true ORDER BY p.createdDate DESC")
+    Page<ProfileEntity> filterProfile(Pageable pageable);*/
+
+    @Query("SELECT p.id as id, p.name as name, p.username as username, p.photoId as photoId, p.status as status, p.createdDate as createdDate,  " +
+            "(select count (post) FROM PostEntity AS post WHERE p.id=post.profileId ) as postCount, " +
+            "(select string_agg(pr.roles,',') FROM ProfileRoleEntity pr WHERE p.id= pr.profileId) as profileRole   " +
+            "FROM ProfileEntity p  " +
+            "WHERE (p.id = ?1 OR lower(p.username) LIKE ?1 OR lower(p.name) LIKE ?1) AND p.visible = true ORDER BY p.createdDate DESC")
+    Page<ProfileDetailMapper> filterProfile(String search, Pageable pageable);
+
+
 }

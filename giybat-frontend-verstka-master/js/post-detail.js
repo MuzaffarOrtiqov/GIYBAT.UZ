@@ -1,3 +1,4 @@
+import AppConfig from "./AppConfig.js";
 window.addEventListener("DOMContentLoaded", function () {
     var url_string = window.location.href; // www.test.com?id=dasdasd
     var url = new URL(url_string);
@@ -11,7 +12,7 @@ window.addEventListener("DOMContentLoaded", function () {
 function getPostById(postId) {
     const lang = document.getElementById("current-lang").textContent;
 
-    fetch('http://localhost:8080/api/v1/post/public/' + postId, {
+    fetch(AppConfig.API+'/api/v1/post/public/' + postId, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -35,7 +36,7 @@ function getPostById(postId) {
             } else {
                 image.src = "./post-default-img.jpg"
             }
-            document.getElementById("postDetailContentId").textContent = data.content
+            document.getElementById("postDetailContentId").innerHTML = data.content
             getPostList(postId)
         })
         .catch(error => {
@@ -43,13 +44,12 @@ function getPostById(postId) {
         });
 }
 
-
 function getPostList(exceptId) {
     const lang = document.getElementById("current-lang").textContent;
     const body = {
         "exceptId": exceptId
     }
-    fetch('http://localhost:8080/api/v1/post/public/similar', {
+    fetch(AppConfig.API+'/api/v1/post/public/similar', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

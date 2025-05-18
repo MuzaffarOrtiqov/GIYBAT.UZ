@@ -1,3 +1,4 @@
+import AppConfig from "./AppConfig.js";
 let postId = null;
 let currentPost = null;
 
@@ -31,7 +32,7 @@ async function createPost() {
     }
     const lang = document.getElementById("current-lang").textContent;
 
-    fetch('http://localhost:8080/api/v1/post', {
+    fetch(AppConfig.API+'/api/v1/post', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -128,7 +129,7 @@ window.addEventListener("DOMContentLoaded", function () {
 function getPostById(postId) {
     const lang = document.getElementById("current-lang").textContent;
 
-    fetch('http://localhost:8080/api/v1/post/public/' + postId, {
+    fetch(AppConfig.API+'/api/v1/post/public/' + postId, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -196,7 +197,7 @@ async function updatePost() {
             "photoId": imageId
         }
     }
-    fetch('http://localhost:8080/api/v1/post/' + currentPost.id, {
+    fetch(AppConfig.API+'/api/v1/post/' + currentPost.id, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -235,7 +236,7 @@ function deletePost() {
     if (!confirm("G'iybatni o'chirmoqchimisiz?")) {
         return;
     }
-    fetch('http://localhost:8080/api/v1/post/' + currentPost.id, {
+    fetch(AppConfig.API+'/api/v1/post/' + currentPost.id, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
@@ -260,4 +261,11 @@ function deletePost() {
 
 
 }
+
+// expose the function to the global scope for the inline HTML handler
+window.previewImage = previewImage;
+window.createPost = createPost;
+window.updatePost = updatePost;
+window.deletePost = deletePost;
+
 

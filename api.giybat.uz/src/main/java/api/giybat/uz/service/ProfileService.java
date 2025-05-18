@@ -3,25 +3,30 @@ package api.giybat.uz.service;
 import api.giybat.uz.dto.AppResponse;
 import api.giybat.uz.dto.CodeConfirmDTO;
 import api.giybat.uz.dto.ProfilePhotoUpdateDTO;
-import api.giybat.uz.dto.profile.ProfileDetailUpdateDTO;
-import api.giybat.uz.dto.profile.ProfileUpdatePasswordDTO;
-import api.giybat.uz.dto.profile.ProfileUpdateUsernameDTO;
+import api.giybat.uz.dto.profile.*;
 import api.giybat.uz.entity.ProfileEntity;
+import api.giybat.uz.entity.ProfileRoleEntity;
 import api.giybat.uz.enums.AppLanguage;
 import api.giybat.uz.enums.ProfileRole;
 import api.giybat.uz.exps.AppBadException;
+import api.giybat.uz.mapper.ProfileDetailMapper;
 import api.giybat.uz.repository.ProfileRepository;
 import api.giybat.uz.repository.ProfileRoleRepository;
 import api.giybat.uz.util.JwtUtil;
 import api.giybat.uz.util.SpringSecurityUtil;
 import api.giybat.uz.util.ValidityUtil;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 
 @Service
@@ -62,7 +67,7 @@ public class ProfileService {
         String userId = SpringSecurityUtil.getCurrentUserId();
         ProfileEntity profileEntity = findProfileById(userId, lang);
         if (!bCryptPasswordEncoder.matches(profileDTO.getCurrentPassword(), profileEntity.getPassword())) {
-            log.warn("Password mismatch: userId:{}",userId);
+            log.warn("Password mismatch: userId:{}", userId);
             throw new AppBadException(resourceBundleMessageService.getMessage("password.not.match", lang));
         }
         profileRepository.updatePassword(bCryptPasswordEncoder.encode(profileDTO.getNewPassword()), userId);
@@ -108,16 +113,81 @@ public class ProfileService {
 
         List<ProfileRole> roleList = profileRoleRepository.getAllRoles(profileEntity.getId());
         String jwt = JwtUtil.encode(userId, tempUsername, roleList);
-        return new AppResponse<>( jwt, resourceBundleMessageService.getMessage("username.update.success", lang));
+        return new AppResponse<>(jwt, resourceBundleMessageService.getMessage("username.update.success", lang));
     }
 
     public AppResponse<String> updateProfilePhoto(ProfilePhotoUpdateDTO profileUpdateDTO, AppLanguage lang) {
         String userId = SpringSecurityUtil.getCurrentUserId();
         ProfileEntity profileEntity = findProfileById(userId, lang);
-        if(profileUpdateDTO.getPhotoId()!=null && profileUpdateDTO.getPhotoId()!=profileEntity.getPhotoId()){
-            attachService.delete(profileEntity.getPhotoId());
+        String currentPhotoId = profileEntity.getPhotoId();
+        if (profileUpdateDTO.getPhotoId() != null && profileUpdateDTO.getPhotoId() != profileEntity.getPhotoId()) { // check if profile photo is being renewed
+            if (currentPhotoId != null) { // check if current photo exists before deleting
+                attachService.delete(currentPhotoId);
+            }
         }
-        profileRepository.updateProfilePhoto(userId,profileUpdateDTO.getPhotoId());
+        profileRepository.updateProfilePhoto(userId, profileUpdateDTO.getPhotoId());
         return new AppResponse<>(resourceBundleMessageService.getMessage("profile.photo.updated", lang));
     }
+
+    public Page<ProfileDTO> filterProfile(ProfileFilterDTO profileFilterDTO, AppLanguage lang, int page, Integer size) {
+        Page<ProfileDetailMapper> profileDetailMapperPage = null;
+        Pageable pageable = PageRequest.of(page, size);
+        if (profileFilterDTO.getQuery() == null) {
+            profileDetailMapperPage = profileRepository.filterProfile(pageable);
+        } else {
+            profileDetailMapperPage = profileRepository.filterProfile("%" + profileFilterDTO.getQuery().toLowerCase() + "%", pageable);
+        }
+        List<ProfileDTO> profileDTOList = Objects.requireNonNull(profileDetailMapperPage).stream().map(this::toDTO).toList();
+        return new PageImpl<>(profileDTOList, pageable, profileDetailMapperPage.getTotalElements());
+    }
+
+    public AppResponse<String> changeProfileStatus(String userId, ProfileStatusDTO profileStatusDTO, AppLanguage lang) {
+        profileRepository.updateStatus(userId, profileStatusDTO.getStatus());
+        return new AppResponse<>(resourceBundleMessageService.getMessage("profile.update.success", lang));
+    }
+
+    public AppResponse<String> deleteProfile(String userId, AppLanguage lang) {
+        profileRoleRepository.deleteProfile(userId);
+        return new AppResponse<>(resourceBundleMessageService.getMessage("profile.delete.success", lang));
+    }
+
+    // util methods
+    private ProfileDTO toDTO(ProfileEntity profileEntity) {
+        ProfileDTO profileDTO = new ProfileDTO();
+        profileDTO.setId(profileEntity.getId());
+        profileDTO.setName(profileEntity.getName());
+        profileDTO.setUsername(profileEntity.getUsername());
+        if (profileEntity.getRoles() != null) {
+            List<ProfileRole> profileRoleList = profileEntity.getRoles().stream().map(ProfileRoleEntity::getRoles).toList();
+            profileDTO.setRole(profileRoleList);
+        }
+        profileDTO.setAttachDTO(attachService.attachDTO(profileEntity.getPhotoId()));
+        profileDTO.setStatus(profileEntity.getStatus());
+        profileDTO.setCreatedDate(profileEntity.getCreatedDate());
+        return profileDTO;
+    }
+
+    private ProfileDTO toDTO(ProfileDetailMapper mapper) {
+        ProfileDTO profileDTO = new ProfileDTO();
+        profileDTO.setId(mapper.getId());
+        profileDTO.setName(mapper.getName());
+        profileDTO.setPostCount(mapper.getPostCount());
+        profileDTO.setUsername(mapper.getUsername());
+        if (mapper.getProfileRole() != null) {
+            String roles = mapper.getProfileRole();
+            String[] rolesArray=  roles.split("'");
+            List<ProfileRole> profileRoleList = new ArrayList<>();
+            for (String role : rolesArray) {
+                ProfileRole profileRole = ProfileRole.valueOf(role);
+                profileRoleList.add(profileRole);
+            }
+            profileDTO.setRole(profileRoleList);
+        }
+        profileDTO.setAttachDTO(attachService.attachDTO(mapper.getPhotoId()));
+        profileDTO.setStatus(mapper.getStatus());
+        profileDTO.setCreatedDate(mapper.getCreatedDate());
+        return profileDTO;
+    }
+
+
 }

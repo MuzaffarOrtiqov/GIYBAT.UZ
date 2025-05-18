@@ -43,8 +43,35 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwiaWQiOiIxO
 PUT localhost:8080/api/v1/profile/photo
 Content-Type: application/json
 Accept-Language: UZ
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwiaWQiOiIxOGM2MjJhOC04ZTJjLTQ1MmUtYWJjOS1hYjk2MDUxZTVlNzQiLCJzdWIiOiJvcnRpcW92bXV6YWZmYXIxNzFAZ21haWwuY29tIiwiaWF0IjoxNzQ0MTA0MDYyLCJleHAiOjE3NDQ3MDg4NjJ9.zN0FNvuEVdBXcoJXW_ZNfbTidrYimb4Hs0VUMHL_4Ym0nYvfeY2Ng3XogBvDA5eKW7PablpJjiq3zLncW9f2NA
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTixST0xFX1VTRVIiLCJpZCI6ImJhNzY1YjJiLTUzZWItNDEwZi1hOTJjLWNhNDUxNjgxYmFlMSIsInN1YiI6Im11emFmZmFybWlrZTJAZ21haWwuY29tIiwiaWF0IjoxNzQ2MTY2MTAwLCJleHAiOjE3NDY3NzA5MDB9.VPeJBun5hvc2fSTa-69kT3C-pQ0QQkeD_iqx3c84fo8qxS7JAWuF2lr-3HMl89ztJul6dHo4-GZMnMXWKKWTSA
 
 {
-  "photoId": "ea5cc34f-f173-42e3-b216-8e14088cc066.jpg"
+  "photoId": "b3e689b0-632a-4537-808f-b9246034529c.jpg"
 }
+
+### GET PROFILE LIST FILTER
+POST localhost:8080/api/v1/profile/filter
+Content-Type: application/json
+Accept-Language: UZ
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsImlkIjoiMWEyYjNjNGQtMDAwMS00ZTZmLThjMmYtMTExMTExMTExMTExIiwic3ViIjoib3J0aXFvdm11emFmZmFyMTcxQGdtYWlsLmNvbSIsImlhdCI6MTc0Njk2Mjc5MSwiZXhwIjoxNzQ3NTY3NTkxfQ.Ts1o1rpIA7yA41P7mQXcTMwZsThrOv0mPtH2TDbj67FsxQ73Dys9FgHsodeOGgdM4qMi5aVJFJWhaOYgSQRv7Q
+
+{
+  "query": "Muza"
+}
+
+### CHANGE PROFILE STATUS
+PUT localhost:8080/api/v1/profile/status/1a2b3c4d-0002-4e6f-8c2f-222222222222
+Content-Type: application/json
+Accept-Language: RU
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsImlkIjoiMWEyYjNjNGQtMDAwMS00ZTZmLThjMmYtMTExMTExMTExMTExIiwic3ViIjoib3J0aXFvdm11emFmZmFyMTcxQGdtYWlsLmNvbSIsImlhdCI6MTc0NjMzODU5MCwiZXhwIjoxNzQ2OTQzMzkwfQ.vPCLsQHcdF8A4XtJQE1xbpDZgsG-DyvrVuGvCL3wCpXprAyEYBg8kOKNDJcfNDGFVTWQopH-Oewep78SzXA3Bw
+
+{
+  "status": "BLOCKED"
+}
+
+### DELETE PROFILE
+DELETE localhost:8080/api/v1/profile/1a2b3c4d-0002-4e6f-8c2f-222222222222
+Content-Type: application/json
+Accept-Language: EN
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsImlkIjoiMWEyYjNjNGQtMDAwMS00ZTZmLThjMmYtMTExMTExMTExMTExIiwic3ViIjoib3J0aXFvdm11emFmZmFyMTcxQGdtYWlsLmNvbSIsImlhdCI6MTc0NjMzODU5MCwiZXhwIjoxNzQ2OTQzMzkwfQ.vPCLsQHcdF8A4XtJQE1xbpDZgsG-DyvrVuGvCL3wCpXprAyEYBg8kOKNDJcfNDGFVTWQopH-Oewep78SzXA3Bw
+
