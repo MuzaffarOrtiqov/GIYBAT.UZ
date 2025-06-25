@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/profile/")
-@Tag(name = "AuthController", description = "A set of APIs to work with profile")
+@Tag(name = "ProfileController", description = "A set of APIs to work with profile")
 @Slf4j
 public class ProfileController {
     @Autowired

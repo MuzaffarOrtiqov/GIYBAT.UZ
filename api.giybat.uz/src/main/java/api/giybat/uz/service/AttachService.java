@@ -28,9 +28,9 @@ import java.util.UUID;
 @Service
 @Slf4j
 public class AttachService {
-    @Value("${attach.upload.folder}")
+    @Value("/home/ubuntu/images")
     private String folderName;
-    @Value("${attach.url}")
+    @Value("https://www.giybatnoma.uz/api/v1/attach")
     private String attachUrl;
 
     @Autowired

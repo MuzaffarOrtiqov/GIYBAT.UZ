@@ -31,11 +31,11 @@ import java.util.Optional;
 public class SmsSendService {
     @Autowired
     private RestTemplate restTemplate;
-    @Value("${eskiz.api}")
+    @Value("https://notify.eskiz.uz/api")
     private String smsUrl;
-    @Value("${eskiz.login}")
+    @Value("Stevensoliyev@gmail.com")
     private String accountLogin;
-    @Value("${eskiz.password}")
+    @Value("l2987kbqjvj5lpOyFhVPGCmQ9ODPs3pefnvMhidF")
     private String accountPassword;
 
     @Autowired
@@ -51,6 +51,7 @@ public class SmsSendService {
         String code = RandomUtil.getRandomSmsCode();
         sendSms(phone, message, code, SmsType.REGISTRATION);
     }
+
     public void sendPasswordResetSms(String phone, AppLanguage language) {
         String message = resourceBundleMessageService.getMessage("sms.reset.password.code", language);
         String code = RandomUtil.getRandomSmsCode();
@@ -121,6 +122,7 @@ public class SmsSendService {
         return entity.getToken();
 
     }
+
     private String getTokenFromProvider() {
         SmsAuthDTO smsAuthDTO = new SmsAuthDTO();
         smsAuthDTO.setEmail(accountLogin);
