@@ -13,7 +13,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.Optional;
 
-public interface ProfileRepository extends JpaRepository<ProfileEntity, String>, PagingAndSortingRepository<ProfileEntity, String> {
+public interface ProfileRepository extends JpaRepository<ProfileEntity, String> {
 
     Optional<ProfileEntity> findByIdAndVisibleTrue(String id);
 

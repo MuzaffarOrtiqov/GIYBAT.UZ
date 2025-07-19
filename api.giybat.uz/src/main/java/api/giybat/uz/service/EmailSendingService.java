@@ -18,11 +18,10 @@ import java.util.concurrent.CompletableFuture;
 @Service
 public class EmailSendingService {
 
-    @Value("${spring.mail.username}")
+    @Value("muzaffar-ortiqov@mail.ru")
     private String fromAccount;
-    @Value("${spring.domain}")
+    @Value("https://www.giybatnoma.uz")
     private String serverDomain;
-    @Autowired
     private JavaMailSender mailSender;
     @Autowired
     private EmailHistoryService emailHistoryService;
