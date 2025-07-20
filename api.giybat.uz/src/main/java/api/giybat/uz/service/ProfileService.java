@@ -175,7 +175,7 @@ public class ProfileService {
         profileDTO.setUsername(mapper.getUsername());
         if (mapper.getProfileRole() != null) {
             String roles = mapper.getProfileRole();
-            String[] rolesArray=  roles.split("'");
+            String[] rolesArray=  roles.split(",");
             List<ProfileRole> profileRoleList = new ArrayList<>();
             for (String role : rolesArray) {
                 ProfileRole profileRole = ProfileRole.valueOf(role);

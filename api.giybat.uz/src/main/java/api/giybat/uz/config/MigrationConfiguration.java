@@ -9,11 +9,11 @@ import javax.sql.DataSource;
 
 @Configuration
 public class MigrationConfiguration {
-    @Value("jdbc:postgresql://localhost:5432/giybat_db")
+    @Value("${spring.datasource.url}")
     private String dataSourceUrl;
-    @Value("giybat_user")
+    @Value("${spring.datasource.username}")
     private String dataSourceUsername;
-    @Value("12345")
+    @Value("${spring.datasource.password}")
     private String dataSourcePassword;
     @Bean
     public DataSource getDataSource() {

@@ -1,40 +1,39 @@
 package api.giybat.uz.config;
 
-import api.giybat.uz.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
-import java.util.UUID;
 
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity(prePostEnabled = true)
 public class SpringConfig {
-    public static final String [] AUTH_WHITELIST = {"/api/v1/auth/**",
+    public static final String[] AUTH_WHITELIST = {"/api/v1/auth/**",
             "/api/v1/attach/open/**",
             "/swagger-ui/**",
             "/v3/api-docs",
             "/v3/api-docs/**",
-            "/api/v1/post/public/**",
-
+            "/api/v1/post/public/**"
+    };
+    public static final String[] AUTH_ADMIN = {
+            "/api/v1/profile/filter",
+            "/api/v1/profile/status/*",
+            "/api/v1/profile/*",
+            "/api/v1/post/filter"
     };
     @Autowired
     private UserDetailsService userDetailsService;
@@ -61,6 +60,7 @@ public class SpringConfig {
         http.authorizeHttpRequests(authorizationManagerRequestMatcherRegistry -> {
             authorizationManagerRequestMatcherRegistry
                     .requestMatchers(AUTH_WHITELIST).permitAll()
+                    .requestMatchers(AUTH_ADMIN).hasRole("ADMIN")
                     .anyRequest()
                     .authenticated();
         }).addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
@@ -72,6 +72,7 @@ public class SpringConfig {
             configuration.setAllowedOriginPatterns(Arrays.asList("*"));
             configuration.setAllowedMethods(Arrays.asList("*"));
             configuration.setAllowedHeaders(Arrays.asList("*"));
+            configuration.setAllowCredentials(true);
 
             UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
             source.registerCorsConfiguration("/**", configuration);
@@ -80,7 +81,6 @@ public class SpringConfig {
 
         return http.build();
     }
-
 
 
 }

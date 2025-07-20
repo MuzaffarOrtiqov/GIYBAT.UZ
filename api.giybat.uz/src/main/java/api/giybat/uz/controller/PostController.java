@@ -26,7 +26,6 @@ public class PostController {
     private PostService postService;
 
     @PostMapping("")
-    @PreAuthorize("hasRole('ROLE_USER')")
     @Operation(summary = "Create post", description = "Method used to create a new post")
     public ResponseEntity<PostDTO> create(@Valid @RequestBody PostCreateDTO dto,
                                           @RequestHeader(value = "Accept-Language", defaultValue = "UZ") AppLanguage lang) {
@@ -35,7 +34,6 @@ public class PostController {
     }
 
     @GetMapping("/profile")
-    @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
     @Operation(summary = "Get profile's own post", description = "Method used to get profile's own posts")
     public ResponseEntity<Page<PostDTO>> getProfilePost(@RequestParam(name = "page", defaultValue = "1") Integer page,
                                                         @RequestParam(name = "size", defaultValue = "5") Integer size,
@@ -53,7 +51,6 @@ public class PostController {
     }
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
     @Operation(summary = "Update post details", description = "Method used to get all details of a post")
     public ResponseEntity<PostDTO> updatePost(@PathVariable(name = "id") String postId,
                                               @RequestBody PostUpdateDTO postUpdateDTO,
@@ -63,7 +60,6 @@ public class PostController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
     @Operation(summary = "Delete a post", description = "Method used to delete by id")
     public ResponseEntity<Boolean> deletePostById(@PathVariable(name = "id") String postId,
                                                   @RequestHeader(value = "Accept-Language", defaultValue = "UZ") AppLanguage lang) {
