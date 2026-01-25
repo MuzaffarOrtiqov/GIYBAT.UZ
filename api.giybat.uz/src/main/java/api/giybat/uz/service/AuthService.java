@@ -170,7 +170,7 @@ public class AuthService {
     }
 
     public AppResponse<String> resetPasswordConfirm(ResetPasswordConfirmDTO dto, AppLanguage lang) {
-        //check if exits
+        //check if exists
         Optional<ProfileEntity> optional = profileRepository.findByUsernameAndVisibleTrue(dto.getUsername());
         if (optional.isEmpty()) {
             log.info("Profile not found username {}", dto.getUsername());
@@ -190,7 +190,7 @@ public class AuthService {
             smsHistoryService.check(dto.getUsername(), dto.getConfirmCode(), lang);
         }
         //update password
-        profileRepository.updatePassword(profileEntity.getId(), passwordEncoder.encode(dto.getPassword()));
+        profileRepository.updatePassword(passwordEncoder.encode(dto.getPassword()),profileEntity.getId());
         //response
         return new AppResponse<>(resourceBundleMessageService.getMessage("reset.password.success", lang));
 

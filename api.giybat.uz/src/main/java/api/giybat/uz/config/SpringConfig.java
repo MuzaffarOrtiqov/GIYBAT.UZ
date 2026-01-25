@@ -27,12 +27,12 @@ public class SpringConfig {
             "/swagger-ui/**",
             "/v3/api-docs",
             "/v3/api-docs/**",
-            "/api/v1/post/public/**"
+            "/api/v1/post/public/**",
+            "/error"
     };
     public static final String[] AUTH_ADMIN = {
             "/api/v1/profile/filter",
             "/api/v1/profile/status/*",
-            "/api/v1/profile/*",
             "/api/v1/post/filter"
     };
     @Autowired

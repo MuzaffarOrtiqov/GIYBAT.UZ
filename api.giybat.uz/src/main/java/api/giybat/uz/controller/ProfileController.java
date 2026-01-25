@@ -8,6 +8,7 @@ import api.giybat.uz.dto.profile.*;
 import api.giybat.uz.enums.AppLanguage;
 import api.giybat.uz.service.ProfileService;
 import api.giybat.uz.util.PageUtil;
+import api.giybat.uz.util.SpringSecurityUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -26,14 +27,15 @@ public class ProfileController {
     @Autowired
     private ProfileService profileService;
 
-    @PutMapping("/detail")
-    @Operation(summary = "Update profile detail", description = "Method used to update details of a profile")
+    @PutMapping("/detail") // Use PATCH for partial updates (e.g., just the name)
+    @Operation(summary = "Update profile detail", description = "Update specific details (name, etc.) of the current user")
     public ResponseEntity<AppResponse<String>> updateDetail(
-            @Valid @RequestBody ProfileDetailUpdateDTO profile,
+            @Valid @RequestBody ProfileDetailUpdateDTO dto,
             @RequestHeader(value = "Accept-Language", defaultValue = "UZ") AppLanguage lang) {
 
-        AppResponse<String> response = profileService.updateDetail(profile, lang);
-        log.info("Update profile detail name: {}", profile.getName());
+        String currentUserId = SpringSecurityUtil.getCurrentUserId();
+        log.info("Request to update profile details for user ID: {}", currentUserId);
+        AppResponse<String> response = profileService.updateDetail(dto, lang);
         return ResponseEntity.ok(response);
     }
 

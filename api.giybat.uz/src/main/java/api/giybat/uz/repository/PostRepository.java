@@ -24,11 +24,16 @@ public interface PostRepository extends CrudRepository<PostEntity, String>, Pagi
     @Transactional
     @Modifying
     @Query("UPDATE PostEntity AS p SET p.visible=false WHERE p.id=?1")
-    void delete(String postId);
+    void softDelete(String postId);
 
     @Query("SELECT p.profileId FROM PostEntity AS p WHERE p.id=?1")
     String getProfileId(String postId);
 
     @Query("from PostEntity where id !=?1 and visible =true order by createdDate desc limit 3")
     List<PostEntity> getPostsExcept(String id);
+
+    @Modifying
+    @Transactional
+    @Query("UPDATE PostEntity SET visible=false WHERE profileId=?1")
+    void softDeleteAllByUserId(String userId);
 }

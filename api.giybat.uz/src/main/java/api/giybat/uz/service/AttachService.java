@@ -28,10 +28,12 @@ import java.util.UUID;
 @Service
 @Slf4j
 public class AttachService {
-    @Value("/home/ubuntu/images")
+    @Value("${attach.upload.folder}")
     private String folderName;
-    @Value("https://www.giybatnoma.uz/api/v1/attach")
+
+    @Value("${attach.url}")
     private String attachUrl;
+
 
     @Autowired
     private AttachRepository attachRepository;

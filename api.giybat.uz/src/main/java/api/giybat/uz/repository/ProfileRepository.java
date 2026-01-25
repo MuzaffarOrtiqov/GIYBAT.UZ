@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.repository.query.Param;
 
 import java.util.Optional;
 
@@ -20,7 +21,7 @@ public interface ProfileRepository extends JpaRepository<ProfileEntity, String> 
     @Transactional
     @Modifying
     @Query("UPDATE ProfileEntity AS p SET p.status=?2 WHERE p.id=?1")
-    void updateStatus(String profileId, GeneralStatus generalStatus);
+    int updateStatus(String profileId, GeneralStatus generalStatus);
 
     @Query("FROM ProfileEntity AS p WHERE p.username=?1 AND p.visible=TRUE")
     Optional<ProfileEntity> findByUsernameAndVisibleTrue(String username);
@@ -34,7 +35,7 @@ public interface ProfileRepository extends JpaRepository<ProfileEntity, String> 
     @Modifying
     @Transactional
     @Query("UPDATE ProfileEntity SET name=?1 WHERE id=?2")
-    void updateProfileName(String name, String id);
+    int updateProfileName(String name, String id);
 
     @Modifying
     @Transactional
@@ -62,12 +63,17 @@ public interface ProfileRepository extends JpaRepository<ProfileEntity, String> 
     /*  @Query("SELECT p FROM ProfileEntity p INNER JOIN FETCH p.roles  WHERE p.visible = true ORDER BY p.createdDate DESC")
     Page<ProfileEntity> filterProfile(Pageable pageable);*/
 
-    @Query("SELECT p.id as id, p.name as name, p.username as username, p.photoId as photoId, p.status as status, p.createdDate as createdDate,  " +
-            "(select count (post) FROM PostEntity AS post WHERE p.id=post.profileId ) as postCount, " +
-            "(select string_agg(pr.roles,',') FROM ProfileRoleEntity pr WHERE p.id= pr.profileId) as profileRole   " +
-            "FROM ProfileEntity p  " +
-            "WHERE (p.id = ?1 OR lower(p.username) LIKE ?1 OR lower(p.name) LIKE ?1) AND p.visible = true ORDER BY p.createdDate DESC")
-    Page<ProfileDetailMapper> filterProfile(String search, Pageable pageable);
+    @Query("SELECT p.id as id, p.name as name, COUNT(post.id) as postCount " +
+            "FROM ProfileEntity p " +
+            "LEFT JOIN PostEntity post ON p.id = post.profileId " +
+            "WHERE p.visible = true AND (p.username ILIKE %:search% OR p.name ILIKE %:search%) " +
+            "GROUP BY p.id")
+    Page<ProfileDetailMapper> filterProfile(@Param("search") String search, Pageable pageable);
+
+    @Modifying
+    @Transactional
+    @Query("update ProfileEntity set visible=false where id=?1")
+    int softDeleteProfile(String userId);
 
 
 }

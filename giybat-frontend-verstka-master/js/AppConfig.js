@@ -1,3 +1,3 @@
 export default class AppConfig {
-    static API = "https://api.giybatnoma.uz"
+    static API = "http://localhost:8080"
 }

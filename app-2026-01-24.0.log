@@ -1,0 +1,1114 @@
+2026-01-24T09:42:25.520Z  INFO 1520 --- [api.giybat.uz] [main] api.giybat.uz.Application                : Starting Application using Java 17.0.11 with PID 1520 (D:\Programs\GIYBAT.UZ\api.giybat.uz\target\classes started by adilo in D:\Programs\GIYBAT.UZ)
+2026-01-24T09:42:25.522Z DEBUG 1520 --- [api.giybat.uz] [main] api.giybat.uz.Application                : Running with Spring Boot v3.4.2, Spring v6.2.2
+2026-01-24T09:42:25.523Z  INFO 1520 --- [api.giybat.uz] [main] api.giybat.uz.Application                : The following 1 profile is active: "local"
+2026-01-24T09:42:26.240Z  INFO 1520 --- [api.giybat.uz] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-01-24T09:42:26.302Z  INFO 1520 --- [api.giybat.uz] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 52 ms. Found 7 JPA repository interfaces.
+2026-01-24T09:42:27.135Z  INFO 1520 --- [api.giybat.uz] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-01-24T09:42:27.145Z  INFO 1520 --- [api.giybat.uz] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-01-24T09:42:27.146Z  INFO 1520 --- [api.giybat.uz] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.34]
+2026-01-24T09:42:27.205Z  INFO 1520 --- [api.giybat.uz] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-01-24T09:42:27.206Z  INFO 1520 --- [api.giybat.uz] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1625 ms
+2026-01-24T09:42:27.420Z  INFO 1520 --- [api.giybat.uz] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-01-24T09:42:28.762Z ERROR 1520 --- [api.giybat.uz] [main] o.s.b.web.embedded.tomcat.TomcatStarter  : Error starting Tomcat context. Exception: org.springframework.beans.factory.UnsatisfiedDependencyException. Message: Error creating bean with name 'jwtAuthenticationFilter': Unsatisfied dependency expressed through field 'userDetailsService': Error creating bean with name 'customUserDetailsService': Unsatisfied dependency expressed through field 'profileRepository': Error creating bean with name 'profileRepository' defined in api.giybat.uz.repository.ProfileRepository defined in @EnableJpaRepositories declared on Application: Cannot resolve reference to bean 'jpaSharedEM_entityManagerFactory' while setting bean property 'entityManager'
+2026-01-24T09:42:28.798Z  INFO 1520 --- [api.giybat.uz] [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2026-01-24T09:42:28.803Z  WARN 1520 --- [api.giybat.uz] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server
+2026-01-24T09:42:28.813Z  INFO 1520 --- [api.giybat.uz] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-01-24T09:42:28.828Z ERROR 1520 --- [api.giybat.uz] [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.context.ApplicationContextException: Unable to start web server
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:165) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:621) ~[spring-context-6.2.2.jar:6.2.2]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350) ~[spring-boot-3.4.2.jar:3.4.2]
+	at api.giybat.uz.Application.main(Application.java:14) ~[classes/:na]
+Caused by: org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:147) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.<init>(TomcatWebServer.java:107) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getTomcatWebServer(TomcatServletWebServerFactory.java:516) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:222) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:188) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:162) ~[spring-boot-3.4.2.jar:3.4.2]
+	... 8 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'jwtAuthenticationFilter': Unsatisfied dependency expressed through field 'userDetailsService': Error creating bean with name 'customUserDetailsService': Unsatisfied dependency expressed through field 'profileRepository': Error creating bean with name 'profileRepository' defined in api.giybat.uz.repository.ProfileRepository defined in @EnableJpaRepositories declared on Application: Cannot resolve reference to bean 'jpaSharedEM_entityManagerFactory' while setting bean property 'entityManager'
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:788) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:768) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:146) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:509) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1445) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:336) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:307) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:334) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:204) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.getOrderedBeansOfType(ServletContextInitializerBeans.java:211) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAsRegistrationBean(ServletContextInitializerBeans.java:174) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAsRegistrationBean(ServletContextInitializerBeans.java:169) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAdaptableBeans(ServletContextInitializerBeans.java:154) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.<init>(ServletContextInitializerBeans.java:87) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.getServletContextInitializerBeans(ServletWebServerApplicationContext.java:266) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.selfInitialize(ServletWebServerApplicationContext.java:240) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.web.embedded.tomcat.TomcatStarter.onStartup(TomcatStarter.java:52) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:4426) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1203) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1193) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264) ~[na:na]
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145) ~[na:na]
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:749) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:772) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1203) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1193) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264) ~[na:na]
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145) ~[na:na]
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:749) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:203) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:415) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:870) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:437) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:128) ~[spring-boot-3.4.2.jar:3.4.2]
+	... 13 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'customUserDetailsService': Unsatisfied dependency expressed through field 'profileRepository': Error creating bean with name 'profileRepository' defined in api.giybat.uz.repository.ProfileRepository defined in @EnableJpaRepositories declared on Application: Cannot resolve reference to bean 'jpaSharedEM_entityManagerFactory' while setting bean property 'entityManager'
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:788) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:768) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:146) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:509) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1445) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:336) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:307) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:334) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1631) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1519) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:785) ~[spring-beans-6.2.2.jar:6.2.2]
+	... 55 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'profileRepository' defined in api.giybat.uz.repository.ProfileRepository defined in @EnableJpaRepositories declared on Application: Cannot resolve reference to bean 'jpaSharedEM_entityManagerFactory' while setting bean property 'entityManager'
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:377) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:135) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1711) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1460) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:336) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:307) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:334) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1573) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1519) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:785) ~[spring-beans-6.2.2.jar:6.2.2]
+	... 69 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jpaSharedEM_entityManagerFactory': Cannot resolve reference to bean 'entityManagerFactory' while setting constructor argument
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:377) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:135) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveConstructorArguments(ConstructorResolver.java:691) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:513) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1361) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1191) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:336) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:307) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:334) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:365) ~[spring-beans-6.2.2.jar:6.2.2]
+	... 81 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/autoconfigure/flyway/FlywayAutoConfiguration$FlywayConfiguration.class]: Unable to obtain connection from database: FATAL: password authentication failed for user "giybat_user"
+-------------------------------------------------------------------------------------------------------
+SQL State  : 28P01
+Error Code : 0
+Message    : FATAL: password authentication failed for user "giybat_user"
+
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1812) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:601) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:336) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:307) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:334) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:312) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:365) ~[spring-beans-6.2.2.jar:6.2.2]
+	... 93 common frames omitted
+Caused by: org.flywaydb.core.internal.exception.FlywaySqlException: Unable to obtain connection from database: FATAL: password authentication failed for user "giybat_user"
+-------------------------------------------------------------------------------------------------------
+SQL State  : 28P01
+Error Code : 0
+Message    : FATAL: password authentication failed for user "giybat_user"
+
+	at org.flywaydb.core.internal.jdbc.JdbcUtils.openConnection(JdbcUtils.java:71) ~[flyway-core-10.20.1.jar:na]
+	at org.flywaydb.core.internal.jdbc.JdbcConnectionFactory.<init>(JdbcConnectionFactory.java:76) ~[flyway-core-10.20.1.jar:na]
+	at org.flywaydb.core.FlywayExecutor.execute(FlywayExecutor.java:137) ~[flyway-core-10.20.1.jar:na]
+	at org.flywaydb.core.Flyway.migrate(Flyway.java:176) ~[flyway-core-10.20.1.jar:na]
+	at org.springframework.boot.autoconfigure.flyway.FlywayMigrationInitializer.afterPropertiesSet(FlywayMigrationInitializer.java:66) ~[spring-boot-autoconfigure-3.4.2.jar:3.4.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1859) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1808) ~[spring-beans-6.2.2.jar:6.2.2]
+	... 102 common frames omitted
+Caused by: org.postgresql.util.PSQLException: FATAL: password authentication failed for user "giybat_user"
+	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:704) ~[postgresql-42.7.5.jar:42.7.5]
+	at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:213) ~[postgresql-42.7.5.jar:42.7.5]
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:268) ~[postgresql-42.7.5.jar:42.7.5]
+	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:54) ~[postgresql-42.7.5.jar:42.7.5]
+	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:273) ~[postgresql-42.7.5.jar:42.7.5]
+	at org.postgresql.Driver.makeConnection(Driver.java:446) ~[postgresql-42.7.5.jar:42.7.5]
+	at org.postgresql.Driver.connect(Driver.java:298) ~[postgresql-42.7.5.jar:42.7.5]
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:137) ~[HikariCP-5.1.0.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:360) ~[HikariCP-5.1.0.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:202) ~[HikariCP-5.1.0.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:461) ~[HikariCP-5.1.0.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:550) ~[HikariCP-5.1.0.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:98) ~[HikariCP-5.1.0.jar:na]
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:111) ~[HikariCP-5.1.0.jar:na]
+	at org.flywaydb.core.internal.jdbc.JdbcUtils.openConnection(JdbcUtils.java:59) ~[flyway-core-10.20.1.jar:na]
+	... 108 common frames omitted
+
+2026-01-24T09:49:28.210Z  INFO 11612 --- [api.giybat.uz] [main] api.giybat.uz.Application                : Starting Application using Java 17.0.11 with PID 11612 (D:\Programs\GIYBAT.UZ\api.giybat.uz\target\classes started by adilo in D:\Programs\GIYBAT.UZ)
+2026-01-24T09:49:28.213Z DEBUG 11612 --- [api.giybat.uz] [main] api.giybat.uz.Application                : Running with Spring Boot v3.4.2, Spring v6.2.2
+2026-01-24T09:49:28.214Z  INFO 11612 --- [api.giybat.uz] [main] api.giybat.uz.Application                : The following 1 profile is active: "local"
+2026-01-24T09:49:28.802Z  INFO 11612 --- [api.giybat.uz] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-01-24T09:49:28.857Z  INFO 11612 --- [api.giybat.uz] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 45 ms. Found 7 JPA repository interfaces.
+2026-01-24T09:49:29.595Z  INFO 11612 --- [api.giybat.uz] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-01-24T09:49:29.609Z  INFO 11612 --- [api.giybat.uz] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-01-24T09:49:29.609Z  INFO 11612 --- [api.giybat.uz] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.34]
+2026-01-24T09:49:29.672Z  INFO 11612 --- [api.giybat.uz] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-01-24T09:49:29.673Z  INFO 11612 --- [api.giybat.uz] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1400 ms
+2026-01-24T09:49:29.886Z  INFO 11612 --- [api.giybat.uz] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-01-24T09:49:30.034Z  INFO 11612 --- [api.giybat.uz] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@5cf0673d
+2026-01-24T09:49:30.036Z  INFO 11612 --- [api.giybat.uz] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-01-24T09:49:30.058Z  INFO 11612 --- [api.giybat.uz] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:5432/giybat_db (PostgreSQL 14.20)
+2026-01-24T09:49:30.090Z  INFO 11612 --- [api.giybat.uz] [main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "public"."flyway_schema_history" does not exist yet
+2026-01-24T09:49:30.096Z  INFO 11612 --- [api.giybat.uz] [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.017s)
+2026-01-24T09:49:30.112Z  INFO 11612 --- [api.giybat.uz] [main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "public"."flyway_schema_history" ...
+2026-01-24T09:49:30.211Z  INFO 11612 --- [api.giybat.uz] [main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": << Empty Schema >>
+2026-01-24T09:49:30.222Z  INFO 11612 --- [api.giybat.uz] [main] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "1 - profile int"
+2026-01-24T09:49:30.247Z  INFO 11612 --- [api.giybat.uz] [main] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "2 - profile init"
+2026-01-24T09:49:31.377Z ERROR 11612 --- [api.giybat.uz] [main] o.f.core.internal.command.DbMigrate      : Migration of schema "public" to version "2 - profile init" failed! Changes successfully rolled back.
+2026-01-24T09:49:31.391Z ERROR 11612 --- [api.giybat.uz] [main] o.s.b.web.embedded.tomcat.TomcatStarter  : Error starting Tomcat context. Exception: org.springframework.beans.factory.UnsatisfiedDependencyException. Message: Error creating bean with name 'jwtAuthenticationFilter': Unsatisfied dependency expressed through field 'userDetailsService': Error creating bean with name 'customUserDetailsService': Unsatisfied dependency expressed through field 'profileRepository': Error creating bean with name 'profileRepository' defined in api.giybat.uz.repository.ProfileRepository defined in @EnableJpaRepositories declared on Application: Cannot resolve reference to bean 'jpaSharedEM_entityManagerFactory' while setting bean property 'entityManager'
+2026-01-24T09:49:31.430Z  INFO 11612 --- [api.giybat.uz] [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2026-01-24T09:49:31.435Z  WARN 11612 --- [api.giybat.uz] [main] o.a.c.loader.WebappClassLoaderBase       : The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@17.0.11/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base@17.0.11/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
+ java.base@17.0.11/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
+ java.base@17.0.11/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
+ java.base@17.0.11/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
+ java.base@17.0.11/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1062)
+ java.base@17.0.11/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
+ java.base@17.0.11/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+ java.base@17.0.11/java.lang.Thread.run(Thread.java:842)
+2026-01-24T09:49:31.436Z  WARN 11612 --- [api.giybat.uz] [main] o.a.c.loader.WebappClassLoaderBase       : The web application [ROOT] appears to have started a thread named [HikariPool-1 connection adder] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@17.0.11/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base@17.0.11/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
+ java.base@17.0.11/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
+ java.base@17.0.11/java.util.concurrent.LinkedBlockingQueue.poll(LinkedBlockingQueue.java:460)
+ java.base@17.0.11/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1061)
+ java.base@17.0.11/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
+ java.base@17.0.11/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+ java.base@17.0.11/java.lang.Thread.run(Thread.java:842)
+2026-01-24T09:49:31.438Z  WARN 11612 --- [api.giybat.uz] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server
+2026-01-24T09:49:31.438Z  INFO 11612 --- [api.giybat.uz] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-01-24T09:49:31.442Z  INFO 11612 --- [api.giybat.uz] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-01-24T09:49:31.456Z  INFO 11612 --- [api.giybat.uz] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-01-24T09:49:31.472Z ERROR 11612 --- [api.giybat.uz] [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.context.ApplicationContextException: Unable to start web server
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:165) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:621) ~[spring-context-6.2.2.jar:6.2.2]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350) ~[spring-boot-3.4.2.jar:3.4.2]
+	at api.giybat.uz.Application.main(Application.java:14) ~[classes/:na]
+Caused by: org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:147) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.<init>(TomcatWebServer.java:107) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getTomcatWebServer(TomcatServletWebServerFactory.java:516) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:222) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:188) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:162) ~[spring-boot-3.4.2.jar:3.4.2]
+	... 8 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'jwtAuthenticationFilter': Unsatisfied dependency expressed through field 'userDetailsService': Error creating bean with name 'customUserDetailsService': Unsatisfied dependency expressed through field 'profileRepository': Error creating bean with name 'profileRepository' defined in api.giybat.uz.repository.ProfileRepository defined in @EnableJpaRepositories declared on Application: Cannot resolve reference to bean 'jpaSharedEM_entityManagerFactory' while setting bean property 'entityManager'
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:788) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:768) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:146) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:509) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1445) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:336) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:307) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:334) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:204) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.getOrderedBeansOfType(ServletContextInitializerBeans.java:211) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAsRegistrationBean(ServletContextInitializerBeans.java:174) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAsRegistrationBean(ServletContextInitializerBeans.java:169) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAdaptableBeans(ServletContextInitializerBeans.java:154) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.<init>(ServletContextInitializerBeans.java:87) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.getServletContextInitializerBeans(ServletWebServerApplicationContext.java:266) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.selfInitialize(ServletWebServerApplicationContext.java:240) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.springframework.boot.web.embedded.tomcat.TomcatStarter.onStartup(TomcatStarter.java:52) ~[spring-boot-3.4.2.jar:3.4.2]
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:4426) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1203) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1193) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264) ~[na:na]
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145) ~[na:na]
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:749) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:772) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1203) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1193) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264) ~[na:na]
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145) ~[na:na]
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:749) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:203) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:415) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:870) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:437) ~[tomcat-embed-core-10.1.34.jar:10.1.34]
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:128) ~[spring-boot-3.4.2.jar:3.4.2]
+	... 13 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'customUserDetailsService': Unsatisfied dependency expressed through field 'profileRepository': Error creating bean with name 'profileRepository' defined in api.giybat.uz.repository.ProfileRepository defined in @EnableJpaRepositories declared on Application: Cannot resolve reference to bean 'jpaSharedEM_entityManagerFactory' while setting bean property 'entityManager'
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:788) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:768) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:146) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:509) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1445) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:336) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:307) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:334) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1631) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1519) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:785) ~[spring-beans-6.2.2.jar:6.2.2]
+	... 55 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'profileRepository' defined in api.giybat.uz.repository.ProfileRepository defined in @EnableJpaRepositories declared on Application: Cannot resolve reference to bean 'jpaSharedEM_entityManagerFactory' while setting bean property 'entityManager'
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:377) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:135) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1711) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1460) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:336) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:307) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:334) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1573) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1519) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:785) ~[spring-beans-6.2.2.jar:6.2.2]
+	... 69 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jpaSharedEM_entityManagerFactory': Cannot resolve reference to bean 'entityManagerFactory' while setting constructor argument
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:377) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:135) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveConstructorArguments(ConstructorResolver.java:691) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:513) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1361) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1191) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:336) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:307) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:334) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:365) ~[spring-beans-6.2.2.jar:6.2.2]
+	... 81 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/autoconfigure/flyway/FlywayAutoConfiguration$FlywayConfiguration.class]: Script V2__profile_init.sql failed
+----------------------------------
+SQL State  : 42P01
+Error Code : 0
+Message    : ERROR: relation "profile" does not exist
+  Position: 13
+Location   : db/migration/V2__profile_init.sql (D:\Programs\GIYBAT.UZ\api.giybat.uz\target\classes\db\migration\V2__profile_init.sql)
+Line       : 3
+Statement  : Run Flyway with -X option to see the actual statement causing the problem
+
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1812) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:601) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:336) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:307) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:334) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:312) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:365) ~[spring-beans-6.2.2.jar:6.2.2]
+	... 93 common frames omitted
+Caused by: org.flywaydb.core.internal.exception.FlywayMigrateException: Script V2__profile_init.sql failed
+----------------------------------
+SQL State  : 42P01
+Error Code : 0
+Message    : ERROR: relation "profile" does not exist
+  Position: 13
+Location   : db/migration/V2__profile_init.sql (D:\Programs\GIYBAT.UZ\api.giybat.uz\target\classes\db\migration\V2__profile_init.sql)
+Line       : 3
+Statement  : Run Flyway with -X option to see the actual statement causing the problem
+
+	at org.flywaydb.core.internal.command.DbMigrate.doMigrateGroup(DbMigrate.java:399) ~[flyway-core-10.20.1.jar:na]
+	at org.flywaydb.core.internal.command.DbMigrate.lambda$applyMigrations$1(DbMigrate.java:283) ~[flyway-core-10.20.1.jar:na]
+	at org.flywaydb.core.internal.jdbc.TransactionalExecutionTemplate.execute(TransactionalExecutionTemplate.java:59) ~[flyway-core-10.20.1.jar:na]
+	at org.flywaydb.core.internal.command.DbMigrate.applyMigrations(DbMigrate.java:282) ~[flyway-core-10.20.1.jar:na]
+	at org.flywaydb.core.internal.command.DbMigrate.migrateGroup(DbMigrate.java:255) ~[flyway-core-10.20.1.jar:na]
+	at org.flywaydb.core.internal.command.DbMigrate.lambda$migrateAll$0(DbMigrate.java:153) ~[flyway-core-10.20.1.jar:na]
+	at org.flywaydb.database.postgresql.PostgreSQLAdvisoryLockTemplate.execute(PostgreSQLAdvisoryLockTemplate.java:77) ~[flyway-database-postgresql-10.20.1.jar:na]
+	at org.flywaydb.database.postgresql.PostgreSQLAdvisoryLockTemplate.lambda$execute$0(PostgreSQLAdvisoryLockTemplate.java:60) ~[flyway-database-postgresql-10.20.1.jar:na]
+	at org.flywaydb.core.internal.jdbc.TransactionalExecutionTemplate.execute(TransactionalExecutionTemplate.java:59) ~[flyway-core-10.20.1.jar:na]
+	at org.flywaydb.database.postgresql.PostgreSQLAdvisoryLockTemplate.execute(PostgreSQLAdvisoryLockTemplate.java:60) ~[flyway-database-postgresql-10.20.1.jar:na]
+	at org.flywaydb.database.postgresql.PostgreSQLConnection.lock(PostgreSQLConnection.java:105) ~[flyway-database-postgresql-10.20.1.jar:na]
+	at org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory.lock(JdbcTableSchemaHistory.java:149) ~[flyway-core-10.20.1.jar:na]
+	at org.flywaydb.core.internal.command.DbMigrate.migrateAll(DbMigrate.java:153) ~[flyway-core-10.20.1.jar:na]
+	at org.flywaydb.core.internal.command.DbMigrate.migrate(DbMigrate.java:104) ~[flyway-core-10.20.1.jar:na]
+	at org.flywaydb.core.Flyway.lambda$migrate$1(Flyway.java:230) ~[flyway-core-10.20.1.jar:na]
+	at org.flywaydb.core.FlywayExecutor.execute(FlywayExecutor.java:213) ~[flyway-core-10.20.1.jar:na]
+	at org.flywaydb.core.Flyway.migrate(Flyway.java:176) ~[flyway-core-10.20.1.jar:na]
+	at org.springframework.boot.autoconfigure.flyway.FlywayMigrationInitializer.afterPropertiesSet(FlywayMigrationInitializer.java:66) ~[spring-boot-autoconfigure-3.4.2.jar:3.4.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1859) ~[spring-beans-6.2.2.jar:6.2.2]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1808) ~[spring-beans-6.2.2.jar:6.2.2]
+	... 102 common frames omitted
+Caused by: org.flywaydb.core.internal.sqlscript.FlywaySqlScriptException: Script V2__profile_init.sql failed
+----------------------------------
+SQL State  : 42P01
+Error Code : 0
+Message    : ERROR: relation "profile" does not exist
+  Position: 13
+Location   : db/migration/V2__profile_init.sql (D:\Programs\GIYBAT.UZ\api.giybat.uz\target\classes\db\migration\V2__profile_init.sql)
+Line       : 3
+Statement  : Run Flyway with -X option to see the actual statement causing the problem
+
+	at org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor.handleException(DefaultSqlScriptExecutor.java:256) ~[flyway-core-10.20.1.jar:na]
+	at org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor.executeStatement(DefaultSqlScriptExecutor.java:217) ~[flyway-core-10.20.1.jar:na]
+	at org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor.execute(DefaultSqlScriptExecutor.java:137) ~[flyway-core-10.20.1.jar:na]
+	at org.flywaydb.core.internal.resolver.sql.SqlMigrationExecutor.executeOnce(SqlMigrationExecutor.java:75) ~[flyway-core-10.20.1.jar:na]
+	at org.flywaydb.core.internal.resolver.sql.SqlMigrationExecutor.lambda$execute$0(SqlMigrationExecutor.java:66) ~[flyway-core-10.20.1.jar:na]
+	at org.flywaydb.core.internal.database.DefaultExecutionStrategy.execute(DefaultExecutionStrategy.java:31) ~[flyway-core-10.20.1.jar:na]
+	at org.flywaydb.core.internal.resolver.sql.SqlMigrationExecutor.execute(SqlMigrationExecutor.java:65) ~[flyway-core-10.20.1.jar:na]
+	at org.flywaydb.core.internal.command.DbMigrate.doMigrateGroup(DbMigrate.java:391) ~[flyway-core-10.20.1.jar:na]
+	... 121 common frames omitted
+Caused by: org.postgresql.util.PSQLException: ERROR: relation "profile" does not exist
+  Position: 13
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2733) ~[postgresql-42.7.5.jar:42.7.5]
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2420) ~[postgresql-42.7.5.jar:42.7.5]
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:372) ~[postgresql-42.7.5.jar:42.7.5]
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:517) ~[postgresql-42.7.5.jar:42.7.5]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:434) ~[postgresql-42.7.5.jar:42.7.5]
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:356) ~[postgresql-42.7.5.jar:42.7.5]
+	at org.postgresql.jdbc.PgStatement.executeCachedSql(PgStatement.java:341) ~[postgresql-42.7.5.jar:42.7.5]
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:317) ~[postgresql-42.7.5.jar:42.7.5]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:312) ~[postgresql-42.7.5.jar:42.7.5]
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:94) ~[HikariCP-5.1.0.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java) ~[HikariCP-5.1.0.jar:na]
+	at org.flywaydb.core.internal.jdbc.JdbcTemplate.executeStatement(JdbcTemplate.java:210) ~[flyway-core-10.20.1.jar:na]
+	at org.flywaydb.core.internal.sqlscript.ParsedSqlStatement.execute(ParsedSqlStatement.java:88) ~[flyway-core-10.20.1.jar:na]
+	at org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor.executeStatement(DefaultSqlScriptExecutor.java:212) ~[flyway-core-10.20.1.jar:na]
+	... 127 common frames omitted
+
+2026-01-24T09:51:29.559Z  INFO 2836 --- [api.giybat.uz] [main] api.giybat.uz.Application                : Starting Application using Java 17.0.11 with PID 2836 (D:\Programs\GIYBAT.UZ\api.giybat.uz\target\classes started by adilo in D:\Programs\GIYBAT.UZ)
+2026-01-24T09:51:29.560Z DEBUG 2836 --- [api.giybat.uz] [main] api.giybat.uz.Application                : Running with Spring Boot v3.4.2, Spring v6.2.2
+2026-01-24T09:51:29.563Z  INFO 2836 --- [api.giybat.uz] [main] api.giybat.uz.Application                : The following 1 profile is active: "local"
+2026-01-24T09:51:30.152Z  INFO 2836 --- [api.giybat.uz] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-01-24T09:51:30.225Z  INFO 2836 --- [api.giybat.uz] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 46 ms. Found 7 JPA repository interfaces.
+2026-01-24T09:51:30.936Z  INFO 2836 --- [api.giybat.uz] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-01-24T09:51:30.943Z  INFO 2836 --- [api.giybat.uz] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-01-24T09:51:30.943Z  INFO 2836 --- [api.giybat.uz] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.34]
+2026-01-24T09:51:31.001Z  INFO 2836 --- [api.giybat.uz] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-01-24T09:51:31.001Z  INFO 2836 --- [api.giybat.uz] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1390 ms
+2026-01-24T09:51:31.106Z  INFO 2836 --- [api.giybat.uz] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-01-24T09:51:31.182Z  INFO 2836 --- [api.giybat.uz] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.5.Final
+2026-01-24T09:51:31.218Z  INFO 2836 --- [api.giybat.uz] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-01-24T09:51:31.483Z  INFO 2836 --- [api.giybat.uz] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-01-24T09:51:31.506Z  INFO 2836 --- [api.giybat.uz] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-01-24T09:51:31.655Z  INFO 2836 --- [api.giybat.uz] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@70c31b17
+2026-01-24T09:51:31.655Z  INFO 2836 --- [api.giybat.uz] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-01-24T09:51:31.701Z  WARN 2836 --- [api.giybat.uz] [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-01-24T09:51:31.721Z  INFO 2836 --- [api.giybat.uz] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 14.20
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-01-24T09:51:32.859Z  INFO 2836 --- [api.giybat.uz] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-01-24T09:51:32.957Z  INFO 2836 --- [api.giybat.uz] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-01-24T09:51:33.233Z  INFO 2836 --- [api.giybat.uz] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-01-24T09:51:34.473Z DEBUG 2836 --- [api.giybat.uz] [main] a.g.uz.config.JwtAuthenticationFilter    : Filter 'jwtAuthenticationFilter' configured for use
+2026-01-24T09:51:34.866Z  WARN 2836 --- [api.giybat.uz] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-01-24T09:51:34.903Z  INFO 2836 --- [api.giybat.uz] [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-01-24T09:51:34.903Z  WARN 2836 --- [api.giybat.uz] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-01-24T09:51:35.560Z  INFO 2836 --- [api.giybat.uz] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-01-24T09:51:35.568Z  INFO 2836 --- [api.giybat.uz] [main] api.giybat.uz.Application                : Started Application in 6.438 seconds (process running for 6.972)
+2026-01-24T09:51:35.705Z  INFO 2836 --- [api.giybat.uz] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:5432/giybat_db (PostgreSQL 14.20)
+2026-01-24T09:51:35.743Z  INFO 2836 --- [api.giybat.uz] [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.021s)
+2026-01-24T09:51:35.765Z  INFO 2836 --- [api.giybat.uz] [main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 1
+2026-01-24T09:51:35.775Z  INFO 2836 --- [api.giybat.uz] [main] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "2 - profile init"
+2026-01-24T09:51:35.816Z  INFO 2836 --- [api.giybat.uz] [main] o.f.core.internal.command.DbMigrate      : Successfully applied 1 migration to schema "public", now at version v2 (execution time 00:00.019s)
+2026-01-24T09:51:41.505Z  INFO 2836 --- [api.giybat.uz] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-01-24T09:51:41.581Z  INFO 2836 --- [api.giybat.uz] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-01-24T09:51:41.587Z  INFO 2836 --- [api.giybat.uz] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-01-24T09:51:41.590Z  INFO 2836 --- [api.giybat.uz] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-01-24T09:51:41.593Z  INFO 2836 --- [api.giybat.uz] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-01-24T09:51:44.488Z  INFO 15032 --- [api.giybat.uz] [main] api.giybat.uz.Application                : Starting Application using Java 17.0.11 with PID 15032 (D:\Programs\GIYBAT.UZ\api.giybat.uz\target\classes started by adilo in D:\Programs\GIYBAT.UZ)
+2026-01-24T09:51:44.489Z DEBUG 15032 --- [api.giybat.uz] [main] api.giybat.uz.Application                : Running with Spring Boot v3.4.2, Spring v6.2.2
+2026-01-24T09:51:44.491Z  INFO 15032 --- [api.giybat.uz] [main] api.giybat.uz.Application                : The following 1 profile is active: "local"
+2026-01-24T09:51:45.148Z  INFO 15032 --- [api.giybat.uz] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-01-24T09:51:45.205Z  INFO 15032 --- [api.giybat.uz] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 41 ms. Found 7 JPA repository interfaces.
+2026-01-24T09:51:45.940Z  INFO 15032 --- [api.giybat.uz] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-01-24T09:51:45.956Z  INFO 15032 --- [api.giybat.uz] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-01-24T09:51:45.956Z  INFO 15032 --- [api.giybat.uz] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.34]
+2026-01-24T09:51:46.013Z  INFO 15032 --- [api.giybat.uz] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-01-24T09:51:46.013Z  INFO 15032 --- [api.giybat.uz] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1463 ms
+2026-01-24T09:51:46.216Z  INFO 15032 --- [api.giybat.uz] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-01-24T09:51:46.356Z  INFO 15032 --- [api.giybat.uz] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4a660b34
+2026-01-24T09:51:46.357Z  INFO 15032 --- [api.giybat.uz] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-01-24T09:51:46.383Z  INFO 15032 --- [api.giybat.uz] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:5432/giybat_db (PostgreSQL 14.20)
+2026-01-24T09:51:46.432Z  INFO 15032 --- [api.giybat.uz] [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.030s)
+2026-01-24T09:51:46.500Z  INFO 15032 --- [api.giybat.uz] [main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 2
+2026-01-24T09:51:46.502Z  INFO 15032 --- [api.giybat.uz] [main] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
+2026-01-24T09:51:46.585Z  INFO 15032 --- [api.giybat.uz] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-01-24T09:51:46.629Z  INFO 15032 --- [api.giybat.uz] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.5.Final
+2026-01-24T09:51:46.662Z  INFO 15032 --- [api.giybat.uz] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-01-24T09:51:46.936Z  INFO 15032 --- [api.giybat.uz] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-01-24T09:51:46.989Z  WARN 15032 --- [api.giybat.uz] [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-01-24T09:51:47.003Z  INFO 15032 --- [api.giybat.uz] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 14.20
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-01-24T09:51:47.938Z  INFO 15032 --- [api.giybat.uz] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-01-24T09:51:48.256Z  INFO 15032 --- [api.giybat.uz] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-01-24T09:51:48.527Z  INFO 15032 --- [api.giybat.uz] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-01-24T09:51:49.775Z DEBUG 15032 --- [api.giybat.uz] [main] a.g.uz.config.JwtAuthenticationFilter    : Filter 'jwtAuthenticationFilter' configured for use
+2026-01-24T09:51:50.122Z  WARN 15032 --- [api.giybat.uz] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-01-24T09:51:50.147Z  INFO 15032 --- [api.giybat.uz] [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-01-24T09:51:50.150Z  WARN 15032 --- [api.giybat.uz] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-01-24T09:51:50.824Z  INFO 15032 --- [api.giybat.uz] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-01-24T09:51:50.833Z  INFO 15032 --- [api.giybat.uz] [main] api.giybat.uz.Application                : Started Application in 6.831 seconds (process running for 7.408)
+2026-01-24T09:51:50.846Z  INFO 15032 --- [api.giybat.uz] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:5432/giybat_db (PostgreSQL 14.20)
+2026-01-24T09:51:50.854Z  INFO 15032 --- [api.giybat.uz] [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.003s)
+2026-01-24T09:51:50.854Z  INFO 15032 --- [api.giybat.uz] [main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 2
+2026-01-24T09:51:50.854Z  INFO 15032 --- [api.giybat.uz] [main] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
+2026-01-24T12:07:40.311Z  WARN 15032 --- [api.giybat.uz] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2h1m23s361ms81µs700ns).
+2026-01-24T12:39:25.158Z  WARN 15032 --- [api.giybat.uz] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m14s542ms579µs100ns).
+2026-01-24T13:10:37.137Z  INFO 15032 --- [api.giybat.uz] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-01-24T13:10:37.280Z  INFO 15032 --- [api.giybat.uz] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-01-24T13:10:37.464Z  INFO 15032 --- [api.giybat.uz] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-01-24T13:10:37.588Z  INFO 15032 --- [api.giybat.uz] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-01-24T13:10:37.643Z  INFO 15032 --- [api.giybat.uz] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-01-24T13:12:10.392Z  INFO 2504 --- [api.giybat.uz] [main] api.giybat.uz.Application                : Starting Application using Java 17.0.11 with PID 2504 (D:\Programs\GIYBAT.UZ\api.giybat.uz\target\classes started by adilo in D:\Programs\GIYBAT.UZ)
+2026-01-24T13:12:10.394Z DEBUG 2504 --- [api.giybat.uz] [main] api.giybat.uz.Application                : Running with Spring Boot v3.4.2, Spring v6.2.2
+2026-01-24T13:12:10.395Z  INFO 2504 --- [api.giybat.uz] [main] api.giybat.uz.Application                : The following 1 profile is active: "local"
+2026-01-24T13:12:11.125Z  INFO 2504 --- [api.giybat.uz] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-01-24T13:12:11.201Z  INFO 2504 --- [api.giybat.uz] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 63 ms. Found 7 JPA repository interfaces.
+2026-01-24T13:12:12.112Z  INFO 2504 --- [api.giybat.uz] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-01-24T13:12:12.127Z  INFO 2504 --- [api.giybat.uz] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-01-24T13:12:12.127Z  INFO 2504 --- [api.giybat.uz] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.34]
+2026-01-24T13:12:12.214Z  INFO 2504 --- [api.giybat.uz] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-01-24T13:12:12.214Z  INFO 2504 --- [api.giybat.uz] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1766 ms
+2026-01-24T13:12:12.432Z  INFO 2504 --- [api.giybat.uz] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-01-24T13:12:12.620Z  INFO 2504 --- [api.giybat.uz] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@7cd3e0da
+2026-01-24T13:12:12.621Z  INFO 2504 --- [api.giybat.uz] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-01-24T13:12:12.656Z  INFO 2504 --- [api.giybat.uz] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:5432/giybat_db (PostgreSQL 14.20)
+2026-01-24T13:12:12.719Z  INFO 2504 --- [api.giybat.uz] [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.030s)
+2026-01-24T13:12:12.777Z  INFO 2504 --- [api.giybat.uz] [main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 2
+2026-01-24T13:12:12.784Z  INFO 2504 --- [api.giybat.uz] [main] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
+2026-01-24T13:12:12.875Z  INFO 2504 --- [api.giybat.uz] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-01-24T13:12:12.971Z  INFO 2504 --- [api.giybat.uz] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.5.Final
+2026-01-24T13:12:13.034Z  INFO 2504 --- [api.giybat.uz] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-01-24T13:12:13.342Z  INFO 2504 --- [api.giybat.uz] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-01-24T13:12:13.410Z  WARN 2504 --- [api.giybat.uz] [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-01-24T13:12:13.424Z  INFO 2504 --- [api.giybat.uz] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 14.20
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-01-24T13:12:14.731Z  INFO 2504 --- [api.giybat.uz] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-01-24T13:12:15.064Z  INFO 2504 --- [api.giybat.uz] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-01-24T13:12:15.312Z  INFO 2504 --- [api.giybat.uz] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-01-24T13:12:16.573Z DEBUG 2504 --- [api.giybat.uz] [main] a.g.uz.config.JwtAuthenticationFilter    : Filter 'jwtAuthenticationFilter' configured for use
+2026-01-24T13:12:17.065Z  WARN 2504 --- [api.giybat.uz] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-01-24T13:12:17.101Z  INFO 2504 --- [api.giybat.uz] [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-01-24T13:12:17.101Z  WARN 2504 --- [api.giybat.uz] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-01-24T13:12:17.886Z  INFO 2504 --- [api.giybat.uz] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-01-24T13:12:17.895Z  INFO 2504 --- [api.giybat.uz] [main] api.giybat.uz.Application                : Started Application in 8.126 seconds (process running for 9.002)
+2026-01-24T13:12:17.910Z  INFO 2504 --- [api.giybat.uz] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:5432/giybat_db (PostgreSQL 14.20)
+2026-01-24T13:12:17.918Z  INFO 2504 --- [api.giybat.uz] [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.003s)
+2026-01-24T13:12:17.924Z  INFO 2504 --- [api.giybat.uz] [main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 2
+2026-01-24T13:12:17.925Z  INFO 2504 --- [api.giybat.uz] [main] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
+2026-01-24T13:13:33.693Z  INFO 2504 --- [api.giybat.uz] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-01-24T13:13:33.694Z  INFO 2504 --- [api.giybat.uz] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-01-24T13:13:33.699Z  INFO 2504 --- [api.giybat.uz] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
+2026-01-24T13:13:33.968Z  INFO 2504 --- [api.giybat.uz] [http-nio-8080-exec-2] a.giybat.uz.controller.AuthController    : Login: username: ortiqovmuzaffar171@gmail.com
+2026-01-24T13:13:34.151Z  INFO 2504 --- [api.giybat.uz] [http-nio-8080-exec-2] api.giybat.uz.service.AuthService        : Login failed username: ortiqovmuzaffar171@gmail.com
+2026-01-24T13:14:11.464Z  INFO 2504 --- [api.giybat.uz] [http-nio-8080-exec-4] a.giybat.uz.controller.AuthController    : Registration: name: Muzaffar, username: ortiqovmuzaffar171@gmail.com
+2026-01-24T13:17:03.284Z  INFO 2504 --- [api.giybat.uz] [http-nio-8080-exec-6] a.giybat.uz.controller.AuthController    : Registration: name: Muzaffar, username: ortiqovmuzaffar171@gmail.com
+2026-01-24T13:31:07.934Z  INFO 2504 --- [api.giybat.uz] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-01-24T13:31:08.038Z  INFO 2504 --- [api.giybat.uz] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-01-24T13:31:08.072Z  INFO 2504 --- [api.giybat.uz] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-01-24T13:31:08.103Z  INFO 2504 --- [api.giybat.uz] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-01-24T13:31:08.115Z  INFO 2504 --- [api.giybat.uz] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-01-24T13:31:10.989Z  INFO 15796 --- [api.giybat.uz] [main] api.giybat.uz.Application                : Starting Application using Java 17.0.11 with PID 15796 (D:\Programs\GIYBAT.UZ\api.giybat.uz\target\classes started by adilo in D:\Programs\GIYBAT.UZ)
+2026-01-24T13:31:10.990Z DEBUG 15796 --- [api.giybat.uz] [main] api.giybat.uz.Application                : Running with Spring Boot v3.4.2, Spring v6.2.2
+2026-01-24T13:31:10.992Z  INFO 15796 --- [api.giybat.uz] [main] api.giybat.uz.Application                : The following 1 profile is active: "local"
+2026-01-24T13:31:11.757Z  INFO 15796 --- [api.giybat.uz] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-01-24T13:31:11.891Z  INFO 15796 --- [api.giybat.uz] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 111 ms. Found 7 JPA repository interfaces.
+2026-01-24T13:31:12.783Z  INFO 15796 --- [api.giybat.uz] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-01-24T13:31:12.796Z  INFO 15796 --- [api.giybat.uz] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-01-24T13:31:12.796Z  INFO 15796 --- [api.giybat.uz] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.34]
+2026-01-24T13:31:12.856Z  INFO 15796 --- [api.giybat.uz] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-01-24T13:31:12.857Z  INFO 15796 --- [api.giybat.uz] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1806 ms
+2026-01-24T13:31:13.066Z  INFO 15796 --- [api.giybat.uz] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-01-24T13:31:13.236Z  INFO 15796 --- [api.giybat.uz] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@2df3545d
+2026-01-24T13:31:13.237Z  INFO 15796 --- [api.giybat.uz] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-01-24T13:31:13.267Z  INFO 15796 --- [api.giybat.uz] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:5432/giybat_db (PostgreSQL 14.20)
+2026-01-24T13:31:13.332Z  INFO 15796 --- [api.giybat.uz] [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.033s)
+2026-01-24T13:31:13.388Z  INFO 15796 --- [api.giybat.uz] [main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 2
+2026-01-24T13:31:13.392Z  INFO 15796 --- [api.giybat.uz] [main] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
+2026-01-24T13:31:13.478Z  INFO 15796 --- [api.giybat.uz] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-01-24T13:31:13.557Z  INFO 15796 --- [api.giybat.uz] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.5.Final
+2026-01-24T13:31:13.599Z  INFO 15796 --- [api.giybat.uz] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-01-24T13:31:13.881Z  INFO 15796 --- [api.giybat.uz] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-01-24T13:31:13.944Z  WARN 15796 --- [api.giybat.uz] [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-01-24T13:31:13.958Z  INFO 15796 --- [api.giybat.uz] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 14.20
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-01-24T13:31:14.999Z  INFO 15796 --- [api.giybat.uz] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-01-24T13:31:15.266Z  INFO 15796 --- [api.giybat.uz] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-01-24T13:31:15.483Z  INFO 15796 --- [api.giybat.uz] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-01-24T13:31:16.578Z DEBUG 15796 --- [api.giybat.uz] [main] a.g.uz.config.JwtAuthenticationFilter    : Filter 'jwtAuthenticationFilter' configured for use
+2026-01-24T13:31:17.015Z  WARN 15796 --- [api.giybat.uz] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-01-24T13:31:17.064Z  INFO 15796 --- [api.giybat.uz] [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-01-24T13:31:17.064Z  WARN 15796 --- [api.giybat.uz] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-01-24T13:31:17.851Z  INFO 15796 --- [api.giybat.uz] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-01-24T13:31:17.862Z  INFO 15796 --- [api.giybat.uz] [main] api.giybat.uz.Application                : Started Application in 7.386 seconds (process running for 8.133)
+2026-01-24T13:31:17.902Z  INFO 15796 --- [api.giybat.uz] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:5432/giybat_db (PostgreSQL 14.20)
+2026-01-24T13:31:17.910Z  INFO 15796 --- [api.giybat.uz] [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.003s)
+2026-01-24T13:31:17.914Z  INFO 15796 --- [api.giybat.uz] [main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 2
+2026-01-24T13:31:17.915Z  INFO 15796 --- [api.giybat.uz] [main] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
+2026-01-24T13:32:16.080Z  INFO 15796 --- [api.giybat.uz] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-01-24T13:32:16.080Z  INFO 15796 --- [api.giybat.uz] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-01-24T13:32:16.082Z  INFO 15796 --- [api.giybat.uz] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-01-24T13:32:16.183Z  INFO 15796 --- [api.giybat.uz] [http-nio-8080-exec-2] a.giybat.uz.controller.AuthController    : Registration: name: Muzaffar, username: ortiqovmuzaffar171@gmail.com
+2026-01-24T13:38:13.202Z  INFO 15796 --- [api.giybat.uz] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-01-24T13:38:13.264Z  INFO 15796 --- [api.giybat.uz] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-01-24T13:38:13.277Z  INFO 15796 --- [api.giybat.uz] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-01-24T13:38:13.286Z  INFO 15796 --- [api.giybat.uz] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-01-24T13:38:13.292Z  INFO 15796 --- [api.giybat.uz] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-01-24T13:38:15.779Z  INFO 18652 --- [api.giybat.uz] [main] api.giybat.uz.Application                : Starting Application using Java 17.0.11 with PID 18652 (D:\Programs\GIYBAT.UZ\api.giybat.uz\target\classes started by adilo in D:\Programs\GIYBAT.UZ)
+2026-01-24T13:38:15.781Z DEBUG 18652 --- [api.giybat.uz] [main] api.giybat.uz.Application                : Running with Spring Boot v3.4.2, Spring v6.2.2
+2026-01-24T13:38:15.782Z  INFO 18652 --- [api.giybat.uz] [main] api.giybat.uz.Application                : The following 1 profile is active: "local"
+2026-01-24T13:38:16.315Z  INFO 18652 --- [api.giybat.uz] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-01-24T13:38:16.373Z  INFO 18652 --- [api.giybat.uz] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 42 ms. Found 7 JPA repository interfaces.
+2026-01-24T13:38:17.056Z  INFO 18652 --- [api.giybat.uz] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-01-24T13:38:17.066Z  INFO 18652 --- [api.giybat.uz] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-01-24T13:38:17.067Z  INFO 18652 --- [api.giybat.uz] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.34]
+2026-01-24T13:38:17.123Z  INFO 18652 --- [api.giybat.uz] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-01-24T13:38:17.123Z  INFO 18652 --- [api.giybat.uz] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1297 ms
+2026-01-24T13:38:17.289Z  INFO 18652 --- [api.giybat.uz] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-01-24T13:38:17.445Z  INFO 18652 --- [api.giybat.uz] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@7d8b66d9
+2026-01-24T13:38:17.447Z  INFO 18652 --- [api.giybat.uz] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-01-24T13:38:17.472Z  INFO 18652 --- [api.giybat.uz] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:5432/giybat_db (PostgreSQL 14.20)
+2026-01-24T13:38:17.518Z  INFO 18652 --- [api.giybat.uz] [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.028s)
+2026-01-24T13:38:17.568Z  INFO 18652 --- [api.giybat.uz] [main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 2
+2026-01-24T13:38:17.573Z  INFO 18652 --- [api.giybat.uz] [main] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
+2026-01-24T13:38:17.645Z  INFO 18652 --- [api.giybat.uz] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-01-24T13:38:17.714Z  INFO 18652 --- [api.giybat.uz] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.5.Final
+2026-01-24T13:38:17.754Z  INFO 18652 --- [api.giybat.uz] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-01-24T13:38:18.022Z  INFO 18652 --- [api.giybat.uz] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-01-24T13:38:18.085Z  WARN 18652 --- [api.giybat.uz] [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-01-24T13:38:18.102Z  INFO 18652 --- [api.giybat.uz] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 14.20
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-01-24T13:38:19.018Z  INFO 18652 --- [api.giybat.uz] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-01-24T13:38:19.265Z  INFO 18652 --- [api.giybat.uz] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-01-24T13:38:19.482Z  INFO 18652 --- [api.giybat.uz] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-01-24T13:38:20.457Z DEBUG 18652 --- [api.giybat.uz] [main] a.g.uz.config.JwtAuthenticationFilter    : Filter 'jwtAuthenticationFilter' configured for use
+2026-01-24T13:38:20.816Z  WARN 18652 --- [api.giybat.uz] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-01-24T13:38:20.842Z  INFO 18652 --- [api.giybat.uz] [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-01-24T13:38:20.844Z  WARN 18652 --- [api.giybat.uz] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-01-24T13:38:21.478Z  INFO 18652 --- [api.giybat.uz] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-01-24T13:38:21.489Z  INFO 18652 --- [api.giybat.uz] [main] api.giybat.uz.Application                : Started Application in 6.1 seconds (process running for 6.692)
+2026-01-24T13:38:21.502Z  INFO 18652 --- [api.giybat.uz] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:5432/giybat_db (PostgreSQL 14.20)
+2026-01-24T13:38:21.510Z  INFO 18652 --- [api.giybat.uz] [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.003s)
+2026-01-24T13:38:21.516Z  INFO 18652 --- [api.giybat.uz] [main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 2
+2026-01-24T13:38:21.517Z  INFO 18652 --- [api.giybat.uz] [main] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
+2026-01-24T13:38:57.441Z  INFO 18652 --- [api.giybat.uz] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-01-24T13:38:57.442Z  INFO 18652 --- [api.giybat.uz] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-01-24T13:38:57.442Z  INFO 18652 --- [api.giybat.uz] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2026-01-24T13:38:57.531Z  INFO 18652 --- [api.giybat.uz] [http-nio-8080-exec-4] a.giybat.uz.controller.AuthController    : Registration: name: Muzaffar, username: ortiqovmuzaffar171@gmail.com
+2026-01-24T13:39:17.080Z  INFO 18652 --- [api.giybat.uz] [http-nio-8080-exec-3] a.giybat.uz.controller.AuthController    : Registration Verification email: token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmM2Q5MWNhNy05ZjFhLTRiMDYtODA0Zi0wMTJkZDJkMjY0M2IiLCJpYXQiOjE3NjkyNjE1MzYsImV4cCI6MTc2OTI2NTEzNn0.EJVPvjDHypfPUDalfcTrym3s9Ps5gswvcuSwgDAnTz9QG3rfwAyOhO0q-GuUy8MSvKTkW-KGHeP4N2HaZsiMaw
+2026-01-24T13:39:17.108Z ERROR 18652 --- [api.giybat.uz] [http-nio-8080-exec-3] api.giybat.uz.service.ProfileService     : No profile found with id: f3d91ca7-9f1a-4b06-804f-012dd2d2643b
+2026-01-24T13:42:38.829Z  INFO 18652 --- [api.giybat.uz] [http-nio-8080-exec-8] a.giybat.uz.controller.AuthController    : Registration: name: Muzaffar, username: ortiqovmuzaffar171@gmail.com
+2026-01-24T13:45:38.843Z  INFO 18652 --- [api.giybat.uz] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-01-24T13:45:38.967Z  INFO 18652 --- [api.giybat.uz] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-01-24T13:45:39.245Z  INFO 18652 --- [api.giybat.uz] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-01-24T13:45:39.254Z  INFO 18652 --- [api.giybat.uz] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-01-24T13:45:39.261Z  INFO 18652 --- [api.giybat.uz] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-01-24T13:45:42.955Z  INFO 5656 --- [api.giybat.uz] [main] api.giybat.uz.Application                : Starting Application using Java 17.0.11 with PID 5656 (D:\Programs\GIYBAT.UZ\api.giybat.uz\target\classes started by adilo in D:\Programs\GIYBAT.UZ)
+2026-01-24T13:45:42.958Z DEBUG 5656 --- [api.giybat.uz] [main] api.giybat.uz.Application                : Running with Spring Boot v3.4.2, Spring v6.2.2
+2026-01-24T13:45:42.958Z  INFO 5656 --- [api.giybat.uz] [main] api.giybat.uz.Application                : The following 1 profile is active: "local"
+2026-01-24T13:45:43.834Z  INFO 5656 --- [api.giybat.uz] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-01-24T13:45:43.892Z  INFO 5656 --- [api.giybat.uz] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 49 ms. Found 7 JPA repository interfaces.
+2026-01-24T13:45:44.666Z  INFO 5656 --- [api.giybat.uz] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-01-24T13:45:44.679Z  INFO 5656 --- [api.giybat.uz] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-01-24T13:45:44.679Z  INFO 5656 --- [api.giybat.uz] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.34]
+2026-01-24T13:45:44.740Z  INFO 5656 --- [api.giybat.uz] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-01-24T13:45:44.740Z  INFO 5656 --- [api.giybat.uz] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1729 ms
+2026-01-24T13:45:44.951Z  INFO 5656 --- [api.giybat.uz] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-01-24T13:45:45.236Z  INFO 5656 --- [api.giybat.uz] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@78065fcd
+2026-01-24T13:45:45.238Z  INFO 5656 --- [api.giybat.uz] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-01-24T13:45:45.266Z  INFO 5656 --- [api.giybat.uz] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:5432/giybat_db (PostgreSQL 14.20)
+2026-01-24T13:45:45.313Z  INFO 5656 --- [api.giybat.uz] [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.024s)
+2026-01-24T13:45:45.365Z  INFO 5656 --- [api.giybat.uz] [main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 2
+2026-01-24T13:45:45.371Z  INFO 5656 --- [api.giybat.uz] [main] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
+2026-01-24T13:45:45.457Z  INFO 5656 --- [api.giybat.uz] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-01-24T13:45:45.602Z  INFO 5656 --- [api.giybat.uz] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.5.Final
+2026-01-24T13:45:45.648Z  INFO 5656 --- [api.giybat.uz] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-01-24T13:45:45.949Z  INFO 5656 --- [api.giybat.uz] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-01-24T13:45:46.030Z  WARN 5656 --- [api.giybat.uz] [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-01-24T13:45:46.050Z  INFO 5656 --- [api.giybat.uz] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 14.20
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-01-24T13:45:47.041Z  INFO 5656 --- [api.giybat.uz] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-01-24T13:45:47.293Z  INFO 5656 --- [api.giybat.uz] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-01-24T13:45:47.511Z  INFO 5656 --- [api.giybat.uz] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-01-24T13:45:48.515Z DEBUG 5656 --- [api.giybat.uz] [main] a.g.uz.config.JwtAuthenticationFilter    : Filter 'jwtAuthenticationFilter' configured for use
+2026-01-24T13:45:48.846Z  WARN 5656 --- [api.giybat.uz] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-01-24T13:45:48.873Z  INFO 5656 --- [api.giybat.uz] [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-01-24T13:45:48.874Z  WARN 5656 --- [api.giybat.uz] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-01-24T13:45:49.612Z  INFO 5656 --- [api.giybat.uz] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-01-24T13:45:49.622Z  INFO 5656 --- [api.giybat.uz] [main] api.giybat.uz.Application                : Started Application in 7.263 seconds (process running for 8.075)
+2026-01-24T13:45:49.635Z  INFO 5656 --- [api.giybat.uz] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:5432/giybat_db (PostgreSQL 14.20)
+2026-01-24T13:45:49.641Z  INFO 5656 --- [api.giybat.uz] [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.003s)
+2026-01-24T13:45:49.647Z  INFO 5656 --- [api.giybat.uz] [main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 2
+2026-01-24T13:45:49.647Z  INFO 5656 --- [api.giybat.uz] [main] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
+2026-01-24T13:46:13.581Z  INFO 5656 --- [api.giybat.uz] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-01-24T13:46:13.581Z  INFO 5656 --- [api.giybat.uz] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-01-24T13:46:13.582Z  INFO 5656 --- [api.giybat.uz] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-01-24T13:46:13.705Z  INFO 5656 --- [api.giybat.uz] [http-nio-8080-exec-1] a.giybat.uz.controller.AuthController    : Registration: name: Muzaffar, username: ortiqovmuzaffar171@gmail.com
+2026-01-24T13:46:25.196Z  INFO 5656 --- [api.giybat.uz] [http-nio-8080-exec-2] a.giybat.uz.controller.AuthController    : Registration: name: Muzaffar, username: ortiqovmuzaffar171@gmail.com
+2026-01-24T13:47:05.883Z  INFO 5656 --- [api.giybat.uz] [http-nio-8080-exec-8] a.giybat.uz.controller.AuthController    : Registration Verification email: token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjOGQ4MzIwZi0yZGNiLTQ4ZjktYWEyMS1kMTJhZGUyZmI0YzQiLCJpYXQiOjE3NjkyNjE5MzcsImV4cCI6MTc2OTI2NTUzN30.1NCrsnkyeT7nwwuFnLw_q3KyWZ4_L2gPWO21oRamT0YY3Rugdo4c3rQCljRN29TudPD4xSxE9Kan9jCadQYSPA
+2026-01-24T13:47:05.920Z ERROR 5656 --- [api.giybat.uz] [http-nio-8080-exec-8] api.giybat.uz.service.ProfileService     : No profile found with id: c8d8320f-2dcb-48f9-aa21-d12ade2fb4c4
+2026-01-24T13:52:32.941Z  INFO 5656 --- [api.giybat.uz] [http-nio-8080-exec-4] a.giybat.uz.controller.AuthController    : Registration: name: Muzaffar, username: ortiqovmuzaffar171@gmail.com
+2026-01-24T14:23:09.518Z  INFO 5656 --- [api.giybat.uz] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-01-24T14:23:09.694Z  INFO 5656 --- [api.giybat.uz] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-01-24T14:23:09.775Z  INFO 5656 --- [api.giybat.uz] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-01-24T14:23:09.849Z  INFO 5656 --- [api.giybat.uz] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-01-24T14:23:09.873Z  INFO 5656 --- [api.giybat.uz] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-01-24T14:23:12.719Z  INFO 10404 --- [api.giybat.uz] [main] api.giybat.uz.Application                : Starting Application using Java 17.0.11 with PID 10404 (D:\Programs\GIYBAT.UZ\api.giybat.uz\target\classes started by adilo in D:\Programs\GIYBAT.UZ)
+2026-01-24T14:23:12.720Z DEBUG 10404 --- [api.giybat.uz] [main] api.giybat.uz.Application                : Running with Spring Boot v3.4.2, Spring v6.2.2
+2026-01-24T14:23:12.722Z  INFO 10404 --- [api.giybat.uz] [main] api.giybat.uz.Application                : The following 1 profile is active: "local"
+2026-01-24T14:23:13.347Z  INFO 10404 --- [api.giybat.uz] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-01-24T14:23:13.407Z  INFO 10404 --- [api.giybat.uz] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 46 ms. Found 7 JPA repository interfaces.
+2026-01-24T14:23:14.174Z  INFO 10404 --- [api.giybat.uz] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-01-24T14:23:14.186Z  INFO 10404 --- [api.giybat.uz] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-01-24T14:23:14.187Z  INFO 10404 --- [api.giybat.uz] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.34]
+2026-01-24T14:23:14.246Z  INFO 10404 --- [api.giybat.uz] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-01-24T14:23:14.247Z  INFO 10404 --- [api.giybat.uz] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1471 ms
+2026-01-24T14:23:14.436Z  INFO 10404 --- [api.giybat.uz] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-01-24T14:23:14.606Z  INFO 10404 --- [api.giybat.uz] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@5599b5bb
+2026-01-24T14:23:14.608Z  INFO 10404 --- [api.giybat.uz] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-01-24T14:23:14.637Z  INFO 10404 --- [api.giybat.uz] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:5432/giybat_db (PostgreSQL 14.20)
+2026-01-24T14:23:14.689Z  INFO 10404 --- [api.giybat.uz] [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.026s)
+2026-01-24T14:23:14.738Z  INFO 10404 --- [api.giybat.uz] [main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 2
+2026-01-24T14:23:14.743Z  INFO 10404 --- [api.giybat.uz] [main] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
+2026-01-24T14:23:14.820Z  INFO 10404 --- [api.giybat.uz] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-01-24T14:23:14.889Z  INFO 10404 --- [api.giybat.uz] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.5.Final
+2026-01-24T14:23:14.933Z  INFO 10404 --- [api.giybat.uz] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-01-24T14:23:15.223Z  INFO 10404 --- [api.giybat.uz] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-01-24T14:23:15.286Z  WARN 10404 --- [api.giybat.uz] [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-01-24T14:23:15.301Z  INFO 10404 --- [api.giybat.uz] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 14.20
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-01-24T14:23:16.260Z  INFO 10404 --- [api.giybat.uz] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-01-24T14:23:16.505Z  INFO 10404 --- [api.giybat.uz] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-01-24T14:23:16.711Z  INFO 10404 --- [api.giybat.uz] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-01-24T14:23:17.703Z DEBUG 10404 --- [api.giybat.uz] [main] a.g.uz.config.JwtAuthenticationFilter    : Filter 'jwtAuthenticationFilter' configured for use
+2026-01-24T14:23:18.023Z  WARN 10404 --- [api.giybat.uz] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-01-24T14:23:18.050Z  INFO 10404 --- [api.giybat.uz] [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-01-24T14:23:18.050Z  WARN 10404 --- [api.giybat.uz] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-01-24T14:23:18.680Z  INFO 10404 --- [api.giybat.uz] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-01-24T14:23:18.689Z  INFO 10404 --- [api.giybat.uz] [main] api.giybat.uz.Application                : Started Application in 6.428 seconds (process running for 7.148)
+2026-01-24T14:23:18.703Z  INFO 10404 --- [api.giybat.uz] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:5432/giybat_db (PostgreSQL 14.20)
+2026-01-24T14:23:18.709Z  INFO 10404 --- [api.giybat.uz] [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.002s)
+2026-01-24T14:23:18.713Z  INFO 10404 --- [api.giybat.uz] [main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 2
+2026-01-24T14:23:18.713Z  INFO 10404 --- [api.giybat.uz] [main] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
+2026-01-24T14:23:32.250Z  INFO 10404 --- [api.giybat.uz] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-01-24T14:23:32.250Z  INFO 10404 --- [api.giybat.uz] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-01-24T14:23:32.252Z  INFO 10404 --- [api.giybat.uz] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-01-24T14:23:32.311Z  INFO 10404 --- [api.giybat.uz] [http-nio-8080-exec-1] a.giybat.uz.controller.AuthController    : Registration: name: Muzaffar, username: ortiqovmuzaffar171@gmail.com
+2026-01-24T14:24:27.706Z  INFO 10404 --- [api.giybat.uz] [http-nio-8080-exec-9] a.giybat.uz.controller.AuthController    : Registration Verification email: token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJiZDE3MzAwZC0xOWYzLTQyODgtYWQwOC1mNWQyZThkODk5OTYiLCJpYXQiOjE3NjkyNjI3NTMsImV4cCI6MTc2OTI2NjM1M30.v52dO7_x5OEsBahVn_i6MheaFUpJMW6wtfHLlP2CdEWGyzP_EVNr5ccPaxMEfKJmmj5JX4ZdGd-NVlq8K99WwA
+2026-01-24T14:24:27.741Z ERROR 10404 --- [api.giybat.uz] [http-nio-8080-exec-9] api.giybat.uz.service.ProfileService     : No profile found with id: bd17300d-19f3-4288-ad08-f5d2e8d89996
+2026-01-24T14:26:58.378Z  INFO 10404 --- [api.giybat.uz] [http-nio-8080-exec-7] a.giybat.uz.controller.AuthController    : Login: username: ortiqovmuzaffar171@gmail.com
+2026-01-24T14:26:58.640Z  INFO 10404 --- [api.giybat.uz] [http-nio-8080-exec-8] a.giybat.uz.controller.PostController    : Get profile's own posts: 
+2026-01-24T14:26:58.660Z  WARN 10404 --- [api.giybat.uz] [http-nio-8080-exec-8] ration$PageModule$WarningLoggingModifier : Serializing PageImpl instances as-is is not supported, meaning that there is no guarantee about the stability of the resulting JSON structure!
+	For a stable JSON structure, please use Spring Data's PagedModel (globally via @EnableSpringDataWebSupport(pageSerializationMode = VIA_DTO))
+	or Spring HATEOAS and Spring Data's PagedResourcesAssembler as documented in https://docs.spring.io/spring-data/commons/reference/repositories/core-extensions.html#core.web.pageables.
+
+2026-01-24T14:28:28.847Z  INFO 10404 --- [api.giybat.uz] [http-nio-8080-exec-2] a.giybat.uz.controller.PostController    : Create post: api.giybat.uz.dto.post.PostCreateDTO@1f9e95ea
+2026-01-24T14:28:32.408Z  INFO 10404 --- [api.giybat.uz] [http-nio-8080-exec-6] a.giybat.uz.controller.PostController    : Get profile's own posts: 
+2026-01-24T14:28:36.955Z  INFO 10404 --- [api.giybat.uz] [http-nio-8080-exec-7] a.giybat.uz.controller.PostController    : Get profile's own posts: 
+2026-01-24T14:47:15.677Z  INFO 10404 --- [api.giybat.uz] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-01-24T14:47:15.775Z  INFO 10404 --- [api.giybat.uz] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-01-24T14:47:15.832Z  INFO 10404 --- [api.giybat.uz] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-01-24T14:47:15.864Z  INFO 10404 --- [api.giybat.uz] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-01-24T14:47:15.932Z  INFO 10404 --- [api.giybat.uz] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-01-24T14:47:20.336Z  INFO 9232 --- [api.giybat.uz] [main] api.giybat.uz.Application                : Starting Application using Java 17.0.11 with PID 9232 (D:\Programs\GIYBAT.UZ\api.giybat.uz\target\classes started by adilo in D:\Programs\GIYBAT.UZ)
+2026-01-24T14:47:20.336Z DEBUG 9232 --- [api.giybat.uz] [main] api.giybat.uz.Application                : Running with Spring Boot v3.4.2, Spring v6.2.2
+2026-01-24T14:47:20.336Z  INFO 9232 --- [api.giybat.uz] [main] api.giybat.uz.Application                : The following 1 profile is active: "local"
+2026-01-24T14:47:20.917Z  INFO 9232 --- [api.giybat.uz] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-01-24T14:47:20.972Z  INFO 9232 --- [api.giybat.uz] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 47 ms. Found 7 JPA repository interfaces.
+2026-01-24T14:47:21.685Z  INFO 9232 --- [api.giybat.uz] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-01-24T14:47:21.696Z  INFO 9232 --- [api.giybat.uz] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-01-24T14:47:21.696Z  INFO 9232 --- [api.giybat.uz] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.34]
+2026-01-24T14:47:21.748Z  INFO 9232 --- [api.giybat.uz] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-01-24T14:47:21.748Z  INFO 9232 --- [api.giybat.uz] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1363 ms
+2026-01-24T14:47:21.913Z  INFO 9232 --- [api.giybat.uz] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-01-24T14:47:22.093Z  INFO 9232 --- [api.giybat.uz] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4ff66917
+2026-01-24T14:47:22.094Z  INFO 9232 --- [api.giybat.uz] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-01-24T14:47:22.124Z  INFO 9232 --- [api.giybat.uz] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:5432/giybat_db (PostgreSQL 14.20)
+2026-01-24T14:47:22.182Z  INFO 9232 --- [api.giybat.uz] [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.030s)
+2026-01-24T14:47:22.235Z  INFO 9232 --- [api.giybat.uz] [main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 2
+2026-01-24T14:47:22.240Z  INFO 9232 --- [api.giybat.uz] [main] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
+2026-01-24T14:47:22.317Z  INFO 9232 --- [api.giybat.uz] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-01-24T14:47:22.392Z  INFO 9232 --- [api.giybat.uz] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.5.Final
+2026-01-24T14:47:22.426Z  INFO 9232 --- [api.giybat.uz] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-01-24T14:47:22.680Z  INFO 9232 --- [api.giybat.uz] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-01-24T14:47:22.737Z  WARN 9232 --- [api.giybat.uz] [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-01-24T14:47:22.753Z  INFO 9232 --- [api.giybat.uz] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 14.20
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-01-24T14:47:23.626Z  INFO 9232 --- [api.giybat.uz] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-01-24T14:47:23.862Z  INFO 9232 --- [api.giybat.uz] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-01-24T14:47:24.070Z  INFO 9232 --- [api.giybat.uz] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-01-24T14:47:25.028Z DEBUG 9232 --- [api.giybat.uz] [main] a.g.uz.config.JwtAuthenticationFilter    : Filter 'jwtAuthenticationFilter' configured for use
+2026-01-24T14:47:25.377Z  WARN 9232 --- [api.giybat.uz] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-01-24T14:47:25.405Z  INFO 9232 --- [api.giybat.uz] [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-01-24T14:47:25.406Z  WARN 9232 --- [api.giybat.uz] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-01-24T14:47:26.138Z  INFO 9232 --- [api.giybat.uz] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-01-24T14:47:26.148Z  INFO 9232 --- [api.giybat.uz] [main] api.giybat.uz.Application                : Started Application in 6.222 seconds (process running for 6.802)
+2026-01-24T14:47:26.163Z  INFO 9232 --- [api.giybat.uz] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:5432/giybat_db (PostgreSQL 14.20)
+2026-01-24T14:47:26.170Z  INFO 9232 --- [api.giybat.uz] [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.002s)
+2026-01-24T14:47:26.175Z  INFO 9232 --- [api.giybat.uz] [main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 2
+2026-01-24T14:47:26.176Z  INFO 9232 --- [api.giybat.uz] [main] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
+2026-01-24T14:48:19.722Z  INFO 9232 --- [api.giybat.uz] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-01-24T14:48:19.722Z  INFO 9232 --- [api.giybat.uz] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-01-24T14:48:19.723Z  INFO 9232 --- [api.giybat.uz] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-01-24T14:50:51.801Z  INFO 9232 --- [api.giybat.uz] [http-nio-8080-exec-8] a.giybat.uz.controller.AuthController    : Login: username: ortiqovmuzaffar171@gmail.com
+2026-01-24T14:51:28.368Z  INFO 9232 --- [api.giybat.uz] [http-nio-8080-exec-5] a.giybat.uz.controller.PostController    : Create post: api.giybat.uz.dto.post.PostCreateDTO@69e19ecc
+2026-01-24T14:51:28.425Z  WARN 9232 --- [api.giybat.uz] [http-nio-8080-exec-5] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 0, SQLState: 23503
+2026-01-24T14:51:28.425Z ERROR 9232 --- [api.giybat.uz] [http-nio-8080-exec-5] o.h.engine.jdbc.spi.SqlExceptionHelper   : ERROR: insert or update on table "post" violates foreign key constraint "fka68pqiraaui4ab0uyt5u970qv"
+  Detail: Key (photo_id)=(3652a057-1bb6-469b-a470-9a9944219846.jpg) is not present in table "attach".
+2026-01-24T14:53:42.955Z  INFO 9232 --- [api.giybat.uz] [http-nio-8080-exec-2] a.giybat.uz.controller.PostController    : Create post: api.giybat.uz.dto.post.PostCreateDTO@54d4c4d
+2026-01-24T14:53:57.033Z  INFO 9232 --- [api.giybat.uz] [http-nio-8080-exec-3] a.giybat.uz.controller.PostController    : Get profile's own posts: 
+2026-01-24T14:53:57.167Z  WARN 9232 --- [api.giybat.uz] [http-nio-8080-exec-3] ration$PageModule$WarningLoggingModifier : Serializing PageImpl instances as-is is not supported, meaning that there is no guarantee about the stability of the resulting JSON structure!
+	For a stable JSON structure, please use Spring Data's PagedModel (globally via @EnableSpringDataWebSupport(pageSerializationMode = VIA_DTO))
+	or Spring HATEOAS and Spring Data's PagedResourcesAssembler as documented in https://docs.spring.io/spring-data/commons/reference/repositories/core-extensions.html#core.web.pageables.
+
+2026-01-24T14:53:57.215Z  WARN 9232 --- [api.giybat.uz] [http-nio-8080-exec-7] api.giybat.uz.service.AttachService      : File not found
+2026-01-24T14:53:57.219Z  WARN 9232 --- [api.giybat.uz] [http-nio-8080-exec-7] api.giybat.uz.service.AttachService      : File download failed error : File not found: 5cce6e84-7f94-40fe-995e-7cd6b32ac6f8.png
+2026-01-24T15:31:55.427Z  WARN 9232 --- [api.giybat.uz] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=29m834ms147µs500ns).
+2026-01-24T15:55:12.038Z  WARN 9232 --- [api.giybat.uz] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=18m16s486ms724µs600ns).
+2026-01-24T16:59:08.513Z  WARN 9232 --- [api.giybat.uz] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=12m25s620ms27µs600ns).
+2026-01-24T17:08:09.298Z  WARN 9232 --- [api.giybat.uz] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=5m679ms309µs600ns).
+2026-01-24T18:14:26.194Z  INFO 9232 --- [api.giybat.uz] [http-nio-8080-exec-2] a.giybat.uz.controller.PostController    : Get profile's own posts: 
+2026-01-24T18:14:26.315Z  WARN 9232 --- [api.giybat.uz] [http-nio-8080-exec-3] api.giybat.uz.service.AttachService      : File not found
+2026-01-24T18:14:26.326Z  WARN 9232 --- [api.giybat.uz] [http-nio-8080-exec-3] api.giybat.uz.service.AttachService      : File download failed error : File not found: 5cce6e84-7f94-40fe-995e-7cd6b32ac6f8.png
+2026-01-24T18:15:12.323Z  WARN 9232 --- [api.giybat.uz] [http-nio-8080-exec-6] api.giybat.uz.service.AttachService      : File not found
+2026-01-24T18:15:12.323Z  WARN 9232 --- [api.giybat.uz] [http-nio-8080-exec-6] api.giybat.uz.service.AttachService      : File download failed error : File not found: 5cce6e84-7f94-40fe-995e-7cd6b32ac6f8.png
+2026-01-24T19:23:30.131Z  INFO 9232 --- [api.giybat.uz] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-01-24T19:23:30.302Z  INFO 9232 --- [api.giybat.uz] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-01-24T19:23:30.416Z  INFO 9232 --- [api.giybat.uz] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-01-24T19:23:30.513Z  INFO 9232 --- [api.giybat.uz] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-01-24T19:23:30.549Z  INFO 9232 --- [api.giybat.uz] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-01-24T23:07:27.615Z  INFO 14020 --- [api.giybat.uz] [main] api.giybat.uz.Application                : Starting Application using Java 17.0.11 with PID 14020 (D:\Programs\GIYBAT.UZ\api.giybat.uz\target\classes started by adilo in D:\Programs\GIYBAT.UZ)
+2026-01-24T23:07:27.618Z DEBUG 14020 --- [api.giybat.uz] [main] api.giybat.uz.Application                : Running with Spring Boot v3.4.2, Spring v6.2.2
+2026-01-24T23:07:27.619Z  INFO 14020 --- [api.giybat.uz] [main] api.giybat.uz.Application                : The following 1 profile is active: "local"
+2026-01-24T23:07:28.465Z  INFO 14020 --- [api.giybat.uz] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-01-24T23:07:28.526Z  INFO 14020 --- [api.giybat.uz] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 48 ms. Found 7 JPA repository interfaces.
+2026-01-24T23:07:29.690Z  INFO 14020 --- [api.giybat.uz] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-01-24T23:07:29.701Z  INFO 14020 --- [api.giybat.uz] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-01-24T23:07:29.701Z  INFO 14020 --- [api.giybat.uz] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.34]
+2026-01-24T23:07:29.757Z  INFO 14020 --- [api.giybat.uz] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-01-24T23:07:29.757Z  INFO 14020 --- [api.giybat.uz] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2062 ms
+2026-01-24T23:07:29.981Z  INFO 14020 --- [api.giybat.uz] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-01-24T23:07:30.204Z  INFO 14020 --- [api.giybat.uz] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@53bb71e5
+2026-01-24T23:07:30.205Z  INFO 14020 --- [api.giybat.uz] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-01-24T23:07:30.248Z  INFO 14020 --- [api.giybat.uz] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:5432/giybat_db (PostgreSQL 14.20)
+2026-01-24T23:07:30.329Z  INFO 14020 --- [api.giybat.uz] [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.049s)
+2026-01-24T23:07:30.382Z  INFO 14020 --- [api.giybat.uz] [main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 2
+2026-01-24T23:07:30.386Z  INFO 14020 --- [api.giybat.uz] [main] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
+2026-01-24T23:07:30.486Z  INFO 14020 --- [api.giybat.uz] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-01-24T23:07:30.556Z  INFO 14020 --- [api.giybat.uz] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.5.Final
+2026-01-24T23:07:30.588Z  INFO 14020 --- [api.giybat.uz] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-01-24T23:07:30.882Z  INFO 14020 --- [api.giybat.uz] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-01-24T23:07:30.940Z  WARN 14020 --- [api.giybat.uz] [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-01-24T23:07:30.956Z  INFO 14020 --- [api.giybat.uz] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 14.20
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-01-24T23:07:31.941Z  INFO 14020 --- [api.giybat.uz] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-01-24T23:07:32.251Z  INFO 14020 --- [api.giybat.uz] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-01-24T23:07:32.599Z  INFO 14020 --- [api.giybat.uz] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-01-24T23:07:34.021Z DEBUG 14020 --- [api.giybat.uz] [main] a.g.uz.config.JwtAuthenticationFilter    : Filter 'jwtAuthenticationFilter' configured for use
+2026-01-24T23:07:34.638Z  WARN 14020 --- [api.giybat.uz] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-01-24T23:07:34.726Z  INFO 14020 --- [api.giybat.uz] [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-01-24T23:07:34.727Z  WARN 14020 --- [api.giybat.uz] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-01-24T23:07:36.133Z  INFO 14020 --- [api.giybat.uz] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-01-24T23:07:36.144Z  INFO 14020 --- [api.giybat.uz] [main] api.giybat.uz.Application                : Started Application in 9.088 seconds (process running for 10.01)
+2026-01-24T23:07:36.164Z  INFO 14020 --- [api.giybat.uz] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:5432/giybat_db (PostgreSQL 14.20)
+2026-01-24T23:07:36.171Z  INFO 14020 --- [api.giybat.uz] [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.003s)
+2026-01-24T23:07:36.177Z  INFO 14020 --- [api.giybat.uz] [main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 2
+2026-01-24T23:07:36.178Z  INFO 14020 --- [api.giybat.uz] [main] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
+2026-01-24T23:07:45.166Z  INFO 14020 --- [api.giybat.uz] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-01-24T23:07:45.167Z  INFO 14020 --- [api.giybat.uz] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-01-24T23:07:45.168Z  INFO 14020 --- [api.giybat.uz] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-01-24T23:07:45.258Z  INFO 14020 --- [api.giybat.uz] [http-nio-8080-exec-1] a.giybat.uz.controller.AuthController    : Login: username: ortiqovmuzaffar171@gmail.com
+2026-01-24T23:08:25.417Z  INFO 14020 --- [api.giybat.uz] [http-nio-8080-exec-2] a.giybat.uz.controller.AuthController    : Reset Password: username: ortiqovmuzaffar171@gmail.com
+2026-01-24T23:08:52.095Z  INFO 14020 --- [api.giybat.uz] [http-nio-8080-exec-4] a.giybat.uz.controller.AuthController    : Password Reset Confirm: username: ortiqovmuzaffar171@gmail.com
+2026-01-24T23:09:03.932Z  INFO 14020 --- [api.giybat.uz] [http-nio-8080-exec-5] a.giybat.uz.controller.AuthController    : Login: username: ortiqovmuzaffar171@gmail.com
+2026-01-24T23:09:15.236Z  INFO 14020 --- [api.giybat.uz] [http-nio-8080-exec-6] a.giybat.uz.controller.AuthController    : Reset Password: username: ortiqovmuzaffar171@gmail.com
+2026-01-24T23:10:04.844Z  INFO 14020 --- [api.giybat.uz] [http-nio-8080-exec-10] a.giybat.uz.controller.AuthController    : Password Reset Confirm: username: ortiqovmuzaffar171@gmail.com
+2026-01-24T23:10:11.817Z  INFO 14020 --- [api.giybat.uz] [http-nio-8080-exec-1] a.giybat.uz.controller.AuthController    : Login: username: ortiqovmuzaffar171@gmail.com
+2026-01-24T23:10:18.972Z  INFO 14020 --- [api.giybat.uz] [http-nio-8080-exec-3] a.giybat.uz.controller.AuthController    : Login: username: ortiqovmuzaffar171@gmail.com
+2026-01-24T23:11:37.369Z  INFO 14020 --- [api.giybat.uz] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-01-24T23:11:37.418Z  INFO 14020 --- [api.giybat.uz] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-01-24T23:11:37.424Z  INFO 14020 --- [api.giybat.uz] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-01-24T23:11:37.427Z  INFO 14020 --- [api.giybat.uz] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-01-24T23:11:37.436Z  INFO 14020 --- [api.giybat.uz] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-01-24T23:11:42.462Z  INFO 19156 --- [api.giybat.uz] [main] api.giybat.uz.Application                : Starting Application using Java 17.0.11 with PID 19156 (D:\Programs\GIYBAT.UZ\api.giybat.uz\target\classes started by adilo in D:\Programs\GIYBAT.UZ)
+2026-01-24T23:11:42.466Z DEBUG 19156 --- [api.giybat.uz] [main] api.giybat.uz.Application                : Running with Spring Boot v3.4.2, Spring v6.2.2
+2026-01-24T23:11:42.467Z  INFO 19156 --- [api.giybat.uz] [main] api.giybat.uz.Application                : The following 1 profile is active: "local"
+2026-01-24T23:11:43.085Z  INFO 19156 --- [api.giybat.uz] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-01-24T23:11:43.141Z  INFO 19156 --- [api.giybat.uz] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 41 ms. Found 7 JPA repository interfaces.
+2026-01-24T23:11:44.450Z  INFO 19156 --- [api.giybat.uz] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-01-24T23:11:44.460Z  INFO 19156 --- [api.giybat.uz] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-01-24T23:11:44.461Z  INFO 19156 --- [api.giybat.uz] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.34]
+2026-01-24T23:11:44.513Z  INFO 19156 --- [api.giybat.uz] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-01-24T23:11:44.514Z  INFO 19156 --- [api.giybat.uz] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1990 ms
+2026-01-24T23:11:44.772Z  INFO 19156 --- [api.giybat.uz] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-01-24T23:11:44.932Z  INFO 19156 --- [api.giybat.uz] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4a660b34
+2026-01-24T23:11:44.934Z  INFO 19156 --- [api.giybat.uz] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-01-24T23:11:44.953Z  INFO 19156 --- [api.giybat.uz] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:5432/giybat_db (PostgreSQL 14.20)
+2026-01-24T23:11:45.003Z  INFO 19156 --- [api.giybat.uz] [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.031s)
+2026-01-24T23:11:45.057Z  INFO 19156 --- [api.giybat.uz] [main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 2
+2026-01-24T23:11:45.060Z  INFO 19156 --- [api.giybat.uz] [main] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
+2026-01-24T23:11:45.124Z  INFO 19156 --- [api.giybat.uz] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-01-24T23:11:45.161Z  INFO 19156 --- [api.giybat.uz] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.5.Final
+2026-01-24T23:11:45.196Z  INFO 19156 --- [api.giybat.uz] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-01-24T23:11:45.427Z  INFO 19156 --- [api.giybat.uz] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-01-24T23:11:45.481Z  WARN 19156 --- [api.giybat.uz] [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-01-24T23:11:45.495Z  INFO 19156 --- [api.giybat.uz] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 14.20
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-01-24T23:11:46.511Z  INFO 19156 --- [api.giybat.uz] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-01-24T23:11:46.825Z  INFO 19156 --- [api.giybat.uz] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-01-24T23:11:47.078Z  INFO 19156 --- [api.giybat.uz] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-01-24T23:11:48.366Z DEBUG 19156 --- [api.giybat.uz] [main] a.g.uz.config.JwtAuthenticationFilter    : Filter 'jwtAuthenticationFilter' configured for use
+2026-01-24T23:11:49.151Z  WARN 19156 --- [api.giybat.uz] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-01-24T23:11:49.201Z  INFO 19156 --- [api.giybat.uz] [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-01-24T23:11:49.201Z  WARN 19156 --- [api.giybat.uz] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-01-24T23:11:50.119Z  INFO 19156 --- [api.giybat.uz] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-01-24T23:11:50.146Z  INFO 19156 --- [api.giybat.uz] [main] api.giybat.uz.Application                : Started Application in 8.141 seconds (process running for 8.75)
+2026-01-24T23:11:50.184Z  INFO 19156 --- [api.giybat.uz] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:5432/giybat_db (PostgreSQL 14.20)
+2026-01-24T23:11:50.203Z  INFO 19156 --- [api.giybat.uz] [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.009s)
+2026-01-24T23:11:50.212Z  INFO 19156 --- [api.giybat.uz] [main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 2
+2026-01-24T23:11:50.213Z  INFO 19156 --- [api.giybat.uz] [main] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
+2026-01-24T23:18:46.979Z  INFO 19156 --- [api.giybat.uz] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-01-24T23:18:46.988Z  INFO 19156 --- [api.giybat.uz] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-01-24T23:18:46.991Z  INFO 19156 --- [api.giybat.uz] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2026-01-24T23:18:47.069Z  INFO 19156 --- [api.giybat.uz] [http-nio-8080-exec-1] a.giybat.uz.controller.AuthController    : Reset Password: username: ortiqovmuzaffar171@gmail.com
+2026-01-24T23:19:14.761Z  INFO 19156 --- [api.giybat.uz] [http-nio-8080-exec-2] a.giybat.uz.controller.AuthController    : Password Reset Confirm: username: ortiqovmuzaffar171@gmail.com
+2026-01-24T23:19:22.502Z  INFO 19156 --- [api.giybat.uz] [http-nio-8080-exec-3] a.giybat.uz.controller.AuthController    : Login: username: ortiqovmuzaffar171@gmail.com
+2026-01-24T23:19:22.587Z  INFO 19156 --- [api.giybat.uz] [http-nio-8080-exec-3] api.giybat.uz.service.AuthService        : Login failed username: ortiqovmuzaffar171@gmail.com
+2026-01-24T23:19:28.638Z  INFO 19156 --- [api.giybat.uz] [http-nio-8080-exec-5] a.giybat.uz.controller.AuthController    : Login: username: ortiqovmuzaffar171@gmail.com
+2026-01-24T23:22:03.691Z  INFO 19156 --- [api.giybat.uz] [http-nio-8080-exec-1] a.giybat.uz.controller.PostController    : Create post: api.giybat.uz.dto.post.PostCreateDTO@3d50afe5
+2026-01-24T23:22:43.326Z  INFO 19156 --- [api.giybat.uz] [http-nio-8080-exec-2] a.giybat.uz.controller.PostController    : Get profile's own posts: 
+2026-01-24T23:22:43.347Z  WARN 19156 --- [api.giybat.uz] [http-nio-8080-exec-2] ration$PageModule$WarningLoggingModifier : Serializing PageImpl instances as-is is not supported, meaning that there is no guarantee about the stability of the resulting JSON structure!
+	For a stable JSON structure, please use Spring Data's PagedModel (globally via @EnableSpringDataWebSupport(pageSerializationMode = VIA_DTO))
+	or Spring HATEOAS and Spring Data's PagedResourcesAssembler as documented in https://docs.spring.io/spring-data/commons/reference/repositories/core-extensions.html#core.web.pageables.
+
+2026-01-24T23:25:59.004Z  INFO 19156 --- [api.giybat.uz] [http-nio-8080-exec-6] a.giybat.uz.controller.PostController    : Update post by id: c56e2e25-9d27-4109-b83a-c8d6d56aa422
+2026-01-24T23:25:59.139Z  WARN 19156 --- [api.giybat.uz] [http-nio-8080-exec-6] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 0, SQLState: 23503
+2026-01-24T23:25:59.139Z ERROR 19156 --- [api.giybat.uz] [http-nio-8080-exec-6] o.h.engine.jdbc.spi.SqlExceptionHelper   : ERROR: insert or update on table "post" violates foreign key constraint "fka68pqiraaui4ab0uyt5u970qv"
+  Detail: Key (photo_id)=(3652a057-1bb6-469b-a470-9a9944219846.jpg) is not present in table "attach".
+2026-01-24T23:26:27.789Z  INFO 19156 --- [api.giybat.uz] [http-nio-8080-exec-4] a.giybat.uz.controller.PostController    : Update post by id: c56e2e25-9d27-4109-b83a-c8d6d56aa422
+2026-01-24T23:27:27.778Z  INFO 19156 --- [api.giybat.uz] [http-nio-8080-exec-3] a.giybat.uz.controller.PostController    : Delete post by id: b470ad8a-3b13-4a49-a8ca-745fa7edb972
+2026-01-24T23:29:36.561Z  INFO 19156 --- [api.giybat.uz] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-01-24T23:29:36.621Z  INFO 19156 --- [api.giybat.uz] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-01-24T23:29:36.659Z  INFO 19156 --- [api.giybat.uz] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-01-24T23:29:36.683Z  INFO 19156 --- [api.giybat.uz] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-01-24T23:29:36.695Z  INFO 19156 --- [api.giybat.uz] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-01-24T23:29:41.200Z  INFO 16336 --- [api.giybat.uz] [main] api.giybat.uz.Application                : Starting Application using Java 17.0.11 with PID 16336 (D:\Programs\GIYBAT.UZ\api.giybat.uz\target\classes started by adilo in D:\Programs\GIYBAT.UZ)
+2026-01-24T23:29:41.203Z DEBUG 16336 --- [api.giybat.uz] [main] api.giybat.uz.Application                : Running with Spring Boot v3.4.2, Spring v6.2.2
+2026-01-24T23:29:41.203Z  INFO 16336 --- [api.giybat.uz] [main] api.giybat.uz.Application                : The following 1 profile is active: "local"
+2026-01-24T23:29:41.830Z  INFO 16336 --- [api.giybat.uz] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-01-24T23:29:41.888Z  INFO 16336 --- [api.giybat.uz] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 43 ms. Found 7 JPA repository interfaces.
+2026-01-24T23:29:42.667Z  INFO 16336 --- [api.giybat.uz] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-01-24T23:29:42.686Z  INFO 16336 --- [api.giybat.uz] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-01-24T23:29:42.686Z  INFO 16336 --- [api.giybat.uz] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.34]
+2026-01-24T23:29:42.742Z  INFO 16336 --- [api.giybat.uz] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-01-24T23:29:42.742Z  INFO 16336 --- [api.giybat.uz] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1491 ms
+2026-01-24T23:29:42.931Z  INFO 16336 --- [api.giybat.uz] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-01-24T23:29:43.099Z  INFO 16336 --- [api.giybat.uz] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@362a561e
+2026-01-24T23:29:43.100Z  INFO 16336 --- [api.giybat.uz] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-01-24T23:29:43.133Z  INFO 16336 --- [api.giybat.uz] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:5432/giybat_db (PostgreSQL 14.20)
+2026-01-24T23:29:43.189Z  INFO 16336 --- [api.giybat.uz] [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.028s)
+2026-01-24T23:29:43.350Z  INFO 16336 --- [api.giybat.uz] [main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 2
+2026-01-24T23:29:43.354Z  INFO 16336 --- [api.giybat.uz] [main] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
+2026-01-24T23:29:43.436Z  INFO 16336 --- [api.giybat.uz] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-01-24T23:29:43.509Z  INFO 16336 --- [api.giybat.uz] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.5.Final
+2026-01-24T23:29:43.546Z  INFO 16336 --- [api.giybat.uz] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-01-24T23:29:43.819Z  INFO 16336 --- [api.giybat.uz] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-01-24T23:29:43.877Z  WARN 16336 --- [api.giybat.uz] [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-01-24T23:29:43.894Z  INFO 16336 --- [api.giybat.uz] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 14.20
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-01-24T23:29:44.804Z  INFO 16336 --- [api.giybat.uz] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-01-24T23:29:45.061Z  INFO 16336 --- [api.giybat.uz] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-01-24T23:29:45.254Z  INFO 16336 --- [api.giybat.uz] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-01-24T23:29:46.256Z DEBUG 16336 --- [api.giybat.uz] [main] a.g.uz.config.JwtAuthenticationFilter    : Filter 'jwtAuthenticationFilter' configured for use
+2026-01-24T23:29:46.563Z  WARN 16336 --- [api.giybat.uz] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-01-24T23:29:46.587Z  INFO 16336 --- [api.giybat.uz] [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-01-24T23:29:46.587Z  WARN 16336 --- [api.giybat.uz] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-01-24T23:29:47.190Z  INFO 16336 --- [api.giybat.uz] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-01-24T23:29:47.199Z  INFO 16336 --- [api.giybat.uz] [main] api.giybat.uz.Application                : Started Application in 6.407 seconds (process running for 6.977)
+2026-01-24T23:29:47.213Z  INFO 16336 --- [api.giybat.uz] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:5432/giybat_db (PostgreSQL 14.20)
+2026-01-24T23:29:47.219Z  INFO 16336 --- [api.giybat.uz] [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.003s)
+2026-01-24T23:29:47.223Z  INFO 16336 --- [api.giybat.uz] [main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 2
+2026-01-24T23:29:47.223Z  INFO 16336 --- [api.giybat.uz] [main] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
+2026-01-24T23:29:54.046Z  INFO 16336 --- [api.giybat.uz] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-01-24T23:29:54.047Z  INFO 16336 --- [api.giybat.uz] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-01-24T23:29:54.047Z  INFO 16336 --- [api.giybat.uz] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2026-01-24T23:29:54.297Z  INFO 16336 --- [api.giybat.uz] [http-nio-8080-exec-1] a.giybat.uz.controller.PostController    : Delete post by id: b470ad8a-3b13-4a49-a8ca-745fa7edb972
+2026-01-24T23:30:51.682Z  INFO 16336 --- [api.giybat.uz] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-01-24T23:30:51.742Z  INFO 16336 --- [api.giybat.uz] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-01-24T23:30:51.755Z  INFO 16336 --- [api.giybat.uz] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-01-24T23:30:51.758Z  INFO 16336 --- [api.giybat.uz] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-01-24T23:30:51.760Z  INFO 16336 --- [api.giybat.uz] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-01-24T23:30:55.758Z  INFO 10188 --- [api.giybat.uz] [main] api.giybat.uz.Application                : Starting Application using Java 17.0.11 with PID 10188 (D:\Programs\GIYBAT.UZ\api.giybat.uz\target\classes started by adilo in D:\Programs\GIYBAT.UZ)
+2026-01-24T23:30:55.763Z DEBUG 10188 --- [api.giybat.uz] [main] api.giybat.uz.Application                : Running with Spring Boot v3.4.2, Spring v6.2.2
+2026-01-24T23:30:55.763Z  INFO 10188 --- [api.giybat.uz] [main] api.giybat.uz.Application                : The following 1 profile is active: "local"
+2026-01-24T23:30:56.275Z  INFO 10188 --- [api.giybat.uz] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-01-24T23:30:56.332Z  INFO 10188 --- [api.giybat.uz] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 42 ms. Found 7 JPA repository interfaces.
+2026-01-24T23:30:56.948Z  INFO 10188 --- [api.giybat.uz] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-01-24T23:30:56.963Z  INFO 10188 --- [api.giybat.uz] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-01-24T23:30:56.963Z  INFO 10188 --- [api.giybat.uz] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.34]
+2026-01-24T23:30:57.010Z  INFO 10188 --- [api.giybat.uz] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-01-24T23:30:57.011Z  INFO 10188 --- [api.giybat.uz] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1202 ms
+2026-01-24T23:30:57.164Z  INFO 10188 --- [api.giybat.uz] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-01-24T23:30:57.304Z  INFO 10188 --- [api.giybat.uz] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4264beb8
+2026-01-24T23:30:57.306Z  INFO 10188 --- [api.giybat.uz] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-01-24T23:30:57.331Z  INFO 10188 --- [api.giybat.uz] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:5432/giybat_db (PostgreSQL 14.20)
+2026-01-24T23:30:57.370Z  INFO 10188 --- [api.giybat.uz] [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.022s)
+2026-01-24T23:30:57.422Z  INFO 10188 --- [api.giybat.uz] [main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 2
+2026-01-24T23:30:57.426Z  INFO 10188 --- [api.giybat.uz] [main] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
+2026-01-24T23:30:57.484Z  INFO 10188 --- [api.giybat.uz] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-01-24T23:30:57.522Z  INFO 10188 --- [api.giybat.uz] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.5.Final
+2026-01-24T23:30:57.550Z  INFO 10188 --- [api.giybat.uz] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-01-24T23:30:57.756Z  INFO 10188 --- [api.giybat.uz] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-01-24T23:30:57.796Z  WARN 10188 --- [api.giybat.uz] [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-01-24T23:30:57.809Z  INFO 10188 --- [api.giybat.uz] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 14.20
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-01-24T23:30:58.580Z  INFO 10188 --- [api.giybat.uz] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-01-24T23:30:58.790Z  INFO 10188 --- [api.giybat.uz] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-01-24T23:30:58.965Z  INFO 10188 --- [api.giybat.uz] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-01-24T23:30:59.847Z DEBUG 10188 --- [api.giybat.uz] [main] a.g.uz.config.JwtAuthenticationFilter    : Filter 'jwtAuthenticationFilter' configured for use
+2026-01-24T23:31:00.176Z  WARN 10188 --- [api.giybat.uz] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-01-24T23:31:00.203Z  INFO 10188 --- [api.giybat.uz] [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-01-24T23:31:00.203Z  WARN 10188 --- [api.giybat.uz] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-01-24T23:31:00.748Z  INFO 10188 --- [api.giybat.uz] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-01-24T23:31:00.756Z  INFO 10188 --- [api.giybat.uz] [main] api.giybat.uz.Application                : Started Application in 5.383 seconds (process running for 5.895)
+2026-01-24T23:31:00.769Z  INFO 10188 --- [api.giybat.uz] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:5432/giybat_db (PostgreSQL 14.20)
+2026-01-24T23:31:00.775Z  INFO 10188 --- [api.giybat.uz] [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.003s)
+2026-01-24T23:31:00.779Z  INFO 10188 --- [api.giybat.uz] [main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 2
+2026-01-24T23:31:00.779Z  INFO 10188 --- [api.giybat.uz] [main] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
+2026-01-24T23:31:10.798Z  INFO 10188 --- [api.giybat.uz] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-01-24T23:31:10.798Z  INFO 10188 --- [api.giybat.uz] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-01-24T23:31:10.799Z  INFO 10188 --- [api.giybat.uz] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-01-24T23:31:11.002Z  INFO 10188 --- [api.giybat.uz] [http-nio-8080-exec-1] a.giybat.uz.controller.PostController    : Delete post by id: b470ad8a-3b13-4a49-a8ca-745fa7edb972
+2026-01-24T23:49:11.413Z  INFO 10188 --- [api.giybat.uz] [http-nio-8080-exec-7] a.giybat.uz.controller.PostController    : Filter posts: 
+2026-01-24T23:49:11.488Z  WARN 10188 --- [api.giybat.uz] [http-nio-8080-exec-7] ration$PageModule$WarningLoggingModifier : Serializing PageImpl instances as-is is not supported, meaning that there is no guarantee about the stability of the resulting JSON structure!
+	For a stable JSON structure, please use Spring Data's PagedModel (globally via @EnableSpringDataWebSupport(pageSerializationMode = VIA_DTO))
+	or Spring HATEOAS and Spring Data's PagedResourcesAssembler as documented in https://docs.spring.io/spring-data/commons/reference/repositories/core-extensions.html#core.web.pageables.
+
+2026-01-24T23:49:33.096Z  INFO 10188 --- [api.giybat.uz] [http-nio-8080-exec-9] a.giybat.uz.controller.PostController    : Get post by id: b470ad8a-3b13-4a49-a8ca-745fa7edb972
+2026-01-24T23:49:41.157Z  INFO 10188 --- [api.giybat.uz] [http-nio-8080-exec-3] a.giybat.uz.controller.PostController    : Filter posts: 
+2026-01-24T23:54:32.181Z  INFO 10188 --- [api.giybat.uz] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-01-24T23:54:32.230Z  INFO 10188 --- [api.giybat.uz] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-01-24T23:54:32.240Z  INFO 10188 --- [api.giybat.uz] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-01-24T23:54:32.245Z  INFO 10188 --- [api.giybat.uz] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-01-24T23:54:32.250Z  INFO 10188 --- [api.giybat.uz] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

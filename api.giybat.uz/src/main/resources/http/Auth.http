@@ -6,7 +6,7 @@ Accept-Language: EN
 {
   "name": "Muzaffar",
   "username": "ortiqovmuzaffar171@gmail.com",
-  "password": "123456"
+  "password": "12345"
 }
 
 ### Registration Email  Verification
@@ -41,7 +41,7 @@ Content-Type: application/json
 
 {
   "username": "ortiqovmuzaffar171@gmail.com",
-  "password": "12345"
+  "password": "1234"
 }
 
 ### Password Reset
@@ -60,8 +60,8 @@ Accept-Language: EN
 
 {
   "username": "ortiqovmuzaffar171@gmail.com",
-  "confirmCode": "33846",
-  "password": "12345"
+  "confirmCode": "12240",
+  "password": "1234"
 }
 
 

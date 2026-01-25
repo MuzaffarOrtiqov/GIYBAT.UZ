@@ -10,6 +10,7 @@ import api.giybat.uz.enums.AppLanguage;
 import api.giybat.uz.enums.ProfileRole;
 import api.giybat.uz.exps.AppBadException;
 import api.giybat.uz.mapper.ProfileDetailMapper;
+import api.giybat.uz.repository.PostRepository;
 import api.giybat.uz.repository.ProfileRepository;
 import api.giybat.uz.repository.ProfileRoleRepository;
 import api.giybat.uz.util.JwtUtil;
@@ -50,6 +51,8 @@ public class ProfileService {
     private ProfileRoleRepository profileRoleRepository;
     @Autowired
     private AttachService attachService;
+    @Autowired
+    private PostService postService;
 
     public ProfileEntity findProfileById(String id, AppLanguage lang) {
         log.error("No profile found with id: {}", id);
@@ -57,9 +60,19 @@ public class ProfileService {
 
     }
 
-    public AppResponse<String> updateDetail(ProfileDetailUpdateDTO profile, AppLanguage lang) {
+    public AppResponse<String> updateDetail(ProfileDetailUpdateDTO dto, AppLanguage lang) {
         String userId = SpringSecurityUtil.getCurrentUserId();
-        profileRepository.updateProfileName(profile.getName(), userId);
+
+        // Verification: Check how many rows were modified
+        int rowsAffected = profileRepository.updateProfileName(dto.getName(), userId);
+
+        if (rowsAffected == 0) {
+            // This happens if the user ID from the token doesn't match any DB row
+            // (e.g., account deleted/banned mid-session)
+            log.error("Profile update failed. User ID {} not found in DB.", userId);
+            throw new AppBadException(resourceBundleMessageService.getMessage("profile.not.found", lang));
+        }
+
         return new AppResponse<>(resourceBundleMessageService.getMessage("profile.name.updated", lang));
     }
 
@@ -141,13 +154,39 @@ public class ProfileService {
         return new PageImpl<>(profileDTOList, pageable, profileDetailMapperPage.getTotalElements());
     }
 
-    public AppResponse<String> changeProfileStatus(String userId, ProfileStatusDTO profileStatusDTO, AppLanguage lang) {
-        profileRepository.updateStatus(userId, profileStatusDTO.getStatus());
+    public AppResponse<String> changeProfileStatus(String targetUserId, ProfileStatusDTO dto, AppLanguage lang) {
+        // 2. Capture who is performing the action for logs (Auditing)
+        String adminId = SpringSecurityUtil.getCurrentUserId();
+
+        // 3. Perform the update and capture the result
+        int rowsAffected = profileRepository.updateStatus(targetUserId, dto.getStatus());
+
+        // 4. Verification: Did we actually change anything?
+        if (rowsAffected == 0) {
+            log.warn("Admin {} tried to update status for non-existent user {}", adminId, targetUserId);
+            throw new AppBadException(resourceBundleMessageService.getMessage("profile.not.found", lang));
+        }
+
+        // 5. Log the security event
+        log.info("Profile status changed. Admin [{}] changed User [{}] to Status [{}]",
+                adminId, targetUserId, dto.getStatus());
+
         return new AppResponse<>(resourceBundleMessageService.getMessage("profile.update.success", lang));
     }
 
+
     public AppResponse<String> deleteProfile(String userId, AppLanguage lang) {
-        profileRoleRepository.deleteProfile(userId);
+        // 1. Perform Soft Delete (Change 'visible' to false)
+        int rowsAffected = profileRepository.softDeleteProfile(userId);
+
+        // 2. Verification: If 0 rows changed, the user didn't exist or was already deleted
+        if (rowsAffected == 0) {
+            throw new AppBadException(resourceBundleMessageService.getMessage("profile.not.found", lang));
+        }
+
+        // 3. Delete post's of a deleted user
+        postService.deletePostOfDeletedUser(userId);
+
         return new AppResponse<>(resourceBundleMessageService.getMessage("profile.delete.success", lang));
     }
 

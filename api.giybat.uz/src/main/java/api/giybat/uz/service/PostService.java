@@ -90,17 +90,29 @@ public class PostService {
         return toDTO(post);
     }
 
-    public Boolean deletePostById(String postId, AppLanguage lang) {
-        //receiving profileID of a post
+    public void deletePostById(String postId, AppLanguage lang) {
+        // 1. Check existence and fetch owner ID in one go (prevent NPE)
         String profileEntityId = postRepository.getProfileId(postId);
 
+        // If profileEntityId is null, the post likely doesn't exist
+        if (profileEntityId == null) {
+            throw new AppBadException(resourceBundleMessageService.getMessage("post.not.found", lang));
+        }
+
         String userId = SpringSecurityUtil.getCurrentUserId();
-        if (!SpringSecurityUtil.hasRole(ProfileRole.ROLE_ADMIN) && !profileEntityId.equals(userId)) {
-            log.warn("User {} trying to update other's post", userId);
+
+        // 2. Security Check (Admin or Owner)
+        boolean isAdmin = SpringSecurityUtil.hasRole(ProfileRole.ROLE_ADMIN);
+        boolean isOwner = profileEntityId.equals(userId);
+
+        if (!isAdmin && !isOwner) {
+            // Fixed log message: 'update' -> 'delete'
+            log.warn("Security alert: User {} tried to delete post {} owned by {}", userId, postId, profileEntityId);
             throw new AppBadException(resourceBundleMessageService.getMessage("no.post.delete", lang));
         }
-        postRepository.delete(postId);
-        return true;
+
+        // 3. Perform Delete
+        postRepository.softDelete(postId);
     }
 
     public PageImpl<PostDTO> filter(PostFilterDTO filterDTO, int page, int size) {
@@ -118,13 +130,20 @@ public class PostService {
                 .map(postEntity -> toDTO(postEntity)).toList();
     }
 
-
     public PageImpl<PostDTO> adminFilter(PostAdminFilterDTO postAdminFilterDTO, int page, int size) {
         FilterResultDTO<Object[]> result = customRepository.filter(postAdminFilterDTO, page, size);
         List<PostDTO> postList = result.getList()
                 .stream()
                 .map(this::toDTO).toList();
         return new PageImpl<>(postList, PageRequest.of(page, size), result.getCount());
+    }
+
+    public void deletePostOfDeletedUser(String userId) {
+        // 2. Performance: One query to update 10,000 posts takes milliseconds.
+        // Fetching 10,000 objects into Java memory takes seconds/minutes.
+        postRepository.softDeleteAllByUserId(userId);
+
+        log.info("Soft deleted all posts for user: {}", userId);
     }
 
 

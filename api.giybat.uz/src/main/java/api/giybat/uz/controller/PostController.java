@@ -61,10 +61,11 @@ public class PostController {
 
     @DeleteMapping("/{id}")
     @Operation(summary = "Delete a post", description = "Method used to delete by id")
-    public ResponseEntity<Boolean> deletePostById(@PathVariable(name = "id") String postId,
-                                                  @RequestHeader(value = "Accept-Language", defaultValue = "UZ") AppLanguage lang) {
+    public ResponseEntity<Void> deletePostById(@PathVariable(name = "id") String postId,
+                                               @RequestHeader(value = "Accept-Language", defaultValue = "UZ") AppLanguage lang) {
         log.info("Delete post by id: {}", postId);
-        return ResponseEntity.ok(postService.deletePostById(postId, lang));
+        postService.deletePostById(postId, lang);
+        return ResponseEntity.noContent().build();
     }
 
     @PostMapping("/public/filter")
@@ -87,7 +88,7 @@ public class PostController {
     public ResponseEntity<Page<PostDTO>> filter(@RequestBody PostAdminFilterDTO postAdminFilterDTO,
                                                 @RequestParam(name = "page", defaultValue = "1") Integer page,
                                                 @RequestParam(name = "size", defaultValue = "5") Integer size) {
-        return ResponseEntity.ok( postService.adminFilter(postAdminFilterDTO,PageUtil.giveProperPageNumbering(page),size));
+        return ResponseEntity.ok(postService.adminFilter(postAdminFilterDTO, PageUtil.giveProperPageNumbering(page), size));
     }
 
 }
