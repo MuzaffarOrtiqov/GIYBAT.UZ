@@ -51,7 +51,7 @@
     width: 12px;
     height: 12px;
     display: inline-block;
-    background-image: url("../../images/arrow1.svg");
+    background-image: url("../images/arrow1.svg");
     background-position: center center;
     background-repeat: no-repeat;
     position: absolute;
@@ -71,7 +71,7 @@
     width: 12px;
     height: 12px;
     display: inline-block;
-    background-image: url("../../images/arrow1.svg");
+    background-image: url("../images/arrow1.svg");
     background-position: center center;
     background-repeat: no-repeat;
     position: absolute;

@@ -1,4 +1,6 @@
+
 import AppConfig from "./AppConfig.js";
+
 window.addEventListener("DOMContentLoaded", function () {
     const userDetailJon = localStorage.getItem("userDetail");
     if (!userDetailJon) {
@@ -7,6 +9,15 @@ window.addEventListener("DOMContentLoaded", function () {
 
     const userDetailObj = JSON.parse(userDetailJon);
 
+    // Check if roleList exists and if it DOES NOT contain 'ROLE_ADMIN'
+    const isAdmin = userDetailObj.roleList && userDetailObj.roleList.includes("ROLE_ADMIN");
+
+    if (!isAdmin) {
+        const secureElements = document.querySelectorAll(".securityRequired");
+        secureElements.forEach(element => {
+            element.remove(); // Completely removes admin links for simple users
+        });
+    }
     document.getElementById("profile_settings_name").value = userDetailObj.name;
     document.getElementById("profile_settings_username").value = userDetailObj.username;
     if (userDetailObj.attachDTO) {

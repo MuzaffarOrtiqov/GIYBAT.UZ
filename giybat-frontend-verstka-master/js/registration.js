@@ -46,9 +46,10 @@ document.getElementById("registrationForm")
                 return Promise.reject(response.text())
             }
         }).then(item => {
+            console.log("Full Server Response:", item);
             const phoneOrEmail = checkEmailOrPhone(phoneEmail)
             if(phoneOrEmail==='Email'){
-                localStorage.setItem("registrationEmailMessage", item.data)
+                localStorage.setItem("registrationEmailMessage", item.message)
                 window.location.href = "./registration-email-confirm.html";
             }else if(phoneOrEmail==='Phone'){
                 localStorage.setItem("userPhoneNumber", phoneEmail)

@@ -9,7 +9,6 @@ function dateFormat(dateSrt) {
 
 function showPopup(message) {
     let container = document.getElementById("popup-container");
-    console.log(container);
     // Create new popup element
     let popup = document.createElement("div");
     popup.classList.add("popup");

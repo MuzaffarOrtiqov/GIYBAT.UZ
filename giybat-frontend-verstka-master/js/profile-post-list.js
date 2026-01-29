@@ -32,7 +32,6 @@ function getPostList() {
             return response.json();
         })
         .then(data => {
-            console.log(data)
             showPostList(data)
             if (data.totalElements > data.size) {
                 showPagination(data.totalElements, data.size);
