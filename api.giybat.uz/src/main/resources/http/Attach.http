@@ -4,7 +4,7 @@ Content-Type: multipart/form-data; boundary=WebAppBoundary
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwiaWQiOiIxMDM4YmJlZS1iNmMxLTQxM2UtYjU3MS0yNGE0MmI4YjQ5ZWYiLCJzdWIiOiJvcnRpcW92bXV6YWZmYXIxNzFAZ21haWwuY29tIiwiaWF0IjoxNzY5MjY2MjUxLCJleHAiOjE3Njk4NzEwNTF9.Ux4VARfrBlRzmxgisrx38_bO1gkpzMJ3EabR9qMTU9xniYCaLkHNa3yra2DmxDeqiKDPkLOW7RuUWcOfeZTKNw
 
 --WebAppBoundary
-Content-Disposition: form-data; name="file"; filename="sunflower.jpg"
+Content-Disposition: form-data; name="file"; filename="Red.jpg"
 
 < D:\Test\Red.jpg
 

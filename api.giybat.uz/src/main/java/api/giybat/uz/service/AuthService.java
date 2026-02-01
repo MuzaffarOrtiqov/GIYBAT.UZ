@@ -220,7 +220,7 @@ public class AuthService {
         profileResponseDTO.setName(profileEntity.getName());
         profileResponseDTO.setUsername(profileEntity.getUsername());
         profileResponseDTO.setRoleList(profileRoleRepository.getAllRoles(profileEntity.getId()));
-        profileResponseDTO.setAttachDTO(attachService.attachDTO(profileEntity.getPhotoId()));
+        profileResponseDTO.setAttachDTO(attachService.toDTO(profileEntity.getPhotoId()));
 
         profileResponseDTO.setJwt(JwtUtil.encode(profileEntity.getId(), profileEntity.getUsername(), profileResponseDTO.getRoleList()));
         return profileResponseDTO;

@@ -36,4 +36,13 @@ public interface PostRepository extends CrudRepository<PostEntity, String>, Pagi
     @Transactional
     @Query("UPDATE PostEntity SET visible=false WHERE profileId=?1")
     void softDeleteAllByUserId(String userId);
+
+    // Join fetch ensures the attachment data is loaded with the post
+    @Query("SELECT p, a FROM PostEntity p LEFT JOIN AttachEntity a ON p.photoId = a.id " +
+            "WHERE p.profileId = ?1 AND p.visible = true ORDER BY p.createdDate DESC")
+    Page<Object[]> findAllByProfileIdWithAttach(String profileId, Pageable pageable);
+
+    @Query("SELECT p, a FROM PostEntity p LEFT JOIN AttachEntity a ON p.photoId = a.id " +
+            "WHERE p.visible = true")
+    List<Object[]> findAllWithAttach();
 }

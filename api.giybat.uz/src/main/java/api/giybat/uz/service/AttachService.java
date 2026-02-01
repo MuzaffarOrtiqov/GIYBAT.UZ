@@ -1,5 +1,8 @@
 package api.giybat.uz.service;
 
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.model.ObjectMetadata;
+import com.amazonaws.services.s3.model.PutObjectRequest;
 import api.giybat.uz.dto.attach.AttachDTO;
 import api.giybat.uz.entity.AttachEntity;
 import api.giybat.uz.exps.AppBadException;
@@ -7,19 +10,10 @@ import api.giybat.uz.repository.AttachRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.UrlResource;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Calendar;
 import java.util.Objects;
 import java.util.Optional;
@@ -28,12 +22,12 @@ import java.util.UUID;
 @Service
 @Slf4j
 public class AttachService {
-    @Value("${attach.upload.folder}")
-    private String folderName;
 
-    @Value("${attach.url}")
-    private String attachUrl;
+    @Autowired
+    private AmazonS3 s3Client;
 
+    @Value("${aws.s3.bucketName}")
+    private String bucketName;
 
     @Autowired
     private AttachRepository attachRepository;
@@ -45,25 +39,26 @@ public class AttachService {
         }
 
         try {
-            String pathFolder = getYmDString(); // 2024/09/27
-            String key = UUID.randomUUID().toString(); // dasdasd-dasdasda-asdasda-asdasd
-            String extension = getExtension(Objects.requireNonNull(file.getOriginalFilename())); // .jpg, .png, .mp4
+            String pathFolder = getYmDString(); // e.g., 2026/1/29
+            String key = UUID.randomUUID().toString();
+            String extension = getExtension(Objects.requireNonNull(file.getOriginalFilename()));
+            String fileId = key + "." + extension;
 
-            // create folder if not exists
-            File folder = new File(folderName + "/" + pathFolder);
-            if (!folder.exists()) {
-                boolean t = folder.mkdirs();
-            }
+            // S3 Key (Full path in bucket)
+            String s3Key = pathFolder + "/" + fileId;
 
-            // save to system
-            byte[] bytes = file.getBytes();
-            Path path = Paths.get(folderName + "/" + pathFolder + "/" + key + "." + extension);
-            Files.write(path, bytes);
+            // Prepare S3 Metadata
+            ObjectMetadata metadata = new ObjectMetadata();
+            metadata.setContentType(file.getContentType());
+            metadata.setContentLength(file.getSize());
 
-            // save to db
+            // Upload to S3
+            s3Client.putObject(new PutObjectRequest(bucketName, s3Key, file.getInputStream(), metadata));
+
+            // Save metadata to database
             AttachEntity entity = new AttachEntity();
-            entity.setId(key + "." + extension);
-            entity.setPath(pathFolder);
+            entity.setId(fileId);
+            entity.setPath(pathFolder); // Storing folder structure in DB
             entity.setSize(file.getSize());
             entity.setOriginName(file.getOriginalFilename());
             entity.setExtension(extension);
@@ -72,49 +67,40 @@ public class AttachService {
 
             return toDTO(entity);
         } catch (IOException e) {
-            e.printStackTrace();
-            log.warn("File upload failed error : {}", e.getMessage());
-        }
-        return null;
-    }
-
-    public ResponseEntity<Resource> open(String id) {
-        AttachEntity entity = getEntity(id);
-        Path filePath = Paths.get(getPath(entity)).normalize();
-        Resource resource = null;
-        try {
-            resource = new UrlResource(filePath.toUri());
-            if (!resource.exists()) {
-                log.warn("File not found");
-                throw new RuntimeException("File not found: " + id);
-            }
-            String contentType = Files.probeContentType(filePath);
-            if (contentType == null) {
-                contentType = "application/octet-stream"; // Fallback content type
-            }
-            return ResponseEntity.ok()
-                    .contentType(MediaType.parseMediaType(contentType))
-                    .body(resource);
-        } catch (Exception e) {
-            e.printStackTrace();
-            log.warn("File download failed error : {}", e.getMessage());
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+            log.error("S3 Upload failed: {}", e.getMessage());
+            throw new AppBadException("Could not upload file to cloud");
         }
     }
 
     /**
-     * Other Util Methods
+     * Generates the public S3 URL for the file
      */
+    public String openURL(AttachEntity entity) {
+        String s3Key = entity.getPath() + "/" + entity.getId();
+        return s3Client.getUrl(bucketName, s3Key).toString(); // Returns direct S3 URL
+    }
+
+    public boolean delete(String id) {
+        AttachEntity entity = getEntity(id);
+        String s3Key = entity.getPath() + "/" + entity.getId();
+
+        // Delete from S3
+        s3Client.deleteObject(bucketName, s3Key);
+
+        // Delete from DB
+        attachRepository.deleteById(id);
+        return true;
+    }
+
+    // --- Util Methods ---
+
     private String getYmDString() {
-        int year = Calendar.getInstance().get(Calendar.YEAR);
-        int month = Calendar.getInstance().get(Calendar.MONTH) + 1;
-        int day = Calendar.getInstance().get(Calendar.DATE);
-        return year + "/" + month + "/" + day;
+        Calendar cal = Calendar.getInstance();
+        return cal.get(Calendar.YEAR) + "/" + (cal.get(Calendar.MONTH) + 1) + "/" + cal.get(Calendar.DATE);
     }
 
     private String getExtension(String fileName) {
-        int lastIndex = fileName.lastIndexOf(".");
-        return fileName.substring(lastIndex + 1);
+        return fileName.substring(fileName.lastIndexOf(".") + 1);
     }
 
     private AttachDTO toDTO(AttachEntity entity) {
@@ -123,45 +109,22 @@ public class AttachService {
         attachDTO.setOriginName(entity.getOriginName());
         attachDTO.setSize(entity.getSize());
         attachDTO.setExtension(entity.getExtension());
-        attachDTO.setCreatedData(entity.getCreatedDate());
-        attachDTO.setUrl(openURL(entity.getId()));
+        attachDTO.setUrl(openURL(entity)); // Link to S3 instead of local /open/ controller
         return attachDTO;
     }
 
     public AttachEntity getEntity(String id) {
-        Optional<AttachEntity> optional = attachRepository.findById(id);
-        if (optional.isEmpty()) {
-            log.warn("File not found");
-            throw new AppBadException("File not found");
+        return attachRepository.findById(id)
+                .orElseThrow(() -> new AppBadException("File not found in database"));
+    }
+
+    public AttachDTO toDTO(String attachId) {
+        if (attachId == null) {
+            return null;
         }
-        return optional.get();
-    }
-
-    private String getPath(AttachEntity entity) {
-        return folderName + "/" + entity.getPath() + "/" + entity.getId();
-    }
-
-    public String openURL(String fileName) {
-        return attachUrl + "/open/" + fileName;
-    }
-
-    public boolean delete(String id) {
-        AttachEntity entity = getEntity(id);
-        attachRepository.delete(id);
-        File file = new File(getPath(entity));
-        boolean b = false;
-        if (file.exists()) {
-            b = file.delete();
-        }
-        return b;
-    }
-
-    public AttachDTO attachDTO(String photoId) {
-        if(photoId==null) return null;
         AttachDTO attachDTO = new AttachDTO();
-        attachDTO.setId(photoId);
-        attachDTO.setUrl(openURL(photoId));
+        attachDTO.setId(attachId);
+        attachDTO.setUrl(openURL(getEntity(attachId)));
         return attachDTO;
     }
-
 }

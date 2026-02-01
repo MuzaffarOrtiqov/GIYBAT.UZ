@@ -27,7 +27,7 @@ public class ProfileController {
     @Autowired
     private ProfileService profileService;
 
-    @PutMapping("/detail") // Use PATCH for partial updates (e.g., just the name)
+    @PutMapping("/detail")
     @Operation(summary = "Update profile detail", description = "Update specific details (name, etc.) of the current user")
     public ResponseEntity<AppResponse<String>> updateDetail(
             @Valid @RequestBody ProfileDetailUpdateDTO dto,

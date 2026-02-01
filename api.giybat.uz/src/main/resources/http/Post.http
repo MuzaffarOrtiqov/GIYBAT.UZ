@@ -14,7 +14,7 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwiaWQiOiIxM
 ### GET PROFILE'S OWN POSTS
 GET localhost:8080/api/v1/post/profile?page=1&size?10
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwiaWQiOiIxMDM4YmJlZS1iNmMxLTQxM2UtYjU3MS0yNGE0MmI4YjQ5ZWYiLCJzdWIiOiJvcnRpcW92bXV6YWZmYXIxNzFAZ21haWwuY29tIiwiaWF0IjoxNzY5Mjk2NzY4LCJleHAiOjE3Njk5MDE1Njh9.pr_GF28kGtDw2O4LL3GNb5qTZ59QRGHC2L8Z5pBrJevf7mQbCMnc8aSOipdHw9QNSCoKbctL3ULH37KMasX8KQ
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwiaWQiOiJiMDFhOWY0ZC1mYTQ2LTQxMmItODMxOS01MGJhNTFjZmUyOWYiLCJzdWIiOiJvcnRpcW92bXV6YWZmYXIxNzFAZ21haWwuY29tIiwiaWF0IjoxNzY5OTM0ODIyLCJleHAiOjE3NzA1Mzk2MjJ9.s7_zGnJLYoIloe0q_L3g5R5Xn7NWSbvGAC_6eomrjtzApXbRsWCe4PuNkOJXV9cR9pRAgA8u03B8gpVxX5VpjQ
 
 ### GET FULL DETAILS OF A POST
 GET localhost:8080/api/v1/post/public/b470ad8a-3b13-4a49-a8ca-745fa7edb972
@@ -44,7 +44,7 @@ POST localhost:8080/api/v1/post/public/filter?page=1&size=3
 Content-Type: application/json
 
 {
-  "query": "orzu"
+
 }
 
 ### GET SIMILAR POSTS

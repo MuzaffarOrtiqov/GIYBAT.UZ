@@ -132,13 +132,19 @@ public class ProfileService {
     public AppResponse<String> updateProfilePhoto(ProfilePhotoUpdateDTO profileUpdateDTO, AppLanguage lang) {
         String userId = SpringSecurityUtil.getCurrentUserId();
         ProfileEntity profileEntity = findProfileById(userId, lang);
-        String currentPhotoId = profileEntity.getPhotoId();
-        if (profileUpdateDTO.getPhotoId() != null && profileUpdateDTO.getPhotoId() != profileEntity.getPhotoId()) { // check if profile photo is being renewed
-            if (currentPhotoId != null) { // check if current photo exists before deleting
-                attachService.delete(currentPhotoId);
+        String oldPhotoId = profileEntity.getPhotoId();
+        String newPhotoId = profileUpdateDTO.getPhotoId();
+
+        // 1. Update the profile to the NEW photo first (clears the reference to the old one)
+        if (newPhotoId != null && !newPhotoId.equals(oldPhotoId)) {
+            profileRepository.updateProfilePhoto(userId, newPhotoId);
+
+            // 2. Now that the reference is gone, delete the old photo record
+            if (oldPhotoId != null) {
+                attachService.delete(oldPhotoId);
             }
         }
-        profileRepository.updateProfilePhoto(userId, profileUpdateDTO.getPhotoId());
+
         return new AppResponse<>(resourceBundleMessageService.getMessage("profile.photo.updated", lang));
     }
 
@@ -200,7 +206,7 @@ public class ProfileService {
             List<ProfileRole> profileRoleList = profileEntity.getRoles().stream().map(ProfileRoleEntity::getRoles).toList();
             profileDTO.setRole(profileRoleList);
         }
-        profileDTO.setAttachDTO(attachService.attachDTO(profileEntity.getPhotoId()));
+        profileDTO.setAttachDTO(attachService.toDTO(profileEntity.getPhotoId()));
         profileDTO.setStatus(profileEntity.getStatus());
         profileDTO.setCreatedDate(profileEntity.getCreatedDate());
         return profileDTO;
@@ -222,7 +228,7 @@ public class ProfileService {
             }
             profileDTO.setRole(profileRoleList);
         }
-        profileDTO.setAttachDTO(attachService.attachDTO(mapper.getPhotoId()));
+        profileDTO.setAttachDTO(attachService.toDTO(mapper.getPhotoId()));
         profileDTO.setStatus(mapper.getStatus());
         profileDTO.setCreatedDate(mapper.getCreatedDate());
         return profileDTO;

@@ -1,7 +1,9 @@
 package api.giybat.uz.service;
 
+import api.giybat.uz.dto.attach.AttachDTO;
 import api.giybat.uz.dto.post.*;
 import api.giybat.uz.dto.profile.ProfileDTO;
+import api.giybat.uz.entity.AttachEntity;
 import api.giybat.uz.entity.PostEntity;
 import api.giybat.uz.enums.AppLanguage;
 import api.giybat.uz.enums.ProfileRole;
@@ -46,17 +48,22 @@ public class PostService {
 
 
     public Page<PostDTO> getProfilePost(Integer page, Integer size, AppLanguage lang) {
-
         Pageable pageable = PageRequest.of(page, size);
         String userId = SpringSecurityUtil.getCurrentUserId();
-        Page<PostEntity> postEntityList = postRepository.findAllByProfileIdAndVisibleTrueOrderByCreatedDateDesc(userId, pageable);
-        List<PostDTO> postDTOList = postEntityList
-                .stream()
-                .map(postEntity -> toDTO(postEntity))
-                .collect(Collectors.toList());
-        long totalCount = postEntityList.getTotalElements();
 
-        return new PageImpl<>(postDTOList, pageable, totalCount);
+        // 1. Single Query to get both Post and Attach data
+        Page<Object[]> result = postRepository.findAllByProfileIdWithAttach(userId, pageable);
+
+        // 2. Map the results efficiently
+        List<PostDTO> postDTOList = result.getContent().stream()
+                .map(objects -> {
+                    PostEntity post = (PostEntity) objects[0];
+                    AttachEntity attach = (AttachEntity) objects[1];
+                    return toDTO(post, attach); // Use our new optimized mapper
+                })
+                .collect(Collectors.toList());
+
+        return new PageImpl<>(postDTOList, pageable, result.getTotalElements());
     }
 
     public PostDTO getFullPostDetails(String postId, AppLanguage lang) {
@@ -139,8 +146,7 @@ public class PostService {
     }
 
     public void deletePostOfDeletedUser(String userId) {
-        // 2. Performance: One query to update 10,000 posts takes milliseconds.
-        // Fetching 10,000 objects into Java memory takes seconds/minutes.
+
         postRepository.softDeleteAllByUserId(userId);
 
         log.info("Soft deleted all posts for user: {}", userId);
@@ -153,7 +159,7 @@ public class PostService {
         PostDTO dto = new PostDTO();
         dto.setId(postEntity.getId());
         dto.setTitle(postEntity.getTitle());
-        dto.setAttachDTO(attachService.attachDTO(postEntity.getPhotoId()));
+        dto.setAttachDTO(attachService.toDTO(postEntity.getPhotoId()));
         dto.setCreatedDate(postEntity.getCreatedDate());
         return dto;
 
@@ -164,7 +170,7 @@ public class PostService {
         dto.setId((String) obj[0]);
         dto.setTitle(String.valueOf(obj[1]));
         if (obj[2] != null) {
-            dto.setAttachDTO(attachService.attachDTO(String.valueOf(obj[2])));
+            dto.setAttachDTO(attachService.toDTO(String.valueOf(obj[2])));
         }
         dto.setCreatedDate((LocalDateTime) obj[3]);
         ProfileDTO profileDTO = new ProfileDTO();
@@ -173,6 +179,19 @@ public class PostService {
         profileDTO.setUsername(String.valueOf(obj[6]));
 
         dto.setProfile(profileDTO);
+        return dto;
+    }
+
+    private PostDTO toDTO(PostEntity postEntity, AttachEntity attachEntity) {
+        PostDTO dto = new PostDTO();
+        dto.setId(postEntity.getId());
+        dto.setTitle(postEntity.getTitle());
+        dto.setCreatedDate(postEntity.getCreatedDate());
+
+        if (attachEntity != null) {
+            // We call openURL directly because we already have the entity (no new query!)
+            dto.setAttachDTO(attachService.toDTO(attachEntity.getId()));
+        }
         return dto;
     }
 

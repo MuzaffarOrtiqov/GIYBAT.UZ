@@ -224,19 +224,19 @@ async function updatePost() {
 }
 
 function deletePost() {
-    if (currentPost == null) {
-        return;
-    }
+    if (currentPost == null) return;
+
     const lang = document.getElementById("current-lang").textContent;
     const jwt = localStorage.getItem('jwtToken');
+
     if (!jwt) {
         window.location.href = './login.html';
         return;
     }
-    if (!confirm("G'iybatni o'chirmoqchimisiz?")) {
-        return;
-    }
-    fetch(AppConfig.API+'/api/v1/post/' + currentPost.id, {
+
+    if (!confirm("G'iybatni o'chirmoqchimisiz?")) return;
+
+    fetch(AppConfig.API + '/api/v1/post/' + currentPost.id, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
@@ -248,18 +248,17 @@ function deletePost() {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
-            return response.json();
+            // Check if there is content to parse, otherwise return null
+            return response.status === 204 ? {} : response.json();
         })
         .then(data => {
-            alert("Success")
-            window.location.href = "./profile-post-list.html"
+            alert("Success");
+            window.location.href = "./profile-post-list.html"; // Now this will trigger
         })
         .catch(error => {
             console.error('Error:', error);
+            alert("Ouch! Something went wrong.");
         });
-
-
-
 }
 
 // expose the function to the global scope for the inline HTML handler
